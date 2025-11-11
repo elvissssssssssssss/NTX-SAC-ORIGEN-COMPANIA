@@ -12,13 +12,13 @@ export class ChatbotService {
   private socket!: Socket;
 
   constructor(private router: Router, private zone: NgZone) {
-    // 🔗 Cambia la URL por la de tu backend en Render o localhost
-    this.socket = io('http://localhost:3001', {
+    //  Cambia la URL por la de tu backend en Render o localhost
+    this.socket = io('https://proyecto-wit-ai-websocket-io.onrender.com', {
       transports: ['websocket'],
       reconnection: true,
     });
 
-    // 🔍 Escuchar respuestas del bot
+    //  Escuchar respuestas del bot
     this.socket.on('bot_reply', (msg: any) => {
       console.log('🤖 Mensaje del bot:', msg);
       this.zone.run(() => {
@@ -27,8 +27,8 @@ export class ChatbotService {
       });
     });
 
-    // 🔍 Escuchar acciones del bot (por ejemplo, redirección)
-    // 🔍 Escuchar acciones del bot (por ejemplo, redirección)
+    // Escuchar acciones del bot (por ejemplo, redirección)
+    // Escuchar acciones del bot (por ejemplo, redirección)
 this.socket.on('bot_action', (action: any) => {
   console.log('⚡ Acción del bot:', action);
 
@@ -37,17 +37,17 @@ this.socket.on('bot_action', (action: any) => {
     this.zone.run(() => {
       try {
             // Si la URL pertenece a tu dominio, navega internamente
-            //const base = 'https://ntx-sac-frond-end-y6eu.vercel.app';
-            const base = 'http://localhost:4200';
+            const base = 'https://ntx-sac-origen-compania-l9jk.vercel.app';
+           // const base = 'http://localhost:4200';
            
             const urlObj = new URL(action.url);
 
-            // 🌈 Siempre activa el efecto arcoíris, sin importar el tipo
+            //  Siempre activa el efecto arcoíris, sin importar el tipo
         window.dispatchEvent(
           new CustomEvent('route-highlight', { detail: { duration: 1500 } })
         );
 
-        // 🔁 Si es interna → Angular navega
+        //  Si es interna → Angular navega
         if (urlObj.origin === base) {
           this.router.navigateByUrl(urlObj.pathname + urlObj.search + urlObj.hash);
         } else {

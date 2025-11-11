@@ -1,0 +1,122 @@
+/* header.component.css */
+
+.sb-topnav {
+  z-index: 1050;
+  height: 56px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+ 
+
+}
+.sb-topnav {
+  position: fixed; /* Hace que el navbar se quede fijo */
+  top: 0; /* Lo fija al tope de la pantalla */
+  width: 100%; /* Ocupa todo el ancho */
+  z-index: 1050; /* Encima de otros elementos */
+  height: 56px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.main-content {
+  margin-top: 50px; /* o más si usas un navbar más alto */
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.dropdown-header {
+  font-size: 0.9rem;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+
+#sidebarToggle {
+  color: #ffffff;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  margin-left: 73px;
+}
+
+#sidebarToggle:hover {
+  color: #adb5bd;
+}
+.navbar {
+  padding: 0.5rem 1rem;
+  height: 56px;
+  z-index: 1030;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.navbar-brand i {
+  font-size: 1.2rem;
+}
+
+.nav-link.dropdown-toggle {
+  padding: 0.25rem 0.5rem;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 0.15rem 1rem rgba(0, 0, 0, 0.175);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+.dropdown-item i {
+  width: 1.25rem;
+  text-align: center;
+  margin-right: 0.5rem;
+}
+
+.input-group {
+  width: 250px;
+}
+
+.btn-link {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Efecto para el botón de búsqueda */
+.btn-primary {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .input-group {
+    width: 180px;
+  }
+  
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,170 @@
+<div id="contenidoPrincipal" class="seccion-contenido-pagina">
+  <div class="contenido-interno-pagina">
+    <div class="servicio">
+      <h1 class="titulo-servicio">
+        <span class="titulo-pagina">
+          Iniciar sesión
+        </span>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="servicio-principal servicio-principal--usuario-invitado">
+  <!-- SECCIÓN INICIAR SESIÓN -->
+  <section class="seccion-servicio">
+    <div class="seccion-servicio__interior" id="border1">
+      <div class="caja-formulario">
+        <h3 class="caja-formulario__titulo">Iniciar sesión</h3>
+        
+        <form (ngSubmit)="onSubmit()">
+          <label class="seccion-formulario__etiqueta" for="email">
+            Correo electrónico
+            <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+          </label>
+          <input type="email" 
+                 class="campo-entrada"
+                 [class.is-invalid]="error"
+                 id="email" 
+                 name="email" 
+                 [(ngModel)]="email"
+                 required 
+                 maxlength="50" 
+                 autocomplete="email">
+          
+          <div class="grupo-campos-formulario">
+            <div class="seccion-formulario seccion-formulario--requerida">
+              <label class="seccion-formulario__etiqueta" for="password">
+                Contraseña
+                <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+              </label>
+              <div class="campo-entrada__contenedor">
+                <input [type]="showPassword ? 'text' : 'password'" 
+                       class="campo-entrada"
+                       [class.is-invalid]="error"
+                       id="password" 
+                       name="password" 
+                       [(ngModel)]="password"
+                       required 
+                       minlength="6" 
+                       maxlength="255" 
+                       autocomplete="current-password">
+                <button type="button" 
+                        class="campo-entrada__alternar-visibilidad"
+                        (click)="togglePasswordVisibility()">
+                  {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="error" *ngIf="error" style="color: red;">
+            <p>{{ error }}</p>
+          </div>
+          
+          <div class="grupo-acciones-formulario">
+            <div class="casilla-verificacion">
+              <input type="checkbox" 
+                     name="remember" 
+                     id="remember"
+                     [(ngModel)]="rememberMe"
+                     (change)="onRememberMeChange()"
+                     class="privacy-checkbox-input">
+              <label class="recordar" for="remember">Recordar mis datos</label>
+            </div>
+            <a routerLink="/password/request" 
+               class="boton-enlace boton-enlace-olvido-contraseña"
+               id="boton2">
+              ¿Has olvidado tu contraseña?
+            </a>
+          </div>
+          
+       
+          <button type="submit" 
+                  class="boton boton--ancho-completo" 
+                  [disabled]="isLoading"
+                  id="boton1">
+            {{ isLoading ? 'Iniciando sesión...' : 'Iniciar sesión' }}
+          </button>
+
+          
+        
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CREAR CUENTA -->
+  <section class="seccion-servicio">
+    <div class="seccion-servicio__interior">
+      <div class="caja-formulario">
+        <h3 class="caja-formulario__titulo">Crear Cuenta</h3>
+        
+        <label class="seccion-formulario__etiqueta" for="campo-registro-email">
+          Email
+          <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+        </label>
+        
+        <input data-ref="campo" 
+               id="campo-registro-email" 
+               type="email" 
+               class="campo-entrada" 
+               placeholder="" 
+               aria-describedby="campo-registro-email-error" 
+               pattern="^[a-zA-Z0-9.!#$%&amp;'*+\/=?^_`\{\|\}~\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)+[a-zA-Z]{1,}$" 
+               name="campo-registro-email" 
+               required 
+               value="" 
+               maxlength="50" 
+               aria-required="true" 
+               autocomplete="email">
+        
+        <div class="contenido-activo">
+          <section class="beneficios-cuenta" aria-label="Beneficios de la creación de cuenta">
+            <ul class="lista-beneficios-cuenta">
+              <li class="elemento-beneficio-cuenta">Finalizar compra rápida</li>
+              <li class="elemento-beneficio-cuenta">Seguimiento rápido del pedido</li>
+              <li class="elemento-beneficio-cuenta">Acceder a ofertas y eventos especiales.</li>
+            </ul>
+          </section>
+        </div>
+        
+        <button class="boton boton--ancho-completo" 
+                type="button" 
+                id="botonCrearCuenta"
+                (click)="navigateToRegister()">
+          Crear cuenta
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONTINUAR CON -->
+  <section class="l-service-section">
+    <div class="b-social_login m-full_width">
+      <p class="b-social_login-title">
+        Continuar con
+      </p>
+      <input type="hidden" name="OAuthProvider" id="OAuthProvider" value="">
+      
+      <div class="b-social_login-container">
+        <a href="" (click)="loginWithFacebook($event)">
+          <span class="b-social_login-button_title">Facebook</span>
+        </a>
+      </div>
+      
+      <p class="b-social_login-caption">
+        al continuar, aceptas nuestros 
+        <a href="#" 
+           data-tau="checkout_terms_and_conditions" 
+           class="b-form_section-link" 
+           target="_blank">Términos y condiciones</a>
+        . Consulta nuestro 
+        <a href="#" 
+           data-tau="checkout_privacy_policy" 
+           class="b-form_section-link" 
+           target="_blank">Aviso de privacidad</a>.
+      </p>
+    </div>
+  </section>
+</div>

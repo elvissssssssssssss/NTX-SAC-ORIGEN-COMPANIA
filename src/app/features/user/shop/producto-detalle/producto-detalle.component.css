@@ -1,0 +1,1005 @@
+
+
+
+
+/*'============================================================='*/
+/*'=====Estilos generales para todos los elementos HTML========'*/
+/*'==========================================================='*/
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Define la fuente predeterminada para el cuerpo */
+      display: flex;
+      flex-direction: column;
+ 
+      min-height: 100vh;
+      
+  }
+  
+
+  
+  /*'================================================================================================'*/
+
+
+
+@media screen and (max-width: 775px) {
+    #detalle-producto-izquierda {
+        width: 100%;
+    }
+}
+
+#detalle-producto-izquierda {
+    width: 50%;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+
+/*'============================'*/
+/*'====    4 img     ========='*/
+/*'==========================='*/
+
+
+#detalle-producto {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#detalle-producto-L {
+      width: 10%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    padding-right: 0px;
+}
+
+.seleccionadores a, .miniatura, .miniatura:focus {
+    display: inline-block;
+    line-height: 0;
+    outline: none;
+}
+
+.seleccionadores a img, .miniatura img {
+    border: 0;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+#detalle-producto-R {
+    width: 90%;
+    float: right;
+    padding: 12px;
+}
+
+@media screen and (max-width: 1023px) {
+    .figura-app {
+        width: 100% !important;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
+
+.ZoomMagico {
+    display: inline-block;
+    outline: 0 !important;
+    position: relative;
+    margin: 0 auto;
+    vertical-align: middle;
+    user-select: none;
+    touch-action: pan-y;
+    -webkit-compativilidad: translate3d(2, 5, 1);
+}
+
+.figura-app {
+    width: 100% !important;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+.figura-zoom-hover {
+    overflow: hidden;
+    margin: 0 !important;
+    transform-style: preserve-3d;
+	
+}
+.zoom-listo {
+    display: inline-block;
+    outline: 0 !important;
+    font-size: 0 !important;
+    line-height: 100% !important;
+    direction: ltr !important;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.figura-zoom-hover {
+    position: relative;
+}
+
+.zoom-listo {
+    position: relative;
+}
+
+.lente-zoom {
+    position: absolute;
+    border: 1px solid #000;
+    display: none;
+}
+
+.cargando-zoom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.pista-zoom {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px;
+    display: none;
+}
+
+.pista-oculta {
+    display: none;
+}
+
+.figura-zoom-hover:hover .lente-zoom,
+.figura-zoom-hover:hover .cargando-zoom,
+.figura-zoom-hover:hover .pista-zoom {
+    display: block;
+}
+
+.lente-zoom {
+    border: 1px solid rgba(170, 170, 170, 0.7);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: none;
+    z-index: 10;
+    opacity: 0;
+    position: absolute !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+.ZoomMagico img, .figura-zoom-hover img {
+    width: 100%;
+    border: 0 !important;
+    margin: 0 !important;
+    outline: 0 !important;
+    padding: 0 !important;
+}
+
+
+
+
+
+
+
+
+#detalle-producto-derecha {
+    width: 50%;
+    float: right;
+ 
+    position: relative;
+    overflow: hidden;
+    margin-top: 44px;
+}
+
+#detalle-producto-nuevo, 
+#detalle-producto-nombre, 
+#detalle-producto-sku, 
+#detalle-producto-marca, 
+#detalle-producto-color, 
+#detalle-producto-precio-detalle, 
+#detalle-producto-cant-colores, 
+#detalle-producto-imagenes-colores, 
+#detalle-producto-opciones-disponibles, 
+#detalle-producto-tallas-disponibles, 
+#detalle-producto-cantidades-disponibles, 
+#detalle-producto-boton, 
+#detalle-producto-boton-agregar, 
+#detalle-producto-linea-detalle {
+    width: 100%;
+    height: auto;
+}
+
+
+.btn_3 {
+    
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFF;
+    height: 40px;
+    width: 150px;
+    border-radius: 12px;
+    box-shadow: 1px 1px 8px #CCC;
+    background-color: #333;
+    border: thin solid #333;
+        margin-top: 23px;
+}
+
+
+@media screen and (max-width: 950px) {
+    .btn_3 {
+        width: 100%;
+        height: 40px;
+    }
+}
+
+
+#detalle-producto-nuevo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18px;
+    color: #999;
+}
+/*'============================'*/
+/*'==== drerecha    ====='*/
+/*'==========================='*/
+
+#detalle-producto-nombre {
+    width: 100%;
+    height: auto;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
+    line-height: 28px;
+    color: #000;
+}
+
+#detalle-producto-sku, 
+#detalle-producto-color, 
+#detalle-producto-cant-colores {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 17px;
+    color: #000;
+    margin-top: 9px;
+
+}
+
+#detalle-producto-color {
+    color: #666;
+    line-height: 24px;
+}
+
+#detalle-producto-precio-detalle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*'============================'*/
+/*'====    75 soles    ======'*/
+/*'==========================='*/
+
+.detalle-precio {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 45px;
+    color: rgb(187, 21, 21);
+    line-height: 50px;
+}
+/*'============================'*/
+/*'====     precio tachado       ==='*/
+/*'==========================='*/
+
+.detalle-precio-antes {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 23px;
+    color: #8b8b8b;
+    text-decoration: line-through;
+    line-height: 25px;
+}
+
+#detalle-producto-imagenes-colores {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+form {
+    display: block;
+    margin-top: 0;
+    unicode-bidi: isolate;
+}
+
+#detalle-producto-tallas-disponibles, 
+#detalle-producto-cantidades-disponibles {
+    width: 48%;
+    float: left;
+    margin-right: 2%;
+}
+
+#detalle-producto-cantidades-disponibles {
+    float: right;
+    margin-right: 0;
+}
+/*'============================'*/
+/*'====       tallaass
+/*'==========================='*/
+
+.box_2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #000;
+    border: thin solid #CCC;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 8px;
+}
+
+#detalle-producto-boton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#detalle-producto-boton-agregar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-compativilidad: button;
+    cursor: pointer;
+}
+
+img {
+        
+       height: 83PX;
+    border-style: none;
+    vertical-align: top;
+}
+
+
+
+
+main {
+  
+   
+    
+    box-sizing: border-box;
+  }
+  /* zoom.css */
+
+/* Estilos para el contenedor principal */
+#producto-detalle-izquierda {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  width: 50%;
+  margin-left: 185px;
+}
+
+/* Estilos para las miniaturas */
+#producto-detalle-producto-L {
+    width: 20%;
+}
+
+.selectors {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mz-thumb img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.mz-thumb img:hover {
+    border-color: #007bff; /* Cambiar el borde al pasar el mouse */
+}
+
+/* Estilos para la vista ampliada */
+#producto-detalle-producto-R {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Estilos para la imagen principal */
+#img-detalle-full {
+    max-width: 100%; /* La imagen no será más ancha que su contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+    display: block; /* Eliminar espacio adicional debajo de la imagen */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+}
+
+/* Estilos para el efecto de zoom */
+.img-zoom-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-zoom-lens {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    width: 100px;
+    height: 1100px;
+}
+
+.img-zoom-result {
+    border: 1px solid #d4d4d4;
+    width: 300px;
+    height: 300px;
+}
+
+/* Estilos para Slick Carousel */
+.slick-slide {
+    margin: 0 10px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #007bff; /* Color de las flechas de navegación */
+}
+
+.slick-prev {
+    left: -25px;
+}
+
+.slick-next {
+    right: -25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 🔧 Limpieza del layout */
+#detalle-producto {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#producto-detalle-izquierda {
+  position: relative; /* necesario para el lens */
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 45%;
+  margin-left: 100px;
+  overflow: visible; /* 🔥 muy importante */
+  float: none; /* elimina floats */
+}
+
+#producto-detalle-producto-R {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Zona de zoom */
+.zoom-container {
+  position: relative;
+  border-radius: 10px;
+  width: 450px;
+  cursor: crosshair;
+}
+
+.main-image {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+
+
+/* Resultado del zoom: flotante al costado */
+
+
+/* Imagen dentro del zoom */
+.zoom-result img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.1s linear;
+}
+
+/* Responsivo: ocultar zoom en móvil */
+@media (max-width: 768px) {
+  .zoom-result {
+    display: none;
+     width: 100%;
+  height: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+/***************** Estilos adicionales ***********/
+#producto-detalle-izquierda {
+    width: 40%;
+    height: auto;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    margin-left: 185px;
+}
+
+#producto-detalle-producto {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#producto-detalle-producto-L {
+    width: 10%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    padding-right: 0px;
+}
+
+#producto-detalle-producto-R {
+    width: 90%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    float: right;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+a[data-zoom-id], .mz-thumb, .mz-thumb:focus {
+    display: inline-block;
+    line-height: 0;
+    outline: none;
+}
+
+#img-min-producto {
+    width: 100% !important;
+    height: auto;
+    padding: 0px !important;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.app-figure {
+    width: 100% !important;
+    margin: 0px auto;
+    padding: 0;
+    padding-right: 0px;
+}
+
+.MagicZoom, .mz-figure {
+    display: inline-block;
+    outline: 0 !important;
+    font-size: 0 !important;
+    line-height: 100% !important;
+    direction: ltr !important;
+    position: relative;
+    margin: 0 auto;
+    vertical-align: middle;
+ 
+    user-select: none;
+   
+
+    backface-visibility: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+    .app-figure {
+        width: 100% !important;
+    }
+}
+        
+
+.discount-banner {
+    height: 32px;
+}
+
+/* Estilos responsivos para móviles */
+@media screen and (max-width: 600px) {
+    #detalle-producto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+}
+    @media screen and (max-width: 600px) {
+        #producto-detalle-izquierda {
+            width: 90%;
+            margin-left: 0;
+            
+        }
+    
+
+    #detalle-producto-izquierda, #detalle-producto-derecha {
+        width: 90%;
+    }
+
+    #detalle-producto-izquierda {
+        margin-bottom: 20px;
+    }
+
+    .seleccionadores img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #detalle-producto-R img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.carrusel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carrusel__contenedor {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel__diapositiva {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carrusel__control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1rem;
+    background-color: rgba(241, 240, 240, 0.97);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    height: 63px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+   
+.carrusel__control--prev {
+    left: 10px;
+}
+
+.carrusel__control--siguiente {
+    right: 10px;
+}
+
+@media screen and (min-width: 601px) {
+    .carrusel__control--pre {
+
+    }
+    .carrusel__control--prev {
+    left: 123px;
+}
+
+.carrusel__control--siguiente {
+    right: 123px;
+}
+}
+.carrusel__indicadores {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.carrusel__indicador {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #160d0d;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carrusel__indicador--activo {
+    background-color: #ffffff;
+}
+
+        /* Estilos para escritorio */
+        @media screen and (min-width: 601px) {
+    #detalle-producto {
+   
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 25px;
+
+    }
+
+    #detalle-producto-izquierda, #detalle-producto-derecha {
+        width: 50%;
+        margin-right: 83px;
+
+     
+    }
+
+    #detalle-producto-izquierda {
+        margin-right: 20px;
+    }
+}
+
+    /* Ajustar tamaño de la imagen */
+#imagen-detalle {
+max-width: 100%;
+max-height: 400px;
+width: auto;
+height: auto;
+}
+.carrusel__diapositiva img {
+    max-width: 100%;
+    max-height: 600px; /* Ajusta esta altura según sea necesario */
+    width: auto;
+    height: 523px;
+    display: block;
+    margin: auto;
+}
+#detalle-producto {
+  display: flex;
+  gap: 40px; /* espacio entre imagen y detalles */
+  align-items: flex-start;
+  justify-content: space-between;
+
+}
+
+/* Contenedor de imagen principal */
+#producto-detalle-producto-R {
+  position: relative;
+  display: flex;
+  gap: 20px;
+}
+
+/* Zona de zoom */
+.zoom-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 450px;
+  height: auto;
+  cursor: crosshair;
+  z-index: 1; /* debajo del zoom */
+}
+
+/* Imagen principal */
+.main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Lupa */
+.lens {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  border-radius: 4px;
+  backdrop-filter: blur(2px);
+}
+
+/* Imagen ampliada al costado flotando  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
+.zoom-result {
+   position: absolute;                 /* ya NO es fixed */
+  top: 0;                              /* alineado arriba de la imagen */
+  left: calc(100% + 16px);             /* siempre a la derecha de la imagen */
+  width: clamp(860px, 132vw, 520px);    /* ancho fluido: min 320, ideal 32% del viewport, max 520 */
+  height: clamp(220px, 32vw, 420px);  
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* Imagen dentro del zoom */
+.zoom-result img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.1s linear;
+}
+
+/* Efecto de entrada suave del zoom */
+.zoom-result.ng-animating,
+.zoom-result {
+
+  transform: scale(0.95);
+}
+
+.zoom-result.ng-star-inserted {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Responsivo: oculta zoom flotante en móviles */
+@media (max-width: 768px) {
+  .zoom-result {
+    display: none;
+  }
+}
+#detalle-producto-derecha {
+  transition: opacity 0.3s ease;
+}
+
+#detalle-producto:hover ~ #detalle-producto-derecha {
+  opacity: 0.3;
+}
+
+/* IMPORTANTE: que no recorte el zoom */
+#producto-detalle-izquierda,
+#producto-detalle-producto-R {
+  position: relative;
+  overflow: visible;
+}
+.mas.m-plp_nuevo.expandido {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.btn-vermas {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.btn-vermas:hover {
+  color: #0056b3;
+}
+/*******************************
+ * DESCRIPCIÓN DEL PRODUCTO
+ *******************************/
+.contenedor {
+  margin-top: 40px;
+  padding: 24px 28px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: #333;
+  max-width: 800px;
+  line-height: 1.7;
+}
+
+.encabezado_plp-titulo {
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16px;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+
+/* Texto del contenido */
+.mas.m-plp_nuevo {
+  font-size: 1rem;
+  color: #444;
+  text-align: justify;
+  white-space: pre-line;
+  overflow: visible;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Estado colapsado */
+.mas.m-plp_nuevo.expandido {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--mostrar-lineas, 3);
+  overflow: hidden;
+}
+
+/* Degradado al final solo si está colapsado */
+.mas.m-plp_nuevo.expandido::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to top, #fafafa 90%, transparent);
+  pointer-events: none;
+}
+
+/* Botón */
+.btn-vermas {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-vermas:hover {
+  color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenedor {
+    padding: 20px;
+    margin-top: 25px;
+  }
+
+  .encabezado_plp-titulo {
+    font-size: 1.2rem;
+  }
+
+  .mas.m-plp_nuevo {
+    font-size: 0.95rem;
+  }
+}

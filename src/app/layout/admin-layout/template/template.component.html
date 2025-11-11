@@ -1,0 +1,40 @@
+<!-- INICIO DEL HEADER -->
+    <app-header> </app-header>
+<!-- FIN DEL HEADER -->
+
+<div id="layoutSidenav">
+  <!-- TODO: INICIO DEL MENU LATERAL -->
+  <div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+      <div class="sb-sidenav-menu">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="sb-sidenav-footer">
+        <div class="small">Logged in as:</div>
+        Start Bootstrap
+      </div>
+    </nav>
+  </div>
+  <!-- TODO: FIN DEL MENU LATERAL -->
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4 mt-4">
+        <!-- TODO: INICIO WORKSPACE -->
+        <router-outlet />
+        <!-- TODO: FIN WORKSPACE -->
+      </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Your Website 2025</div>
+          <div>
+            <a href="#">Politicas de privacidad</a>
+            &middot;
+            <a href="#">Terminos y condiciones</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,218 @@
+  <!-- src/app/features/user/home/home.component.html -->
+
+
+  <body>
+
+    <!-- home.component.html -->
+  <!-- hombre.component.html -->
+  <!-- hombre.component.html -->
+  <div class="contact-container">
+    
+    <!-- Formulario de Contacto Tradicional -->
+    <div class="contact-form-section">
+      <h2>Envíenos un mensaje</h2>
+      <p class="form-description">Complete el formulario y nos pondremos en contacto con usted</p>
+
+      <form [formGroup]="contactForm" (ngSubmit)="enviarMensaje()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">
+              <i class="fas fa-user"></i> Nombres *
+            </label>
+            <input 
+              type="text" 
+              id="nombre" 
+              formControlName="nombre" 
+              placeholder="Ingresa tu nombre completo"
+              [class.invalid]="nombreInvalid"
+              required>
+            <span class="error-message" *ngIf="nombreInvalid">
+              El nombre debe tener al menos 3 caracteres
+            </span>
+          </div>
+          
+          <div class="form-group">
+            <label for="telefono">
+              <i class="fas fa-phone"></i> Teléfono *
+            </label>
+            <input 
+              type="tel" 
+              id="telefono" 
+              formControlName="telefono"
+              placeholder="999 999 999"
+              [class.invalid]="telefonoInvalid"
+              required>
+            <span class="error-message" *ngIf="telefonoInvalid">
+              Ingresa un teléfono válido (9-15 dígitos)
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">
+            <i class="fas fa-envelope"></i> Correo Electrónico *
+          </label>
+          <input 
+            type="email" 
+            id="correo" 
+            formControlName="correo"
+            placeholder="ejemplo@correo.com"
+            [class.invalid]="correoInvalid"
+            required>
+          <span class="error-message" *ngIf="correoInvalid">
+            Ingresa un correo electrónico válido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">
+            <i class="fas fa-comment-dots"></i> Mensaje *
+          </label>
+          <textarea 
+            id="mensaje" 
+            formControlName="mensaje"
+            placeholder="Describe tu consulta o solicitud..."
+            rows="5"
+            [class.invalid]="mensajeInvalid"
+            required></textarea>
+          <span class="error-message" *ngIf="mensajeInvalid">
+            El mensaje debe tener al menos 10 caracteres
+          </span>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn-submit"
+          [disabled]="!contactForm.valid || enviandoMensaje">
+          <i class="fas" [class.fa-paper-plane]="!enviandoMensaje" [class.fa-spinner]="enviandoMensaje" [class.fa-spin]="enviandoMensaje"></i>
+          {{ enviandoMensaje ? 'Enviando...' : 'Enviar Mensaje' }}
+        </button>
+      </form>
+    </div>
+
+    <!-- Historial de Chat -->
+<!-- =================== Historial de Chat (WhatsApp-like) =================== -->
+<div class="chat-section whatsapp" id="wa-chat">
+  <!-- Encabezado -->
+  <div class="chat-header">
+    <div class="agente-info">
+      <div class="agente-avatar"><i class="fas fa-user-headset"></i></div>
+      <div class="agente-detalles">
+        <span class="agente-nombre">Soporte</span>
+        <span class="agente-estado">
+          <span class="status-dot online"></span>
+          Disponible para ayudarte
+        </span>
+      </div>
+    </div>
+
+    <!-- Indicador de carga del historial -->
+    <div *ngIf="cargandoHistorial" class="loading-indicator">
+      <i class="fas fa-spinner fa-spin"></i>
+      Cargando...
+    </div>
+  </div>
+
+  <!-- Zona de mensajes -->
+  <div class="chat-messages" #chatMessages>
+    <!-- Badge de Ticket -->
+    <div *ngIf="atencionId" class="wa-ticket">Ticket #{{ atencionId }}</div>
+
+    <!-- Mensajes -->
+    <div
+      *ngFor="let mensaje of mensajes"
+      class="wa-row"
+      [ngClass]="{
+        'wa-row--out': mensaje.tipo === 'usuario',
+        'wa-row--in':  mensaje.tipo !== 'usuario',
+        'message-enviando': mensaje.enviando,
+        'message-error': mensaje.error
+      }"
+    >
+      <!-- Avatar solo para entrantes -->
+      <div class="wa-avatar wa-avatar--msg" *ngIf="mensaje.tipo !== 'usuario'">
+        <i class="fas fa-user-circle"></i>
+      </div>
+
+      <!-- Burbuja -->
+      <div class="wa-bubble">
+        <div class="wa-text">{{ mensaje.texto }}</div>
+
+        <!-- Meta: fecha y remitente + ticks para salientes -->
+        <div class="wa-meta">
+          <span class="wa-time">
+            {{ mensaje.timestamp | date:'dd/MM/yyyy HH:mm' }}
+          </span>
+          <span class="wa-sep"> - </span>
+          <span class="wa-sender">
+            {{ mensaje.remitente || (mensaje.tipo === 'usuario' ? 'Tú' : 'Agente Soporte') }}
+          </span>
+          <span class="wa-ticks" *ngIf="mensaje.tipo === 'usuario'">
+            <i class="fas fa-check" [class.dimmed]="!mensaje.leido && !mensaje.enviado"></i>
+            <i class="fas fa-check" [class.dimmed]="!mensaje.leido && !mensaje.enviado"></i>
+          </span>
+        </div>
+
+        <!-- Estados locales -->
+        <div class="wa-sending" *ngIf="mensaje.enviando">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="wa-error" *ngIf="mensaje.error">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estado vacío -->
+    <div class="wa-empty" *ngIf="mensajes.length === 0 && !cargandoHistorial">
+      <i class="fas fa-comments"></i>
+      <p>No hay mensajes aún. Escribe algo para iniciar la conversación</p>
+    </div>
+
+    <!-- Estado cargando -->
+    <div class="wa-loading" *ngIf="cargandoHistorial">
+      <i class="fas fa-spinner fa-spin"></i> Cargando...
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="nuevoMensaje"
+      placeholder="Escribe un mensaje"
+      (keyup.enter)="enviarMensajeChat()"
+      maxlength="500"
+    />
+
+    <button
+      (click)="enviarMensajeChat()"
+      class="btn-send"
+      [disabled]="!nuevoMensaje.trim()"
+      title="Enviar"
+      aria-label="Enviar"
+    >
+      <i class="fas fa-paper-plane"></i>
+    </button>
+
+
+  <!-- Contador -->
+
+<!-- =================== /Historial de Chat =================== -->
+
+        <!-- Contador de caracteres -->
+        <div class="chat-footer" *ngIf="nuevoMensaje.length > 0">
+          <small class="char-counter" [class.limit]="nuevoMensaje.length >= 450">
+            {{ nuevoMensaje.length }}/500 caracteres
+          </small>
+        </div>
+      </div>
+
+      <!-- Nota informativa -->
+      <div class="chat-note">
+        <i class="fas fa-info-circle"></i>
+        <span>Tus mensajes se guardan automáticamente. Puedes volver en cualquier momento y continuar la conversación.</span>
+      </div>
+    </div>
+  </div>
+

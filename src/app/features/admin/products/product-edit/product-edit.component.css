@@ -1,0 +1,119 @@
+.main {
+  
+
+  margin-left: 254px;
+}
+
+/* Estilos base */
+.main {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+/* Alertas personalizadas */
+.alert-custom {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  width: auto;
+  min-width: 300px;
+  max-width: 90%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.fixed-top-center {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+}
+
+/* Secciones del formulario */
+.form-section {
+  background-color: #fff;
+}
+
+.form-section.details {
+  background-color: #f8f9fa;
+}
+
+/* Transiciones y estados */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.is-valid {
+  border-color: #28a745;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Botones */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Colores personalizados */
+.bg-purple {
+  background-color: #6f42c1;
+}
+
+.text-purple {
+  color: #6f42c1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .form-section {
+    padding: 1.5rem !important;
+  }
+}

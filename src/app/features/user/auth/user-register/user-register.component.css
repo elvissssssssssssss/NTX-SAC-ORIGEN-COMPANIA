@@ -1,0 +1,684 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif; /* Fuente predeterminada */
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0; /* Elimina el relleno predeterminado del body */
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Define la fuente predeterminada para el cuerpo */
+      display: flex;
+      flex-direction: column;
+      
+      min-height: 100vh;
+      
+  }
+  
+  
+  /*'============================'*/
+  /*'============================'*/
+  /*'====   INICIO SECION   ====='*/
+  /*'==========================='*/
+  
+  
+  
+  
+
+
+  
+  /*'============================'*/
+  /*'====   CONTINUAR CON    ====='*/
+  /*'==========================='*/
+  
+  
+      
+      
+      
+      .l-service-section {
+      display: block;
+    flex-basis: 100%;
+  }
+      
+      
+  /*'============================'*/
+  /*'====  SEXXION SOCIAL     ====='*/
+  /*'==========================='*/
+  
+  
+  
+  /* Estilos para el contenedor de inicio de sesión social a pantalla completa */
+  .b-social_login.m-full_width {
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+       max-height: 150px; /* Altura máxima deseada */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura máxima */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+      
+  }
+  /*'============================'*/
+  
+  /*'============================'*/
+  /*'====  continuar con   parrsfo    ====='*/
+  /*'==========================='*/
+  
+  /* Estilos para el título del contenedor de inicio de sesión social */
+  .b-social_login-title {
+    font-size: 13px;
+    letter-spacing: .33px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 11px;
+    width: 100%;
+    margin-top: 20px;
+
+  }
+  /*'============================'*/
+  
+  /*'============================'*/
+  /*'====    facebok       ====='*/
+  /*'==========================='*/
+  
+  /* Estilos para el contenedor de botones de inicio de sesión social */
+  .b-social_login.m-full_width .b-social_login-container {
+    margin: 0 auto;
+    width: 15%;
+  }
+  
+  /* Estilos para el botón de inicio de sesión de Facebook */
+  .b-social_login-facebook {
+    background-color: #0764FE;
+  }
+  
+      
+  /*'============================'*/
+  /*'====    al continuar aceptas nustra politica 3oarrafo     ====='*/
+  /*'==========================='*/	
+  /* Estilos para el texto debajo de los botones de inicio de sesión social */
+  .b-social_login-caption {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top:10px;
+  }
+  
+      .b-social_login-container {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      background-color: #0764FE;
+      border-radius: 5px;
+    }
+    .b-social_login-button_title {
+      color: white;
+      font-weight: bold;
+    }
+    .b-social_login-button_title:hover {
+      text-decoration: underline;
+    }
+  
+  
+  /*'============================'*/
+  /*'====  seccion form     ====='*/
+  /*'==========================='*/
+  /* Estilos para etiquetas de secciones de formulario requeridas */
+  .seccion-formulario--requerida > .seccion-formulario__etiqueta {
+    font-weight: normal;
+      
+  }
+  
+  /* Estilos para etiquetas de secciones de formulario */
+  .seccion-formulario__etiqueta {
+    text-transform: uppercase;
+    display: flex;
+  
+       font-size: 14px; /* Puedes ajustar este valor según el tamaño de fuente deseado */
+       padding: 16px 0;
+      
+  }
+  
+  
+  /* Estilos para campos de entrada */
+  .campo-entrada {
+    font-size: 13px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: #ddd;
+    border-radius: 0;
+    color: #000;
+    cursor: text;
+    font-family: inherit;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 12px;
+    vertical-align: baseline;
+    width: 100%;
+      
+  }
+  
+  .campo-entrada {
+      padding-right: 10px; /* Espacio adicional a la derecha para el botón */
+  }
+  
+  /*'============================'*/
+  /*'====   BORDER SUPERIOR       ====='*/
+  /*'==========================='*/
+  
+  /* Estilos para el contenedor de la sección de servicio */
+  .seccion-servicio {
+    padding: 0;
+        border: 1px solid #ddd;
+  }
+  
+  
+  
+  
+  /*'============================'*/
+  /*'====   BORDER SUPERIOR       ====='*/
+  /*'==========================='*/
+  
+  /* Estilos para el contenedor de la sección de servicio */
+  .seccion-servicio {
+    padding: 0;
+        border: 1px solid #ddd;
+  }
+  
+  /* Estilos para el contenedor interno de la sección de servicio */
+  .seccion-servicio__interior {
+    width: 385px;
+  }
+  /* Estilos para el cuadro de formulario */
+  .caja-formulario {
+    border: 0px solid #ddd;
+    border-top: 0;
+    padding: 40px 30px 40px 20px;
+      
+  }
+  /*'============================'*/
+  
+      /*'============================'*/
+  /*'====    MOSTRAR CONTRAEÑA   ====='*/
+  /*'==========================='*/
+  
+  .campo-entrada__alternar-visibilidad {
+    cursor: pointer;
+    letter-spacing: 0.33px;
+  
+    background: #efeeef;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    height: 100%;
+    padding: 0 10px;
+    
+    width: auto; /* Para permitir que el botón se ajuste al contenido */
+    right: 10px;
+    transition: color cubic-bezier(0.3, 0.46, 0.45, 0.94) 0.2s;
+  }
+  /*'============================'*/
+  
+  .campo-entrada__contenedor {
+      position: relative;
+  }
+  
+  .campo-entrada {
+      padding-right: 10px; /* Espacio adicional a la derecha para el botón */
+  }
+  
+  .campo-entrada__alternar-visibilidad {
+      position: absolute;
+      top: 50%;
+      right: -23px; /* Ajusta la posición horizontal del botón */
+      transform: translateY(-50%);
+      cursor: pointer;
+  }
+  
+      /*'============================'*/
+  /*'====  DIA -MES --AÑO   ====='*/
+  /*'==========================='*/
+      
+      
+  .bloque-formulario__linea {
+      justify-content: space-between;
+      position: relative;
+  }
+  
+  .bloque-formulario__seccion {
+      margin-right: -1px;
+      width: calc(33.3333333333% + 1px);
+  }
+  
+  .bloque-formulario__selector {
+      position: relative;
+      width: 100%;
+  }
+  
+  @media screen and (max-width: 1024px) {
+      .bloque-formulario__selector-entrada {
+          height: 42px;
+          line-height: 42px;
+      }
+  }
+  
+  .bloque-formulario__selector-entrada {
+  
+      
+      background: #fff;
+      border: 1px solid #ddd;
+      border-bottom-color: #ddd;
+      border-radius: 0;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: inherit;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 400;
+      height: 32px;
+      line-height: 18px;
+      outline: none;
+      padding: 0 36px 0 16px;
+      position: relative;
+     
+      user-select: none;
+      width: 100%;
+  }
+  
+  .bloque-formulario__selector-icono {
+      bottom: 0;
+      height: 16px;
+      pointer-events: none;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+  }
+  
+  
+      
+  /*'============================'*/
+  /*'====  STYLE BOTONES  ANCHO ALTURA     ====='*/
+  /*'==========================='*/
+      
+      
+  /* Estilos para botones de ancho completo */
+  .boton--ancho-completo {
+    width: 45%;
+  
+  }
+  
+  
+  
+  .boton {
+      align-items: center;
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 14px;
+      justify-content: center;
+      letter-spacing: 0.7px;
+      max-width: 100%;
+      min-height: 32px;
+      text-transform: uppercase;
+      transition: cubic-bezier(0.3, 0.46, 0.45, 0.94) 0.2s;
+      transition-property: background-color, color, border;
+      user-select: none;
+      vertical-align: top;
+      background: #000;
+      border: 1px solid #000;
+      border-radius: 0;
+      color: #fff;
+      font-weight: normal;
+      line-height: 20px;
+      padding: 1px 10px;
+  
+       margin-left: 50px; /* Agregamos un margen a la izquierda para desplazar el botón hacia la derecha */
+      margin-top: 20px; /* Agregamos un margen hacia abajo para mover el botón hacia el inferior de la página */
+  
+  }
+  
+  
+  
+  .dd-mm-aa-bloque {
+      
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+       margin-top: 20px;
+       
+  }
+  
+  
+  
+  /*'============================'*/
+  /*'==== IMAGEN ESTYLE    ====='*/
+  /*'==========================='*/
+      
+      
+  
+  .contenedor-servicio {
+      max-width: 100%;
+      margin: 0 auto; /* Centrar el contenido */
+      padding: 20px; /* Añadir un espacio alrededor del contenido */
+  }
+  
+  .contenido-pegajoso {
+      position: sticky;
+      top: 20px; /* Mantener el contenido pegajoso a 20px desde la parte superior */
+  }
+  
+  .recurso-contenido {
+      max-width: 100%;
+      margin: 0 auto; /* Centrar el contenido */
+  }
+  
+  .baner-registro-cuenta {
+      display: block; /* Asegurar que la imagen se muestre como un bloque */
+      width: 100%; /* Hacer que la imagen ocupe todo el ancho disponible */
+  }
+  
+  .imagen-baner-registro-cuenta {
+    width: 399px;
+    height: 603px;
+      border-radius: 10px; /* Agregar esquinas redondeadas */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agregar sombra */
+  }
+  
+  
+  
+  
+  /*'============================'*/
+  /*'==== IMAGEN ESTYLE    ====='*/
+  /*'==========================='*/
+      
+  .contenedor-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+   
+  
+    
+  }
+  .contenedor-flex {
+      
+      justify-content: center; /* Centra los elementos horizontalmente */
+      align-items: flex-start; /* Alinea los elementos en la parte superior */
+       
+      
+  }
+  
+  .contenedor-flex {
+    background: #f8f8f8;
+  }
+
+
+  
+   /*'============================'*/
+   /*'====    al continuar aceptas nustra politica 3oarrafo     ====='*/
+   /*'==========================='*/	
+   /* Estilos para el texto debajo de los botones de inicio de sesión social */
+   .b-social_login-caption {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 30px;
+  }
+  
+      .b-social_login-container {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      background-color: #0764FE;
+      border-radius: 5px;
+    }
+    .b-social_login-button_title {
+      color: white;
+      font-weight: bold;
+    }
+    .b-social_login-button_title:hover {
+      text-decoration: underline;
+    }
+    .servicio {
+      display: flex
+  ;
+      flex-wrap: wrap;
+      width: 100%;
+  }
+   
+
+
+    #contenidoPrincipal {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 auto;
+      width: 100%;
+
+      background: #f8f8f8;
+
+
+    }
+  
+   /* Estilos para el título de la página */
+   .titulo-servicio {
+    font-size: 24px;
+    color: #333;
+   
+    letter-spacing: 1px;
+    border-bottom: 1px solid #DEDEDE;
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilos para el span dentro del título de la página */
+.titulo-pagina {
+    font-weight: bold;
+ 
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilos para móviles (ocultar la imagen) */
+@media screen and (max-width: 767px) {
+  .imagen {
+      display: none; /* Oculta la imagen en móviles */
+  }
+}
+
+/* Estilos para escritorio (mostrar la imagen) */
+@media screen and (min-width: 768px) {
+  .imagen {
+      display: block; /* Muestra la imagen en escritorio */
+      margin: 23px;
+      margin-left: 43px;
+  }
+}
+
+/* Estilos para móviles */
+@media screen and (max-width: 767px) {
+  .formulario-registro {
+      width: 100%; /* El formulario ocupa todo el ancho */
+      padding: 10px; /* Añade un poco de espacio alrededor */
+  }
+
+  .campo-entrada {
+      font-size: 14px; /* Aumenta el tamaño de la fuente para móviles */
+  }
+
+  .boton--ancho-completo {
+      width: 100%; /* El botón ocupa todo el ancho */
+      margin-left: 0; /* Elimina el margen izquierdo */
+  }
+
+  .bloque-formulario__linea {
+      flex-direction: column; /* Coloca los selectores uno debajo del otro */
+  }
+
+  .bloque-formulario__seccion {
+      width: 100%; /* Cada selector ocupa todo el ancho */
+      margin-bottom: 10px; /* Añade espacio entre los selectores */
+  }
+
+  .contenedor-flex {
+      flex-direction: column; /* Apila los elementos verticalmente */
+      align-items: center; /* Centra los elementos horizontalmente */
+  }
+
+  .b-social_login-container {
+      width: 100%; /* El botón ocupa todo el ancho */
+      margin: 10px 0; /* Ajusta el margen */
+  }
+
+  .b-social_login-button_title {
+      font-size: 14px; /* Aumenta el tamaño de la fuente */
+  }
+}
+
+/* Resto de tus estilos CSS */
+.b-social_login.m-full_width {
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.b-social_login-title {
+  font-size: 13px;
+  letter-spacing: .33px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 11px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.b-social_login-container {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  background-color: #0764FE;
+  border-radius: 5px;
+}
+
+.b-social_login-button_title {
+  color: white;
+  font-weight: bold;
+}
+
+.b-social_login-button_title:hover {
+  text-decoration: underline;
+}
+
+.seccion-formulario__etiqueta {
+  text-transform: uppercase;
+  display: flex;
+  font-size: 14px;
+  padding: 16px 0;
+}
+
+.campo-entrada {
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  color: #000;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.campo-entrada__contenedor {
+  position: relative;
+}
+
+.campo-entrada__alternar-visibilidad {
+  position: absolute;
+  top: 50%;
+  right: -23px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.bloque-formulario__linea {
+  justify-content: space-between;
+  position: relative;
+}
+
+.bloque-formulario__seccion {
+  margin-right: -1px;
+  width: calc(33.3333333333% + 1px);
+}
+
+.bloque-formulario__selector-entrada {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  font-size: 13px;
+  height: 32px;
+  line-height: 18px;
+  padding: 0 36px 0 16px;
+  width: 100%;
+}
+
+.boton--ancho-completo {
+  width: 45%;
+}
+
+.boton {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 14px;
+  justify-content: center;
+  letter-spacing: 0.7px;
+  max-width: 100%;
+  min-height: 32px;
+  text-transform: uppercase;
+  background: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  color: #fff;
+  padding: 1px 10px;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.contenedor-flex {
+
+  
+  flex-direction: row-reverse;
+  
+}
+
+.imagen-baner-registro-cuenta {
+  width: 439px;
+  height: 603px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,127 @@
+/* ==== Transición luminosa lateral mejorada ==== */
+:root {
+  --glow-thickness: 2.5px;
+  --glow-radius: 20px;
+  --glow-z: 2147483647;
+}
+:root {
+  --ntx-rojo: #e30613;      /* Color principal del logo */
+  --ntx-gris-oscuro: #2e2e2e;
+  --ntx-gris-claro: #f5f5f5;
+  --ntx-blanco: #ffffff;
+  --ntx-fuente-principal: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+:root {
+  --ntx-rojo: #e30613; /* color del logo */
+  --ntx-blanco: #ffffff;
+  --ntx-gris-fondo: #f9f9f9;
+  --ntx-fuente: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+    :root {
+  --color-texto: #1a1a1a;
+  --color-fondo: #ffffff;
+  --color-hover: #f3f3f3;
+  --color-banner: #2b2b2b;
+  --fuente: "Poppins", Arial, sans-serif;
+}
+/* ==== Colores y variables globales ==== */
+:root {
+ --primary-color: #e63946; /* Rojo ntx */
+  --accent-color: #a8dadc;  /* Verde menta tenue */
+  --secondary-color: #457b9d; /* Azul acero */
+  --dark-color: #2d3436;
+  --light-color: #202127c6;
+  --success-color: #00b894;
+  --warning-color: #fdcb6e;
+  --error-color: #d63031;
+}
+.route-glow {
+  position: fixed;
+  inset: 0;
+  padding: var(--glow-thickness);
+  border-radius: var(--glow-radius);
+  pointer-events: none;
+  z-index: var(--glow-z);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+/* Activación */
+.route-glow.show {
+  opacity: 1;
+}
+
+/* 🌈 Capa principal del borde (sin rotación, con flujo lateral) */
+.route-glow {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #ff0040,
+    #ff8000,
+    #ffd000,
+    #00d060,
+    #00b0ff,
+    #6a00ff,
+    #ff00b4,
+    #ff0040
+  );
+  background-size: 300% 100%;
+  animation: flowSides 3s linear infinite;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  filter: brightness(1.7);
+}
+
+/* ✨ Capa de halo suave en los costados */
+.route-glow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  filter: blur(8px);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  animation: haloFade 1.5s ease-in-out infinite alternate;
+}
+
+/* 💫 Flujo sutil de color (sin giro) */
+@keyframes flowSides {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 🌟 Pulso suave del halo */
+@keyframes haloFade {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,89 @@
+<div class="lista-deseos-superior">
+    <h1 class="titulo-pagina">TU CARRITO</h1>
+</div>
+
+<main id="principal" role="main">
+    <div id="cuerpo">
+        <div id="titulo-carrito">PRODUCTOS AGREGADOS</div>
+        <div id="resumen-carrito">
+            <div id="resumen-documento">
+                <input type="hidden" name="tfacturacion" id="tfacturacion" value="">
+                <a href="/perfil" class="enlace-enfasis">Mis Compras</a>
+            </div>
+        </div>
+        <div id="lista-productos-carrito">
+            <div *ngIf="carrito.length === 0">
+                <p>Tu carrito está vacío.</p>
+            </div>
+            
+            <div *ngIf="carrito.length > 0">
+                <div *ngFor="let item of carrito; let i = index">
+                    <div class="linea-carrito"></div>
+                    <div class="producto-carrito">
+                        <div class="imagen-producto-carrito">
+                            <a [href]="'/producto/' + item.id">
+                                <img [src]="getImageUrl(item.productImage ?? '')" 
+                                     id="imagen-carrito" 
+                                     alt="Producto">
+                            </a>
+                        </div>
+                        <div class="detalle-producto-carrito">
+                            <div class="nombre-producto-carrito">
+                                <a [href]="'/producto/' + item.id">
+                                    {{ item.productName }}
+                                </a>
+                            </div>
+                            <div class="color-producto-carrito">
+                                Color: {{ item.color || 'N/A' }}
+                            </div>
+                            <div class="talla-producto-carrito">
+                                Talla: {{ item.talla }}
+                            </div>
+                            <div class="quitar-producto-carrito">
+                                <button type="button" 
+                                        class="enlace-enfasis-quitar"
+                                        (click)="eliminarItem(item.id!)">
+                                    Quitar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cantidad-producto-carrito">
+                            <select [(ngModel)]="item.quantity" 
+                                    class="select-cantidad"
+                                    (change)="actualizarCantidad(item)">
+                                <option value="1" [selected]="item.quantity === 1">1</option>
+                                <option value="2" [selected]="item.quantity === 2">2</option>
+                               
+                            </select>
+                            <button type="button" 
+                                    id="btn-actualizar"
+                                    (click)="actualizarCantidad(item)">
+                                Actualizar
+                            </button>
+                        </div>
+                        <div class="precio-producto-carrito">
+                            <span>S/. {{ item.productPrice }}</span> <br>
+                           <span class="precio-tachado" *ngIf="item.precioDescuento">
+  S/. {{ item.precioDescuento }}
+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="boton-pago-carrito">
+                    <div id="resumen-subtotal" class="total">
+                        <strong>SubTotal:</strong> S/. {{ total.toFixed(2) }}
+                    </div>
+                    <div class="boton-pagar-tarjeta">
+  <input 
+    type="button" 
+    class="boton2" 
+    (click)="procesarPago()"
+    [value]="isLoggedIn ? 'REALIZAR EL PAGO' : 'INICIAR SESIÓN PARA COMPRAR'">
+</div>
+   
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

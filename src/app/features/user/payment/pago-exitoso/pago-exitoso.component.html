@@ -1,0 +1,85 @@
+<div class="success-container">
+  <div class="success-card">
+    <div class="icon-check">
+      <span>&#10004;</span>
+    </div>
+    <h1 class="title">¡PagOO realizado con éxito!</h1>
+    <p class="message">
+      Gracias por tu compra. Hemos recibido tu pago correctamente.
+    </p>
+    <button class="btn-back" (click)="volverAlInicio()">Volver al inicio</button>
+  </div>
+</div>
+
+
+<div *ngIf="tipoComprobante === 'factura'">
+  <label for="ruc">REEEEEEEEEEEEEEEEEUC</label>
+  <input id="ruc" [(ngModel)]="datosFactura.ruc" required>
+
+  <label for="razonSocial">Razón Social</label>
+  <input id="razonSocial" [(ngModel)]="datosFactura.razonSocial" required>
+</div>
+<div class="alert alert-info" *ngIf="ventaId">
+  ¡Gracias por tu compra! Tu número de venta es <strong>#{{ ventaId }}</strong>.
+  Con este número podrás ver el seguimiento de tu pedido en la sección "Gestión de Envíos".
+</div>
+<!-- pago.component.html -->
+<div *ngIf="ultimoPdfUrl" class="alert alert-success">
+  ✅ Tu comprobante está listo:
+  <a [href]="ultimoPdfUrl" target="_blank" class="btn btn-link">Ver Boleta en PDF</a>
+</div>
+<div class="container" style="max-width:700px;margin:32px auto;">
+  <h2>Pago exitoso</h2>
+  <p>Venta registrada con ID: <strong>{{ ventaId }}</strong></p>
+
+  <div style="margin:16px 0;">
+    <label style="margin-right:12px;">
+      <input type="radio" name="tipo" value="boleta" [(ngModel)]="tipoComprobante"> Boleta
+    </label>
+    <label>
+      <input type="radio" name="tipo" value="factura" [(ngModel)]="tipoComprobante"> Factura
+    </label>
+  </div>
+
+  <!-- Campos requeridos para BOLETA -->
+  <div *ngIf="tipoComprobante === 'boleta'" style="background:#f7f7f7;padding:12px;border-radius:8px;margin-bottom:16px;">
+    <div style="margin-bottom:8px;">
+      <label>DNI (opcional)</label>
+      <input [(ngModel)]="clienteDNI" maxlength="12" placeholder="DNI" style="width:100%;padding:8px;">
+    </div>
+    <div style="margin-bottom:8px;">
+      <label>Nombres *</label>
+      <input [(ngModel)]="clienteNombres" placeholder="Nombres" style="width:100%;padding:8px;">
+    </div>
+    <div>
+      <label>Apellidos *</label>
+      <input [(ngModel)]="clienteApellidos" placeholder="Apellidos" style="width:100%;padding:8px;">
+    </div>
+    <small style="color:#666;">* Requerido para boleta</small>
+  </div>
+
+  <!-- Campos requeridos para FACTURA -->
+  <div *ngIf="tipoComprobante === 'factura'" style="background:#f7f7f7;padding:12px;border-radius:8px;margin-bottom:16px;">
+    <div style="margin-bottom:8px;">
+      <label>RUC *</label>
+      <input [(ngModel)]="datosFactura.ruc" maxlength="11" placeholder="RUC" style="width:100%;padding:8px;">
+    </div>
+    <div>
+      <label>Razón Social *</label>
+      <input [(ngModel)]="datosFactura.razonSocial" placeholder="Empresa S.A.C." style="width:100%;padding:8px;">
+    </div>
+  </div>
+
+  <button (click)="emitirComprobante()" class="btn btn-primary" style="padding:10px 16px;">
+    Emitir {{ tipoComprobante === 'boleta' ? 'Boleta' : 'Factura' }}
+  </button>
+
+  <div *ngIf="ultimoPdfUrl" style="margin-top:20px;background:#e8f5e9;padding:12px;border-radius:8px;">
+    <p style="margin:0 0 8px 0;">✅ Comprobante generado. Si no se abrió automáticamente:</p>
+    <a [href]="ultimoPdfUrl" target="_blank" rel="noopener" class="btn btn-link" style="margin-right:8px;">Ver PDF</a>
+    <button (click)="abrirPdf()" class="btn">Abrir en nueva pestaña</button>
+  </div>
+
+  <hr style="margin:24px 0;">
+  <button (click)="volverAlInicio()" class="btn">Volver al inicio</button>
+</div>

@@ -1,0 +1,668 @@
+
+/*'============================'*/
+/*'====    DIVVVVVVVVVVVVVVVVVVVVVVVVV      ====='*/
+/*'==========================='*/
+
+
+@media screen and (min-width: 78px) {
+    .servicio-principal.servicio-principal--usuario-invitado {
+       display: flex;
+   
+       flex-wrap: wrap;
+   
+       justify-content: center;
+   
+       margin: 0 0 40px -1px;
+   
+       width: calc(100% + 2px);
+       
+       background: #f8f8f8;
+     }
+    }
+    
+
+  .servicio-principal.servicio-principal--usuario-invitado {
+ 
+     
+     background: #f8f8f8;
+   }
+  
+
+      
+
+   /*'============================'*/
+   /*'====     INICIAR SECION      ====='*/
+   /*'==========================='*/
+   
+   
+   /* Estilos para el contenedor del servicio */
+   .servicio {
+       display: flex;
+       flex-wrap: wrap;
+       width: 100%;
+   }
+   
+   /* Estilos para el título de la página */
+   .titulo-servicio {
+       font-size: 24px;
+       color: #333;
+      
+       letter-spacing: 1px;
+       border-bottom: 1px solid #DEDEDE;
+       text-align: center;
+       width: 100%;
+   }
+   
+   /* Estilos para el span dentro del título de la página */
+   .titulo-pagina {
+       font-weight: bold;
+    
+       font-size: 20px;
+       letter-spacing: 1px;
+       line-height: 1.2;
+       text-transform: uppercase;
+  
+   }
+   
+   
+   
+   
+   
+   
+   
+   /* Estilos para el contenedor principal */
+   .pagina__contenido {
+     display: flex;
+     flex-wrap: wrap;
+     width: 100%;
+   }
+   
+       
+       
+   /*'============================'*/
+   /*'====   BORDER SUPERIOR       ====='*/
+   /*'==========================='*/
+   
+   /* Estilos para el contenedor de la sección de servicio */
+   .seccion-servicio {
+     padding: 0;
+         border: 1px solid #ddd;
+         background: #f8f8f8;
+   }
+   /* Ajustes para móviles */
+
+/* Ajustes para móviles */
+@media screen and (max-width: 768px) {
+  .seccion-servicio {
+      padding: 30px;
+  }
+   #border1 {
+
+    border: 1px solid #ddd;
+   }
+
+}
+   /*'============================'*/
+   /*'====   FORM 2 CREAR CUENTA        ====='*/
+   /*'==========================='*/
+   
+   /* Estilos para el cuadro de formulario */
+   .caja-formulario {
+     border: 0px solid #ddd;
+     border-top: 0;
+     padding: 40px 30px 40px 20px;
+   }
+   /*'============================'*/
+   
+       
+       
+       
+   /*'==============          =============='*/
+   /*'====  INICIAR SECION FORM 1       ====='*/
+   /*'=============            =============='*/
+   
+   /* Estilos para el título del formulario */
+   .caja-formulario__titulo {
+     font-size: 16px;
+     letter-spacing: 0.8px;
+     line-height: 1.2;
+     text-transform: uppercase;
+     border-bottom: 1px solid currentColor;
+     margin: 0 0 20px -20px;
+     padding-bottom: 5px;
+     padding-left: 20px;
+     width: max-content;
+   }
+   
+   /* Estilos para elementos ocultos */
+   .seccion-formulario--oculta {
+     border: 0;
+     clip: rect(1px, 1px, 1px, 1px);
+     left: 0;
+     max-height: 1px;
+     max-width: 1px;
+     overflow: hidden;
+     padding: 0;
+     position: absolute;
+     top: 0;
+   }
+   
+   /* Estilos para las secciones del formulario */
+   .formulario .seccion-formulario,
+   .formulario--inicio-sesion .seccion-formulario {
+     margin-bottom: 20px;
+   }
+   
+   /* Estilos generales */
+   *,
+   ::before,
+   ::after {
+     box-sizing: inherit;
+   }
+   
+   /* Estilos específicos para el formulario de inicio de sesión */
+   .formulario--inicio-sesion .seccion-formulario {
+     margin-bottom: 20px;
+   }
+   
+       
+       
+   /*'============================'*/
+   /*'====   COREO ELECTRONICO*   CONTRASEÑA*   EMAIL*  ====='*/
+   /*'==========================='*/
+   
+       
+   /* Estilos para etiquetas de secciones de formulario requeridas */
+   .seccion-formulario--requerida > .seccion-formulario__etiqueta {
+     font-weight: normal;
+   }
+   
+   /* Estilos para etiquetas de secciones de formulario */
+   .seccion-formulario__etiqueta {
+     text-transform: uppercase;
+     display: flex;
+     margin-bottom: 10px;
+        font-size: 14px; /* Puedes ajustar este valor según el tamaño de fuente deseado */
+   }
+   
+       
+       
+       
+       
+       
+       
+       
+   
+   /*'============================'*/
+   /*'====    CAMPO DE ENTRADA   DE TODOS   ====='*/
+   /*'==========================='*/
+   
+   /* Estilos para campos de entrada */
+   .campo-entrada {
+     font-size: 13px;
+     -webkit-appearance: none;
+     appearance: none;
+     background: #fff;
+     border: 1px solid #ddd;
+     border-bottom-color: #ddd;
+     border-radius: 0;
+     color: #000;
+     cursor: text;
+    
+     height: 32px;
+     line-height: 32px;
+     padding: 0 12px;
+     vertical-align: baseline;
+     width: 100%;
+       
+   }
+   
+       
+       
+       
+   /* Estilos para grupos de campos de formulario */
+   .grupo-campos-formulario {
+     position: relative;
+   }
+   
+   /* Estilos para grupos de acciones del formulario */
+   .grupo-acciones-formulario {
+  
+     display: flex;
+     justify-content: space-between;
+       
+     align-items: center;       
+   }
+   #boton2 {
+
+    margin-left: 23px;
+  }
+   /*'============================'*/
+   
+   
+   /*'============================'*/
+   /*'====    MOSTRAR CONTRAEÑA   ====='*/
+   /*'==========================='*/
+   
+   .campo-entrada__alternar-visibilidad {
+     cursor: pointer;
+     letter-spacing: 0.33px;
+    
+     background: #efeeef;
+     border: 1px solid #ddd;
+     font-weight: bold;
+     height: 100%;
+     padding: 0 10px;
+    
+     width: auto; /* Para permitir que el botón se ajuste al contenido */
+     right: 10px;
+     transition: color cubic-bezier(0.3, 0.46, 0.45, 0.94) 0.2s;
+   }
+   /*'============================'*/
+   
+   .campo-entrada__contenedor {
+       position: relative;
+   }
+   
+   .campo-entrada {
+       padding-right: 10px; /* Espacio adicional a la derecha para el botón */
+   }
+   
+   .campo-entrada__alternar-visibilidad {
+       position: absolute;
+       top: 50%;
+       right: -23px; /* Ajusta la posición horizontal del botón */
+       transform: translateY(-50%);
+       cursor: pointer;
+   }
+   
+   
+   
+   /*'============================'*/
+   /*'====   CHECKBOC        ====='*/
+   /*'==========================='*/
+       
+   .privacy-checkbox-input {
+     appearance: none; /* Quita los estilos por defecto del sistema */
+     -webkit-appearance: none; /* Para navegadores WebKit */
+     -moz-appearance: none; /* Para navegadores basados en Gecko */
+     width: 21px; /* Ancho del checkbox aumentado */
+     height: 21px; /* Altura del checkbox aumentado */
+     border: 2px solid #000; /* Borde del checkbox */
+     border-radius: 3px; /* Bordes redondeados */
+     outline: none; /* Quita el contorno de enfoque */
+     cursor: pointer; /* Cambia el cursor al pasar por encima */
+   }
+   
+   .privacy-checkbox-input:checked {
+     background-color: #000; /* Cambia el fondo cuando está marcado */
+   }
+   
+   .privacy-checkbox-input:checked::before {
+     content: '\2713'; /* Símbolo de marca de verificación */
+     display: block;
+     width: 100%;
+     font-size: 18px; /* Tamaño del símbolo aumentado */
+     line-height: 1;
+     text-align: center;
+     color: #fff; /* Color del símbolo */
+   }
+   
+   .privacy-checkbox-label {
+     font-size: 14px; /* Tamaño del texto */
+     margin-left: 8px; /* Espacio entre el checkbox y el texto */
+   }
+   
+   /*'============================'*/
+       
+       
+       
+    
+   /*'===========                    ================='*/
+   /*'====   HAS OLVIDADO TU CONTRASEÑA? style    ====='*/
+   /*'===============                     ============'*/
+       
+       /* Estilos para el botón de enlace */
+   .boton-enlace {
+       cursor: pointer;
+       letter-spacing: .33px;
+       text-decoration: underline;
+       background: transparent;
+       border: 0;
+       color: inherit;
+       font-size: inherit;
+       font-weight: 500;
+       line-height: 1.2;
+       min-height: 0;
+       padding: 0;
+          
+   }
+   
+       
+   /* Estilos específicos para el enlace de restablecimiento de contraseña */
+   .boton-enlace-olvido-contraseña {
+      text-transform: capitalize;
+       font-size: 12px; /* Puedes ajustar este valor según el tamaño de fuente deseado */
+       
+   }
+   
+   
+   
+       
+       
+   .grupo-acciones-formulario__elemento {
+     display: flex; /* Establece el contenedor como flexbox */
+     align-items: center; /* Centra verticalmente los elementos */
+     gap: 10px; /* Espacio entre los elementos */
+   }
+   
+   .casilla-verificacion,
+   .boton-enlace {
+     flex: 1; /* Permite que los elementos se expandan para llenar el espacio disponible */
+       
+       
+   }
+   
+   /* Estilos adicionales para el botón en tamaños de pantalla pequeños */
+   @media screen and (max-width: 1024px) {
+       .boton-enlace {
+           min-height: 42px;
+       }
+   }
+       /*'============================'*/
+   
+   /*'============================'*/
+   /*'====  VERIFICASION 1     ====='*/
+   /*'==========================='*/
+       
+       
+   /* Estilos para las casillas de verificación */
+   .casilla-verificacion {
+     align-items: center;
+     display: flex;
+     min-height: 54px;
+     position: relative;
+     user-select: none;
+       
+   }
+       
+   /*'============================'*/
+   /*'====  STYLE BOTONES  ANCHO ALTURA     ====='*/
+   /*'==========================='*/
+       
+       
+   /* Estilos para botones de ancho completo */
+   .boton--ancho-completo {
+     width: 70%;
+   }
+   
+   
+   
+   .boton {
+       align-items: center;
+       cursor: pointer;
+       display: inline-flex;
+       font-size: 14px;
+       justify-content: center;
+       letter-spacing: 0.7px;
+       max-width: 100%;
+       min-height: 32px;
+       text-transform: uppercase;
+       transition: cubic-bezier(0.3, 0.46, 0.45, 0.94) 0.2s;
+       transition-property: background-color, color, border;
+       user-select: none;
+       vertical-align: top;
+       background: #000;
+       border: 1px solid #000;
+       border-radius: 0;
+       color: #fff;
+       font-weight: normal;
+       line-height: 20px;
+       padding: 1px 10px;
+       margin-left: 20px; /* Agregamos un margen a la izquierda para desplazar el botón hacia la derecha */
+
+   }
+    #boton1 {
+
+      margin-top: 23px;
+    }
+   
+   /*'============================'*/
+   /*'==== VENEFISIOS DE CUENTAS       ====='*/
+   /*'==========================='*/
+   
+   /* Estilos para la lista de beneficios de cuenta */
+   .lista-beneficios-cuenta {
+     font-size: 14px;
+     margin: 10px 0 0;
+   }
+   
+   .elemento-beneficio-cuenta {
+     align-items: center;
+     border-bottom: 1px solid #efeeef;
+     display: flex;
+     padding: 16px 20px;
+   }
+   
+   .elemento-beneficio-cuenta::before {
+       background: var(--color-icono, currentColor);
+       content: "";
+       display: inline-block;
+       height: 20px;
+       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-4.2-4.2-1.4 1.4 5.6 5.6 12-12-1.4-1.4z'/%3E%3C/svg%3E");
+       mask-repeat: no-repeat;
+       mask-position: 50%;
+       mask-size: 100%;
+       width: 20px;
+       flex-shrink: 0;
+       margin-right: 10px;
+       
+      
+   }
+   /*'============================'*/
+   
+   
+       
+       
+       
+       .l-service-section {
+       display: block;
+     flex-basis: 100%;
+   }
+       
+       
+   /*'============================'*/
+   /*'====  SEXXION SOCIAL     ====='*/
+   /*'==========================='*/
+   
+       
+   /* Estilos para el contenedor de inicio de sesión social */
+   .b-social_login {
+     display: block;
+     flex-basis: 100%;
+     padding: 0;
+   }
+   
+   /* Estilos para el contenedor de inicio de sesión social a pantalla completa */
+   .b-social_login.m-full_width {
+        background: #f8f8f8;
+     border-bottom: 1px solid #ddd;
+     padding: 20px;
+     text-align: center;
+     width: 100%;
+   }
+   /*'============================'*/
+   
+   /*'============================'*/
+   /*'====  continuar con   parrsfo    ====='*/
+   /*'==========================='*/
+   
+   /* Estilos para el título del contenedor de inicio de sesión social */
+   .b-social_login-title {
+     font-size: 13px;
+     letter-spacing: .33px;
+     line-height: 1.2;
+     text-transform: uppercase;
+     font-weight: bold;
+     margin-bottom: 25px;
+     width: 100%;
+   }
+   /*'============================'*/
+   
+   /*'============================'*/
+   /*'====    facebok       ====='*/
+   /*'==========================='*/
+   
+   /* Estilos para el contenedor de botones de inicio de sesión social */
+   .b-social_login.m-full_width .b-social_login-container {
+     margin: 0 auto;
+     
+   }
+   
+   /* Estilos para el botón de inicio de sesión de Facebook */
+   .b-social_login-facebook {
+     background-color: #0764FE;
+   }
+   
+       
+   /*'============================'*/
+   /*'====    al continuar aceptas nustra politica 3oarrafo     ====='*/
+   /*'==========================='*/	
+   /* Estilos para el texto debajo de los botones de inicio de sesión social */
+   .b-social_login-caption {
+     font-size: 13px;
+     line-height: 1.5;
+     margin-top: 30px;
+   }
+   
+       .b-social_login-container {
+       display: inline-block;
+       margin: 10px;
+       padding: 10px;
+       background-color: #0764FE;
+       border-radius: 5px;
+     }
+     .b-social_login-button_title {
+       color: white;
+       font-weight: bold;
+     }
+     .b-social_login-button_title:hover {
+       text-decoration: underline;
+     }
+
+    
+
+
+     #contenidoPrincipal {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+       margin: 0 auto;
+       width: 100%;
+
+       background: #f8f8f8;
+
+
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /* Estilos generales para el contenedor del perfil */
+.profile-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 67px;
+}
+
+/* Estilos para el encabezado del perfil */
+.profile-header h1 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Estilos para cada ítem de información */
+.profile-info .info-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para las etiquetas de información */
+.info-label {
+  font-weight: bold;
+  color: #555;
+  margin-right: 10px;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #cc0000;
+}
+
+/* Estilos adicionales para mejorar la responsividad */
+@media (max-width: 768px) {
+  .profile-container {
+      margin: 20px;
+      padding: 15px;
+  }
+
+  .profile-header h1 {
+      font-size: 1.5rem;
+  }
+
+  .logout-button {
+      font-size: 0.9rem;
+  }
+}
+
+
+.recordar {
+  margin-left: 8px; /* Espacio entre el checkbox y el texto */
+  font-size: 14px; /* Tamaño del texto */
+}

@@ -1,0 +1,39 @@
+
+
+<main class="main">
+ <div class="container-fluid"></div>
+
+<div class="container mt-4">
+  <h3>Crear Nuevo Rol</h3>
+
+  <form [formGroup]="roleForm" (ngSubmit)="onSubmit()" class="mt-3">
+    <div class="mb-3">
+      <label class="form-label">Nombre del Rol</label>
+      <input
+        formControlName="nombre"
+        type="text"
+        class="form-control"
+        placeholder="Ej. Administrador"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea
+        formControlName="descripcion"
+        class="form-control"
+        rows="3"
+        placeholder="Ej. Puede gestionar usuarios, ventas y reportes"
+      ></textarea>
+    </div>
+
+    <div class="text-danger" *ngIf="error">{{ error }}</div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Guardar Rol</span>
+      <span *ngIf="isLoading">Guardando...</span>
+    </button>
+
+    <a routerLink="/admin/roles" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>

@@ -1,0 +1,66 @@
+<main class="main">
+ <div class="container-fluid"></div>
+
+
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Gestión de Cuentas Administrativas</h3>
+    <a routerLink="/admin/usuarios/create" class="btn btn-primary">
+      <i class="fas fa-plus"></i> Nueva Cuenta
+    </a>
+  </div>
+
+  <div *ngIf="loading">Cargando cuentas...</div>
+
+  <table class="table table-striped" *ngIf="!loading && admins.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admin of admins">
+        <td>{{ admin.id }}</td>
+        <td>{{ admin.nombre }}</td>
+        <td>{{ admin.email }}</td>
+        <td>{{ admin.rol }}</td>
+        <td>
+          <span
+            class="badge"
+            [ngClass]="admin.activo ? 'bg-success' : 'bg-danger'"
+          >
+            {{ admin.activo ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td>
+          <button
+            class="btn btn-sm"
+            [ngClass]="admin.activo ? 'btn-warning' : 'btn-success'"
+            (click)="toggleActivo(admin)"
+          >
+            <i
+              [class]="admin.activo ? 'fas fa-ban' : 'fas fa-check-circle'"
+            ></i>
+          </button>
+
+          <button
+            class="btn btn-sm btn-danger ms-2"
+            (click)="eliminar(admin.id)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && admins.length === 0" class="text-muted">
+    No hay cuentas de administrador registradas.
+  </div>
+</div>

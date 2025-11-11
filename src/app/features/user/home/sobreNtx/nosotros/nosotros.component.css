@@ -1,0 +1,390 @@
+/* -----------------------------
+   Variables de color y tipografía
+------------------------------ */
+
+/* (Opcional) Si quieres tipografías similares */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --rosa-fondo: #f591b2;
+  --verde-circulo: #d8f4a7;
+  --rosa-texto: #f591b2;
+  --blanco: #ffffff;
+}
+
+#section-quienes-somos {
+  background-color: var(--rosa-fondo);
+  
+  text-align: center;
+  padding: 80px 20px 100px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Logo */
+.qs-logo {
+  width: 140px;
+  margin-bottom: 30px;
+}
+
+/* Título */
+.qs-titulo {
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--blanco);
+  margin-bottom: 80px;
+}
+
+.qs-titulo-rosa {
+  color: var(--blanco);
+}
+
+/* Contenedor */
+.qs-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+/* Tarjetas */
+.qs-card {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Círculos */
+.qs-circulo {
+  background-color: var(--verde-circulo);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.qs-circulo-texto {
+  color: var(--rosa-texto);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Texto */
+.qs-texto {
+  color: var(--blanco);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+.qs-texto span {
+  font-weight: 800;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .qs-titulo {
+    font-size: 4rem;
+  }
+
+  .qs-contenedor {
+    gap: 50px;
+  }
+
+  .qs-circulo {
+    width: 260px;
+    height: 260px;
+  }
+
+  .qs-texto {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .qs-titulo {
+    font-size: 3.2rem;
+  }
+
+  .qs-card {
+    width: 100%;
+  }
+
+  .qs-circulo {
+    width: 220px;
+    height: 220px;
+  }
+}
+#section-quienes-somos {
+  background-color: var(--ntx-blanco);
+  color: var(--ntx-gris-oscuro);
+  text-align: center;
+  padding: 80px 20px 100px;
+  font-family: var(--ntx-fuente-principal);
+}
+
+/* Logo */
+.qs-logo {
+  width: 150px;
+  margin-bottom: 25px;
+}
+
+/* Título */
+.qs-titulo {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--ntx-rojo);
+  margin-bottom: 70px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Contenedor */
+.qs-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Tarjetas */
+.qs-card {
+  width: 340px;
+  background-color: var(--ntx-gris-claro);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px 25px;
+  transition: all 0.3s ease;
+}
+
+.qs-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(227, 6, 19, 0.2);
+}
+
+/* Círculo con color corporativo */
+.qs-circulo {
+  background-color: var(--ntx-rojo);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 25px;
+}
+
+.qs-circulo-texto {
+  color: var(--ntx-blanco);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Texto */
+.qs-texto {
+  color: var(--ntx-gris-oscuro);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.qs-texto span {
+  color: var(--ntx-rojo);
+  font-weight: 700;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .qs-titulo {
+    font-size: 3rem;
+  }
+  .qs-card {
+    width: 90%;
+  }
+}
+:root {
+  --ntx-rojo: #e30613; /* color del logo */
+  --ntx-blanco: #ffffff;
+  --ntx-gris-fondo: #f9f9f9;
+  --ntx-fuente: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+#section-causas {
+  background-color: var(--ntx-gris-fondo);
+  padding: 80px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.causas-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  gap: 40px;
+}
+
+/* TARJETA DE TEXTO */
+.causas-card {
+  background-color: var(--ntx-rojo);
+  color: var(--ntx-blanco);
+  padding: 40px 30px;
+  border-radius: 30px;
+  flex: 1 1 5%;
+  min-width: 320px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.causas-titulo {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-transform: lowercase;
+}
+
+.causas-titulo span {
+  font-weight: 900;
+}
+
+.causas-card p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.causas-card .hashtag {
+  font-weight: 800;
+  color: var(--ntx-blanco);
+}
+
+.causas-card .marca {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* VIDEO */
+.causas-video {
+  flex: 1 1 45%;
+    
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+}
+
+.causas-video iframe {
+    width: 100%;
+    max-width: 660px;
+  height: 485px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .causas-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .causas-card,
+  .causas-video {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .causas-card {
+    padding: 35px 25px;
+  }
+}
+
+
+#section-comunidad {
+  background-color: var(--ntx-rojo);
+  color: var(--ntx-blanco);
+  text-align: center;
+  padding: 100px 30px;
+  font-family: var(--ntx-fuente);
+}
+
+/* Contenedor */
+.comunidad-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Título */
+.comunidad-titulo {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.comunidad-titulo span {
+  font-weight: 900;
+}
+
+/* Texto */
+.comunidad-texto {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 60px;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comunidad-texto .marca {
+  font-weight: 700;
+}
+
+.comunidad-texto .resaltado {
+  font-weight: 900;
+}
+
+/* Iconos */
+.comunidad-iconos {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.comunidad-iconos a {
+  color: var(--ntx-blanco);
+  font-size: 3rem;
+  transition: all 0.3s ease;
+}
+
+.comunidad-iconos a:hover {
+  color: #ffd2d2; /* un tono claro para hover */
+  transform: translateY(-5px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  #section-comunidad {
+    padding: 70px 20px;
+  }
+
+  .comunidad-titulo {
+    font-size: 2.3rem;
+  }
+
+  .comunidad-texto {
+    font-size: 1rem;
+  }
+
+  .comunidad-iconos a {
+    font-size: 2.4rem;
+    gap: 40px;
+  }
+}

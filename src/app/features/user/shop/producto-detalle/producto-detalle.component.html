@@ -1,0 +1,146 @@
+<main id="main" role="main">
+  <div id="body">
+      <div id="detalle-producto" *ngIf="producto">
+       <div id="producto-detalle-izquierda" *ngIf="producto">
+      <div class="producto-container">
+        <!-- Miniaturas -->
+      <div id="producto-detalle-producto-L">
+         <div class="selectors">
+        <img
+          *ngIf="producto.imagen"
+          [src]="getImageUrl(producto.imagen)"
+          class="img-min-producto"
+          (click)="changeMainImage(getImageUrl(producto.imagen))"
+          [class.active-thumb]="mainImage === getImageUrl(producto.imagen)"
+        />
+        <img
+          *ngIf="producto.imagen2"      
+          [src]="getImageUrl(producto.imagen2)"
+          class="img-min-producto"
+          (click)="changeMainImage(getImageUrl(producto.imagen2))"
+          [class.active-thumb]="mainImage === getImageUrl(producto.imagen2)"
+        />
+        <img
+          *ngIf="producto.imagen3"
+          [src]="getImageUrl(producto.imagen3)"
+          class="img-min-producto"
+          (click)="changeMainImage(getImageUrl(producto.imagen3))"
+          [class.active-thumb]="mainImage === getImageUrl(producto.imagen3)"
+        />
+      </div>
+    </div>
+
+    <!-- Imagen principal + zoom -->
+    <!-- Imagen principal + zoom -->
+<div id="producto-detalle-producto-R">
+  <div
+    class="zoom-container"
+    (mousemove)="moveLens($event)"
+    (mouseenter)="showZoom = true"
+    (mouseleave)="showZoom = false"
+  >
+    <img [src]="mainImage" class="main-image" #mainImg />
+
+    <div
+      class="lens"
+      *ngIf="showZoom"
+      [ngStyle]="{ top: lensY + 'px', left: lensX + 'px' }"
+    ></div>
+  </div>
+
+  <!-- Zoom flotante (fuera del flujo visual) -->
+ <div class="zoom-result" *ngIf="showZoom">
+  <div class="zoom-image-container">
+    <img [src]="mainImage" class="zoomed-img" [ngStyle]="zoomStyle" />
+  </div>
+</div>
+
+</div>
+
+    </div>
+    </div>
+
+
+      <!-- Detalles del producto -->
+      <div id="detalle-producto-derecha">
+        <div id="detalle-producto-nuevo"></div>
+        <div id="detalle-producto-nombre">{{ producto.nombre }}</div>
+        <div id="detalle-producto-sku">SKU: {{ producto.code }}</div>
+        <div id="detalle-producto-marca">
+          <img src="images/logo.png" width="100" />
+        </div>
+        <div id="detalle-producto-cant-colores">COLOR:</div>
+        <div id="detalle-producto-color">{{ producto.color }}</div>
+
+        <div id="detalle-producto-precio-detalle">
+          <div class="detalle-precio">S/.{{ producto.precio }}</div>
+          <div class="detalle-precio-antes" *ngIf="producto.precioDescuento && producto.precioDescuento > producto.precio">
+            S/.{{ producto.precioDescuento }}
+          </div>
+        </div>
+
+        <!-- Selector de talla -->
+        <div id="detalle-producto-cant-colores">COLORES</div>
+        <div id="detalle-producto-imagenes-colores"></div>
+
+        <!-- Formulario -->
+        <form (ngSubmit)="agregarAlCarrito()" #form="ngForm">
+          <input type="hidden" name="product_id" [value]="producto.id">
+          <input type="hidden" name="nombre" [value]="producto.nombre">
+          <input type="hidden" name="color" [value]="producto.color">
+          <input type="hidden" name="precio_original" [value]="producto.precio">
+          <input type="hidden" name="precio_descuento" [value]="producto.precioDescuento">
+          <input type="hidden" name="imagen" [value]="producto.imagen">
+
+          <!-- Tallas -->
+          <div id="detalle-producto-tallas-disponibles">
+            <select [(ngModel)]="tallaSeleccionada" name="talla" id="talla" class="box_2" required>
+              <option value="">Selecciona una talla</option>
+              <option *ngFor="let talla of producto.talla.split(',')" [value]="talla.trim()">{{ talla.trim() }}</option>
+            </select>
+          </div>
+
+          <!-- Cantidad -->
+          <div id="detalle-producto-cantidades-disponibles">
+            <select [(ngModel)]="cantidadSeleccionada" name="quantity" id="cantidad" class="box_2" required>
+              <option value="">Selecciona cantidad</option>
+                  <option *ngFor="let cantidad of cantidadesDisponibles" [value]="cantidad">{{ cantidad }}</option>
+            </select>
+          </div>
+
+          <!-- Botón -->
+          <div id="detalle-producto-boton">
+            <button type="submit" class="btn_3">AGREGAR AL CARRITO</button>
+            <!-- en tu header.component.html o en cualquier parte -->
+
+
+          </div>
+        </form>
+
+        <div id="zoom-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Descripción -->
+<div class="contenedor" *ngIf="producto">
+  <h1 class="encabezado_plp-titulo">DESCRIPCIÓN</h1>
+
+  <div
+    class="mas m-plp_nuevo"
+    [class.expandido]="verMas"
+    style="--mostrar-lineas:3;"
+  >
+    {{ producto.description }}
+  </div>
+
+  <button class="btn-vermas" (click)="toggleVerMas()">
+    {{ verMas ? 'Ver más' : 'Ver menos' }}
+  </button>
+</div>
+
+
+
+
+
+</main>

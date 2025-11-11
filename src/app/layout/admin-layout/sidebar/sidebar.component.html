@@ -1,0 +1,41 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>Textil Admin</h2>
+  </div>
+
+  <div class="sidebar-menu">
+    <div class="sidebar-section">Menú Principal</div>
+
+    <ng-container *ngFor="let item of menus">
+      <a
+        class="sidebar-link"
+        href="#"
+        data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#' + item.grupo"
+        [attr.aria-controls]="item.grupo"
+        aria-expanded="false"
+      >
+        <i [class]="item.icon"></i>
+        <span>{{ item.title }}</span>
+        <i class="fas fa-angle-down ms-auto"></i>
+      </a>
+
+      <div
+        class="collapse"
+        [attr.id]="item.grupo"
+        data-bs-parent="#sidenavAccordion"
+      >
+        <nav class="sidebar-submenu">
+          <a
+            class="sidebar-sublink"
+            *ngFor="let submenu of item.children"
+            [routerLink]="submenu.link"
+            routerLinkActive="active"
+          >
+            {{ submenu.title }}
+          </a>
+        </nav>
+      </div>
+    </ng-container>
+  </div>
+</aside>

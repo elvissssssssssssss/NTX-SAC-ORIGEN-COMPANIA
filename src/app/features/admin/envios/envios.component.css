@@ -1,0 +1,327 @@
+.main {
+  
+
+  margin-left: 124px;
+}
+/* src/app/features/admin/envios/envios.component.css */
+/* src/app/features/admin/envios/envios.component.css */
+
+.main {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 15px 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  color: #495057;
+  font-weight: 600;
+}
+
+/* Búsqueda */
+.input-group .btn {
+  border-left: none;
+}
+
+/* Estados */
+.badge.bg-info {
+  background-color: #17a2b8 !important;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Seguimiento Timeline */
+.border-bottom:last-child {
+  border-bottom: none !important;
+}
+
+.bg-primary {
+  background-color: #007bff !important;
+}
+
+/* Formularios */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Botones */
+.btn {
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  transform: none;
+  opacity: 0.6;
+}
+
+/* Tabla */
+.table-responsive {
+  border-radius: 5px;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  border-top: none;
+  font-weight: 600;
+  color: #495057;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  border-radius: 4px;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+/* Alertas */
+.alert {
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Spinners */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Card especial para confirmar entrega */
+.card.border-warning {
+  border: 2px solid #ffc107 !important;
+}
+
+.card-header.bg-warning {
+  background-color: #ffc107 !important;
+  border-color: #ffc107;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 15px;
+  }
+  
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .btn-group .btn {
+    margin-bottom: 5px;
+  }
+  
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Estados del seguimiento con colores específicos */
+.estado-confirmado {
+  background-color: #17a2b8 !important;
+}
+
+.estado-empaquetado {
+  background-color: #6f42c1 !important;
+}
+
+.estado-en-camino {
+  background-color: #fd7e14 !important;
+}
+
+.estado-listo-recojo {
+  background-color: #20c997 !important;
+}
+
+.estado-entregado {
+  background-color: #28a745 !important;
+}
+
+.estado-confirmado-cliente {
+  background-color: #155724 !important;
+}
+
+/* Timeline mejorado */
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 50px;
+  height: calc(100% - 10px);
+  width: 2px;
+  background-color: #dee2e6;
+}
+
+.timeline-badge {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mejoras para upload de archivos */
+.file-upload-zone {
+  border: 2px dashed #dee2e6;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.file-upload-zone:hover {
+  border-color: #007bff;
+  background-color: #f8f9ff;
+}
+
+.file-upload-zone.dragover {
+  border-color: #28a745;
+  background-color: #f0fff4;
+}
+
+/* Indicadores de estado */
+.status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.status-pending {
+  background-color: #ffc107;
+}
+
+.status-in-progress {
+  background-color: #17a2b8;
+}
+
+.status-completed {
+  background-color: #28a745;
+}
+
+/* Mejoras para documentos */
+.documento-item {
+  transition: all 0.2s ease;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.documento-item:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Iconos para tipos de documento */
+.documento-boleta::before {
+  content: "📄";
+  margin-right: 5px;
+}
+
+.documento-foto::before {
+  content: "📷";
+  margin-right: 5px;
+}
+
+.documento-guia::before {
+  content: "📋";
+  margin-right: 5px;
+}
+
+.documento-comprobante::before {
+  content: "✅";
+  margin-right: 5px;
+}

@@ -1,0 +1,643 @@
+/*'============================'*/
+/*'==========================='*/
+/*'==========================='*/
+
+
+
+/* Estilos generales para todos los elementos HTML */
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Define la fuente predeterminada para el cuerpo */
+      display: flex;
+      flex-direction: column;
+      
+      min-height: 100vh;
+      
+  }
+  
+  
+  /*'=============================================================='*/
+  /*'=============================================================='*/
+  /*'=============   BANER 45 % DE DESCUENTO            =========='*/
+  /*'=============================================================='*/
+  /*'=============================================================='*/
+  
+  .mein wrapper,header,footer{width: 100%; }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .banner-oferta {
+  
+    text-align: center;
+    padding: 25px;
+      background-color: var(--color-banner);
+    margin-top: 0px; /* Espacio entre el encabezado y el banner */
+  }
+  
+  
+  
+  .oferta-title {
+    font-size: 47px; /* Tamaño del texto del título */
+    font-weight: bold; /* Fuente en negrita para el título */
+    margin-top: 0; /* Elimina el margen superior del título */
+      
+  }
+  
+  .oferta-description {
+    font-size: 10px; /* Tamaño del texto de la descripción */
+    margin-bottom: 0; /* Elimina el margen inferior de la descripción */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .oferta-link {
+    text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
+    color: #ffffff; /* Color del texto del enlace */
+  
+  }
+  
+  
+  
+  
+  
+  
+  /*'=============================================================='*/
+  /*'=============================================================='*/
+  /*'=============   baner de imagenes           =========='*/
+  /*'=============================================================='*/
+  /*'=============================================================='*/
+  
+  /* Reset */
+  *{
+    padding: 0;
+    margin: 0;
+  
+  }
+  
+  /* Estilos del cuerpo */
+  body{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+  }
+  
+  /* Contenedor del carrusel */
+  .carrusel {
+    width: 100%;
+
+  }
+  
+  /* Diapositiva del carrusel */
+  .carrusel__diapositiva {
+    display: none;
+  }
+  
+  .carrusel__imagen {
+    width: 1020%; /* Ajusta el ancho al 100% del contenedor */
+    height: 550PX; /* Permite que la altura se ajuste automáticamente manteniendo la relación de aspecto */
+    max-width: 100%; /* Asegura que la imagen no supere el ancho del contenedor */
+    max-height: 100%; /* Asegura que la imagen no supere la altura del contenedor */
+  }
+  
+  
+  /* Controles del carrusel */
+  .carrusel__control {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: #424242;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    border: solid #fff 2px;
+  }
+  
+  .carrusel__control--siguiente {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .carrusel__control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Indicadores del carrusel */
+  .carrusel__indicadores {
+    text-align: center;
+  }
+  
+  .carrusel__indicador {
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+   
+    background-color: #1E0B0B;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    border-radius: 12px;
+      margin: -1px 1px 0; /* Modifica el margin-top a -5px */
+    
+  }
+  
+  .carrusel__indicador--activo, .carrusel__indicador:hover {
+    background-color: #fff;
+  }
+  
+  /* Consultas de medios */
+  @media screen and (max-width:900px) {
+    .carrusel {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width:500px) {
+    .carrusel {
+      width: 100%;
+    }
+    .carrusel__control {
+      padding: 5px;
+    }
+  }
+  
+  /*'=============================================================='*/
+  /*'=============================================================='*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos para la sección de producto */
+.seccion-producto {
+  width: 25%;
+  float: left;
+  height: auto;
+  min-height: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.seccion-producto--grid {
+  
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  min-height: 490px;
+}
+
+.seccion-producto--altura-auto {
+  height: auto;
+  
+  width: 309px;
+}
+
+@media screen and (max-width: 1075px) {
+  .seccion-producto--grid {
+    
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    min-height: 490px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .seccion-producto {
+    width: 50%;
+    min-height: 470px;
+  }
+
+  .seccion-producto--altura-auto {
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .seccion-producto {
+    min-height: 440px;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .seccion-producto {
+    width: 110%;
+    min-height: 530px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .seccion-producto {
+    width: 100%; /* Mostrar en una columna en dispositivos móviles */
+    min-height: 380px;
+    margin-left: 33px;
+  }
+}
+
+/* Estilos para la caja de producto */
+.caja-producto {
+  width: 95%;
+  height: auto;
+  margin: 0 auto;
+  background: none;
+  border-style: solid;
+  border: 1px solid;
+  border-color: #EEE;
+  box-shadow: 1px 1px 8px #EEE;
+}
+
+/* Estilos para la sección de imagen de producto */
+.seccion-producto__imagen {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.seccion-producto__imagen-enlace {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.seccion-producto__imagen-img {
+  max-width: 100%;
+  height: auto;
+  border-style: none;
+  vertical-align: top;
+}
+
+/* Estilos para la marca del producto */
+.seccion-producto__marca {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+
+.seccion-producto__marca-img {
+  max-width: 100%;
+  height: auto;
+  border-style: none;
+  vertical-align: top;
+}
+
+  /* Estilos para el descuento del producto */
+  .seccion-producto__imagen--dcto-label .seccion-producto__imagen-dcto {
+    font-family: 'Bebas Neue', cursive;
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    top: 0px;
+    left: 0px;
+    height: 52px;
+    line-height: 41px;
+    padding: 7px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+.seccion-producto__imagen-dcto--rojo {
+  background-color: #df0023;
+}
+
+/* Estilos para los detalles del producto */
+.seccion-producto__detalle {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Estilos para el título del producto */
+.seccion-producto__titulo {
+  width: 100%;
+  margin-top: 0px;
+  text-align: center;
+  height: 55px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 19px;
+  color: #000;
+  text-decoration: none;
+}
+
+.seccion-producto__titulo-enlace {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* Estilos para el precio y descuento del producto */
+.seccion-producto__precio-descuento {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.seccion-producto__precio-descuento-item {
+  width: 100%;
+  height: auto;
+  
+  font-size: 18px;
+  color: #666;
+  margin-left: 0px;
+  text-decoration: line-through;
+}
+
+.seccion-producto__precio {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
+  color: #c1122b;
+  line-height: 23px;
+}
+
+/* Estilos para el botón de comprar */
+.seccion-producto__btn-comprar {
+  padding-top: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.seccion-producto__btn-comprar-enlace {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 18px;
+  color: #FFF;
+  background: #000;
+  border-radius: 0px;
+  padding: 10px 30px;
+  text-decoration: none;
+  border-radius: 5px 5px 5px 5px;
+}
+
+/* Estilos para el contenedor principal */
+#main {
+  width: 100%;
+  margin: 112px auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#products-container  {
+  width: 100%;
+ 
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.seccion-producto seccion-producto  {
+  width: 25%;
+  float: left;
+  height: auto;
+  min-height: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+#main{
+  margin-left: 10px; /* Añadir margen a la izquierda */
+  margin-right: 10px; /* Añadir margen a la derecha */
+  margin-block-end: auto; /* Añadir margen en la parte inferior */
+  margin-block-start: auto; /* Añadir margen en la parte superior */
+  
+}
+
+
+
+
+
+    /* Estilos para el contenedor del carrusel */
+.product-carousel-horizontal {
+    width: 100%; /* Ajusta el ancho del carrusel */
+    margin: 0 auto; /* Centra el carrusel */
+}
+
+/* Estilos para los productos */
+.product-item {
+    padding: 10px; /* Espacio entre productos */
+    text-align: center; /* Centra el contenido */
+}
+
+/* Estilos para las imágenes */
+.seccion-producto__imagen-img {
+    width: 100%; /* La imagen ocupa el 100% del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-width: 400px; /* Tamaño máximo de la imagen */
+    margin: 0 auto; /* Centra la imagen */
+}
+
+
+
+/* Posición de las flechas (ajusta según sea necesario) */
+.slick-prev {
+    left: -25px; /* Flecha izquierda */
+}
+
+.slick-next {
+    right: -25px; /* Flecha derecha */
+}
+
+/* Estilos para los puntos de navegación */
+.slick-dots {
+    bottom: -30px; /* Posición de los puntos */
+}
+/* Estilos para los botones de navegación */
+.slick-prev,
+.slick-next {
+    position: absolute; /* Posiciona los botones de manera absoluta */
+    top: 20%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajusta el centrado vertical */
+    z-index: 1; /* Asegura que los botones estén por encima del contenido */
+    width: 40px; /* Ancho del botón */
+    height: 40px; /* Alto del botón */
+    border: none; /* Elimina el borde */
+    background-color: rgba(224, 183, 183, 0.5); /* Fondo semi-transparente */
+    color: rgb(255, 227, 227); /* Color del ícono */
+    border-radius: 50%; /* Hace que el botón sea circular */
+    cursor: pointer; /* Cambia el cursor a pointer */
+    font-size: 18px; /* Tamaño del texto o ícono */
+    display: flex; /* Centra el contenido */
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Transición suave */
+                
+}
+
+/* Cambia el color de fondo al pasar el mouse */
+.slick-prev:hover,
+.slick-next:hover {
+    background-color: rgba(56, 29, 29, 0.8); /* Fondo más oscuro */
+}
+
+/* Posición del botón "Anterior" */
+.slick-prev {
+    left: 10px; /* Distancia desde la izquierda */
+}
+
+/* Posición del botón "Siguiente" */
+.slick-next {
+    right: 10px; /* Distancia desde la derecha */
+}
+.seccion-producto.slick-slide {
+    width: 361px !important; /* Anula el ancho fijo */
+
+    margin: 0 auto; /* Centra el contenedor si es necesario */
+}
+
+
+/* Agrega íconos personalizados (opcional) */
+.slick-prev::after,
+.slick-next::after {
+    font-family: 'Font Awesome 5 Free'; /* Usa FontAwesome para íconos */
+    font-weight: 900; /* Peso de la fuente */
+    font-size: 24px; /* Tamaño del ícono */
+    color: white; /* Color del ícono */
+}
+
+.slick-prev::after {
+    content: '\f104'; /* Ícono de flecha izquierda */
+    
+}
+
+.slick-next::after {
+    content: '\f105'; /* Ícono de flecha derecha */
+}
+
+
+
+
+
+
+
+
+
+   /* Reset básico */
+                * {
+                    margin: 0;
+                    padding: 0;
+                
+                }
+
+
+        
+        
+        
+        
+                /* Carrusel */
+                .carrusel {
+                
+                    max-width: 100%;
+                    
+                }
+        
+                .carrusel__diapositiva {
+                    display: none;
+                }
+        
+                .carrusel__imagen {
+                    width: 100%;
+                    height: auto;
+                }   
+        
+                .carrusel__control {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    padding: 1rem;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    color: white;
+                    cursor: pointer;
+                    text-decoration: none;
+                    font-size: 1.5rem;
+                }
+        
+                .carrusel__control--prev {
+                    left: 0;
+                }
+        
+                .carrusel__control--siguiente {
+                    right: 0;
+                }
+        
+                .carrusel__indicadores {
+                    text-align: center;
+                    padding: 1rem 0;
+                }
+        
+                .carrusel__indicador {
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    margin: 0 5px;
+                    background-color: #160d0d;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+            @media (max-width: 768px) {
+                    .banner-oferta {
+                        text-align: center;
+                        padding: 1rem;
+                    }
+
+                    .oferta-title {
+                        font-size: 1.5rem;
+                    }
+
+                   
+
+                    .carrusel__control {
+                        font-size: 1rem;
+                        padding: 0.5rem;
+                    }
+
+                    .carrusel__indicador {
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+
+                /* Estilos para dispositivos de escritorio */
+                @media (min-width: 769px) {
+                    .banner-oferta {
+                    
+                        padding: 2rem;
+                    }
+
+            
+                }
+                
+                /* Banner oferta */
+

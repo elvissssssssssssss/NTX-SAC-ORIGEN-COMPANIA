@@ -1,0 +1,296 @@
+<!-- File: src/app/features/admin/products/product-list/product-list.component.html -->
+
+
+<main class="main">
+
+
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1>NTX</h1>
+      <button routerLink="/admin/mantenimiento/products/create" class="btn btn-primary">
+  <i class="fas fa-plus mr-1"></i> Agregar Producto
+</button>
+
+    </div>
+  </div>
+
+  <div class="card-body">
+    <!-- Mensajes de éxito -->
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+      {{ successMessage }}
+      <button type="button" class="close" (click)="successMessage = ''">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Loading spinner -->
+    <div *ngIf="loadProducts" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+      <p class="mt-2 text-muted">Cargando productos...</p>
+    </div>
+
+    <!-- Error message -->
+    @if (errorMessage) {
+    <div class="alert alert-danger">
+      <i class="fas fa-exclamation-triangle mr-2"></i>
+      {{ errorMessage }}
+      <button class="btn btn-sm btn-outline-danger ml-2" (click)="reloadProducts()">
+        <i class="fas fa-redo mr-1"></i> Reintentar
+      </button>
+    </div>
+    }
+
+    @if (!loadProducts && !errorMessage) {
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-box"></i> Gestión de Productos
+        </h3>
+        <div class="card-tools">
+          <div class="input-group input-group-sm" style="width: 250px;">
+            <input type="text" 
+                   name="search" 
+                   class="form-control" 
+                   placeholder="Buscar productos..." 
+                   [(ngModel)]="searchTerm"
+                   (ngModelChange)="applySearch()">
+            <div class="input-group-append">
+              <button class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+          <thead>
+            <tr>
+              <th (click)="onSort('id')" style="cursor: pointer;">
+                ID <i [class]="getSortIcon('id')"></i>
+              </th>
+              <th (click)="onSort('nombre')" style="cursor: pointer;">
+                Nombre <i [class]="getSortIcon('nombre')"></i>
+              </th>
+              <th (click)="onSort('stock')" style="cursor: pointer;">
+                Stock <i [class]="getSortIcon('stock')"></i>
+              </th>
+              
+              <th (click)="onSort('marca')" style="cursor: pointer;">
+                Marca <i [class]="getSortIcon('marca')"></i>
+              </th>
+              <th>Color</th>
+              <th (click)="onSort('precio')" style="cursor: pointer;">
+                Precio <i [class]="getSortIcon('precio')"></i>
+              </th>
+              <th>Precio Desc.</th>
+              <th>Talla</th>
+              <th>Código</th>
+              <th (click)="onSort('categoria')" style="cursor: pointer;">
+                Categoría <i [class]="getSortIcon('categoria')"></i>
+              </th>
+              <th>Imagen</th>
+              <th style="width: 180px;">Acciones</th>
+              <th style="width: auto;">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (product of paginatedProducts; track product.id) {
+            <tr>
+              <td>{{ product.id }}</td>
+              <td>
+                <strong>{{ product.nombre }}</strong>
+                <span *ngIf="product.stock <= 10" class="badge badge-warning ml-1">Stock Bajo</span>
+              </td>
+              <td>
+                <span class="badge" 
+                      [ngClass]="getStockBadgeClass(product.stock)"
+                      [title]="getStockStatus(product.stock)">
+                  {{ product.stock }}
+                </span>
+              </td> 
+            
+              <td>{{ product.marca || 'Sin marca' }}</td>
+              <td>
+                <span *ngIf="product.color" 
+                      [style.backgroundColor]="product.color" 
+                      class="badge badge-pill"
+                      style="color: white; padding: 0.5em; font-size: 0.9em;">
+                  {{ product.color }}
+                </span>
+                <span *ngIf="!product.color" class="text-muted">Sin color</span>
+              </td>
+              <td>
+                <strong class="text-success">
+                  S/{{ product.precio | number:'1.2-2' }}
+                </strong>
+              </td>
+              <td>
+                <span class="text-danger" *ngIf="product.precioDescuento && product.precioDescuento > 0">
+                  S/{{ product.precioDescuento | number:'1.2-2' }}
+                </span>
+                <span class="text-muted" *ngIf="!product.precioDescuento || product.precioDescuento === 0">
+                  Sin descuento
+                </span>
+              </td>
+              <td>{{ product.talla || 'Sin talla' }}</td>
+              <td>
+                <code>{{ product.code || 'Sin código' }}</code>
+              </td>
+              <td>
+                <span class="badge badge-info">{{ product.categoria || 'Sin categoría' }}</span>
+              </td>
+              <td>
+              <img [src]="getImageUrl(product.imagen)" 
+     alt="Imagen del producto" 
+     class="img-thumbnail img-producto" />
+
+                <span *ngIf="!product.imagen" class="text-muted">
+                  <i class="fas fa-image"></i> Sin imagen
+                </span>
+              </td>
+              <td>
+                <div class="btn-group" role="group">
+            
+                  <button 
+                          class="btn btn-warning btn-sm" 
+                          title="Editar"
+                          (click)="editProduct(product.id)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                <button class="btn btn-danger btn-sm"
+        title="Eliminar"
+        (click)="openDeleteModal(product)">
+  <i class="fas fa-trash"></i>
+</button>
+                 
+                   <!-- Reemplaza el botón de estado actual con este código -->
+<!-- Reemplaza el botón de estado actual en product-list.component.html -->
+<!-- Reemplaza el botón de estado actual en product-list.component.html -->
+
+
+                </div>
+              </td>
+              <td>
+    <button class="status-toggle-btn active" 
+            [class.active]="product.estado" 
+            [title]="product.estado ? 'Activo - Click para desactivar' : 'Inactivo - Click para activar'"
+            (click)="toggleProductStatus(product)">
+      <span class="toggle-track">
+        <span class="toggle-thumb">
+          <i class="fas" [ngClass]="product.estado ? 'fa-check' : 'fa-times'"></i>
+        </span>
+      </span>
+      <span class="status-text">{{ product.estado ? 'ON' : 'OFF' }}</span>
+    </button>
+                
+              </td>
+            </tr>
+            }
+            
+            @if (filteredProducts.length === 0 && !loadProducts) {
+            <tr>
+              <td colspan="13" class="text-center py-4">
+                <div class="text-muted">
+                  <i class="fas fa-box-open fa-3x mb-3"></i>
+                  <p>{{ searchTerm ? 'No se encontraron productos que coincidan con tu búsqueda' : 'No hay productos disponibles' }}</p>
+                  <button *ngIf="searchTerm" 
+                          class="btn btn-sm btn-outline-primary" 
+                          (click)="clearSearch()">
+                    Limpiar búsqueda
+                  </button>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Paginación -->
+      <div *ngIf="filteredProducts.length > 0" class="card-footer">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-auto">
+                <span class="dataTables_info">
+                  Mostrando {{ getStartIndex() }} a {{ getEndIndex() }} de {{ filteredProducts.length }} productos
+                </span>
+              </div>
+              <div class="ml-auto">
+                <div class="dataTables_paginate paging_simple_numbers">
+                  <ul class="pagination justify-content-center m-0">
+                    <li class="page-item" [class.disabled]="currentPage === 1">
+                      <a class="page-link" 
+                         (click)="previousPage()" 
+                         style="cursor: pointer;">Atrás</a>
+                    </li>
+                    <li class="page-item" 
+                    *ngFor="let page of getVisiblePages()" 
+                        [class.active]="page === currentPage">
+                      <a class="page-link" 
+                         (click)="goToPage(page)" 
+                         style="cursor: pointer;">{{ page }}</a>
+                    </li>
+                    <li class="page-item" [class.disabled]="currentPage === totalPages">
+                      <a class="page-link" 
+                         (click)="nextPage()" 
+                         style="cursor: pointer;">Siguiente</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    }
+  </div>
+
+
+<!-- Modal de confirmación para eliminar -->
+<div class="modal fade" 
+     id="deleteModal" 
+     tabindex="-1" 
+     role="dialog" 
+     aria-labelledby="deleteModalLabel" 
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirmar eliminación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar el producto <strong></strong>?</p>
+        <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" 
+        class="btn btn-danger" 
+        >
+  <i class="fas fa-trash me-1"></i> Eliminar
+</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+
+
+<main class="main">
+
+
+
+
+

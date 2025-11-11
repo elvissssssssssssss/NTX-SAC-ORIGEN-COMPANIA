@@ -1,0 +1,347 @@
+
+<!-- File: src/app/features/admin/products/product-create/product-create.component.html -->
+
+<main class="main">
+  
+<!-- Mensaje de éxito (sobrepuesto y centrado) -->
+<div class="alert alert-success alert-custom fixed-top-center" *ngIf="mensajeExito" [@slideInDown]>
+  <i class="fas fa-check-circle me-2"></i>
+  {{ mensajeExito }}
+</div>
+
+<!-- Mensaje de error (dentro del flujo normal) -->
+<div class="container px-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Mensaje de error aquí -->
+      <div class="alert alert-danger mb-4" *ngIf="mensajeError">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        {{ mensajeError }}
+      </div>
+
+      <!-- Resto de tu formulario... -->
+    </div>
+  </div>
+</div>
+  <div class="min-vh-100 bg-light py-5">
+    <div class="container px-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <!-- Header con breadcrumb -->
+          <div class="mb-5">
+            <nav class="d-flex align-items-center gap-2 text-secondary mb-3">
+              <a href="#" class="text-decoration-none">Dashboard</a>
+              <span>/</span>
+              <a href="#" class="text-decoration-none">Productos</a>
+              <span>/</span>
+              <span class="text-dark fw-semibold">Crear Producto</span>
+            </nav>
+            <h1 class="fw-bold mb-2">Crear Nuevo Producto</h1>
+            <p class="text-muted">Completa la información del producto para agregarlo al catálogo</p>
+          </div>
+
+          <!-- Alertas de mensajes -->
+          <div class="alert alert-success alert-custom" *ngIf="mensajeExito" [@slideInDown]>
+            <i class="fas fa-check-circle me-2"></i>
+            {{ mensajeExito }}
+          </div>
+
+       
+
+          <!-- Formulario Principal -->
+          <div class="card shadow-sm mb-5">
+            <form [formGroup]="productoForm" (ngSubmit)="guardar()" enctype="multipart/form-data" novalidate>
+
+              <!-- Sección: Información Básica -->
+              <div class="card-body p-4 p-md-5 form-section">
+                <div class="d-flex align-items-center mb-4">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-3">
+                    <i class="fas fa-info-circle text-primary"></i>
+                  </div>
+                  <h2 class="h5 mb-0 fw-semibold">Información Básica</h2>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Nombre del Producto -->
+                  <div class="col-12 position-relative">
+                    <label class="form-label">Nombre del Producto <span class="text-danger">*</span></label>
+                    <input 
+                      type="text" 
+                      formControlName="nombre" 
+                      class="form-control transition-all" 
+                      placeholder="Ej: Polo deportivo ntx Dri-FIT"
+                      [class.is-invalid]="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched"
+                      [class.is-valid]="productoForm.get('nombre')?.valid && productoForm.get('nombre')?.touched">
+                    
+                    <div *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('nombre')?.errors?.['required']">
+                        El nombre del producto es requerido
+                      </span>
+                      <span *ngIf="productoForm.get('nombre')?.errors?.['minlength']">
+                        El nombre debe tener al menos 3 caracteres
+                      </span>
+                    </div>
+                  </div>
+                     <!--feature/admin/products/product-create/product-create.component.html -->
+                  <!-- Categoría -->
+                  <div class="col-md-6 position-relative">
+                    <label class="form-label">Categoría <span class="text-danger">*</span></label>
+                    <select 
+                      formControlName="categoria" 
+                      class="form-select transition-all"
+                      [class.is-invalid]="productoForm.get('categoria')?.invalid && productoForm.get('categoria')?.touched"
+                      [class.is-valid]="productoForm.get('categoria')?.valid && productoForm.get('categoria')?.touched">
+                      <option value="">Seleccionar categoría</option>
+                         <optgroup label="👨 Hombre">
+                 
+                        <option value="hombre_novedades">Novedades de Hombre</option>
+                         <option value="hombre_ntx_prom">NTX Prom</option>
+                        <option value="hombre_uniformes_deportivas">Uniformes Deportivas</option>
+                        <option value="hombre_ropa_corporativa">Ropa Corporativa</option>
+                       
+                      </optgroup>
+                      <optgroup label="👩 Mujer">
+                         <option value="mujer_novedades">Mujer Novedades</option>
+                        <option value="mujer_ropa_corporativa">mujer ropa corporativa</option>
+                      
+                        <option value="mujer_ntx_prom">NTX Prom</option>
+                      </optgroup>
+                   
+                    </select>
+                    
+                    <div *ngIf="productoForm.get('categoria')?.invalid && productoForm.get('categoria')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('categoria')?.errors?.['required']">
+                        Debe seleccionar una categoría
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Marca -->
+                  <div class="col-md-6 position-relative">
+                    <label class="form-label">Marca <span class="text-danger">*</span></label>
+                    <input 
+                      type="text" 
+                      formControlName="marca" 
+                      class="form-control transition-all" 
+                      placeholder="Ej: Nike, Adidas, etc."
+                      [class.is-invalid]="productoForm.get('marca')?.invalid && productoForm.get('marca')?.touched"
+                      [class.is-valid]="productoForm.get('marca')?.valid && productoForm.get('marca')?.touched">
+                    
+                    <div *ngIf="productoForm.get('marca')?.invalid && productoForm.get('marca')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('marca')?.errors?.['required']">
+                        La marca es requerida
+                      </span>
+                      <span *ngIf="productoForm.get('marca')?.errors?.['minlength']">
+                        La marca debe tener al menos 2 caracteres
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Código -->
+                  <div class="col-md-6 position-relative">
+                    <label class="form-label">Código del Producto <span class="text-danger">*</span></label>
+                    <input 
+                      type="text" 
+                      formControlName="code" 
+                      class="form-control transition-all" 
+                      placeholder="Ej: NK-001-M-BL"
+                      [class.is-invalid]="productoForm.get('code')?.invalid && productoForm.get('code')?.touched"
+                      [class.is-valid]="productoForm.get('code')?.valid && productoForm.get('code')?.touched">
+                    
+                    <div *ngIf="productoForm.get('code')?.invalid && productoForm.get('code')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('code')?.errors?.['required']">
+                        El código del producto es requerido
+                      </span>
+                      <span *ngIf="productoForm.get('code')?.errors?.['pattern']">
+                        El código debe contener solo letras mayúsculas, números y guiones
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Stock -->
+                  <div class="col-md-6 position-relative">
+                    <label class="form-label">Stock Disponible <span class="text-danger">*</span></label>
+                    <input 
+                      type="number" 
+                      formControlName="stock" 
+                      class="form-control transition-all" 
+                      placeholder="0" 
+                      min="0"
+                      [class.is-invalid]="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched"
+                      [class.is-valid]="productoForm.get('stock')?.valid && productoForm.get('stock')?.touched">
+                    
+                    <div *ngIf="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('stock')?.errors?.['required']">
+                        El stock es requerido
+                      </span>
+                      <span *ngIf="productoForm.get('stock')?.errors?.['min']">
+                        El stock debe ser mayor o igual a 0
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Descripción -->
+                  <div class="col-12 position-relative">
+                    <label class="form-label">Descripción <span class="text-danger">*</span></label>
+                    <textarea 
+                      rows="4" 
+                      formControlName="description" 
+                      class="form-control transition-all"
+                      placeholder="Describe las características principales del producto"
+                      [class.is-invalid]="productoForm.get('description')?.invalid && productoForm.get('description')?.touched"
+                      [class.is-valid]="productoForm.get('description')?.valid && productoForm.get('description')?.touched"></textarea>
+                    
+                    <div *ngIf="productoForm.get('description')?.invalid && productoForm.get('description')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('description')?.errors?.['required']">
+                        La descripción es requerida
+                      </span>
+                      <span *ngIf="productoForm.get('description')?.errors?.['minlength']">
+                        La descripción debe tener al menos 10 caracteres
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sección: Detalles del Producto -->
+              <div class="card-body p-4 p-md-5 border-top form-section details">
+                <div class="d-flex align-items-center mb-4">
+                  <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
+                    <i class="fas fa-tag text-success"></i>
+                  </div>
+                  <h2 class="h5 mb-0 fw-semibold">Detalles del Producto</h2>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Color -->
+                  <div class="col-md-6 position-relative">
+                    <label class="form-label">Color <span class="text-danger">*</span></label>
+                    <input 
+                      type="text" 
+                      formControlName="color" 
+                      class="form-control transition-all" 
+                      placeholder="Ej: Azul marino, Rojo, Negro"
+                      [class.is-invalid]="productoForm.get('color')?.invalid && productoForm.get('color')?.touched"
+                      [class.is-valid]="productoForm.get('color')?.valid && productoForm.get('color')?.touched">
+                    
+                    <div *ngIf="productoForm.get('color')?.invalid && productoForm.get('color')?.touched" 
+                         class="error-message">
+                      <span *ngIf="productoForm.get('color')?.errors?.['required']">
+                        El color es requerido
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Talla -->
+                  <div class="col-md-6 position-relative">
+                    <label class="form-label">Talla <span class="text-danger">*</span></label>
+          <input type="text" formControlName="talla" class="form-control" placeholder="Ej: S, M, L, XL">
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Precios -->
+    <div class="card-body p-4 p-md-5 border-top form-section">
+      <div class="d-flex align-items-center mb-4">
+        <div class="bg-warning bg-opacity-10 rounded-circle p-2 me-3">
+          <i class="fas fa-dollar-sign text-warning"></i>
+        </div>
+        <h2 class="h5 mb-0 fw-semibold">Información de Precios</h2>
+      </div>
+
+      <div class="row g-3">
+        <!-- Precio -->
+        <div class="col-md-6">
+          <label class="form-label">Precio Regular <span class="text-danger">*</span></label>
+          <div class="input-group">
+            <span class="input-group-text">S/</span>
+            <input type="number" formControlName="precio" class="form-control" step="0.01" placeholder="0.00">
+          </div>
+        </div>
+
+        <!-- Precio con Descuento -->
+        <div class="col-md-6">
+          <label class="form-label">Precio con Descuento <small class="text-muted">(opcional)</small></label>
+          <div class="input-group">
+            <span class="input-group-text">S/</span>
+            <input type="number" formControlName="precioDescuento" class="form-control" step="0.01" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Imágenes -->
+    <div class="card-body p-4 p-md-5 border-top form-section">
+      <div class="d-flex align-items-center mb-4">
+        <div class="bg-purple bg-opacity-10 rounded-circle p-2 me-3">
+          <i class="fas fa-image text-purple"></i>
+        </div>
+        <h2 class="h5 mb-0 fw-semibold">Imágenes del Producto</h2>
+      </div>
+
+      <div class="row g-3">
+        <!-- Imagen Principal -->
+        <div class="col-md-4">
+           <label class="form-label">Imagen Principal</label>
+  <input type="file" (change)="onFileSelected($event, 'imagen')" 
+         accept="image/jpeg, image/jpg, image/png, image/gif, image/webp" 
+         class="form-control">
+  
+  <!-- Vista previa nueva imagen -->
+  <div *ngIf="imagenPreview" class="mt-2">
+    <img [src]="imagenPreview" class="img-thumbnail" style="max-height: 150px;">
+    <small class="d-block text-muted">Nueva imagen seleccionada</small>
+  </div>
+  
+  <!-- Imagen actual (si existe) -->
+ 
+        </div>
+
+        <!-- Imagen 2 -->
+        <div class="col-md-4">
+          <label class="form-label">Imagen 2 <small class="text-muted">(opcional)</small></label>
+          <input type="file" (change)="onFileSelected($event, 'imagen2')" class="form-control" accept="image/*">
+          <div *ngIf="imagenPreview" class="mt-2">
+    <img [src]="imagen2Preview" class="img-thumbnail" style="max-height: 150px;">
+    <small class="d-block text-muted">Nueva imagen seleccionada</small>
+  </div>
+        </div>
+
+        <!-- Imagen 3 -->
+        <div class="col-md-4">
+          <label class="form-label">Imagen 3 <small class="text-muted">(opcional)</small></label>
+          <input type="file" (change)="onFileSelected($event, 'imagen3')" class="form-control" accept="image/*">
+          <div *ngIf="imagenPreview" class="mt-2">
+    <img [src]="imagen3Preview" class="img-thumbnail" style="max-height: 150px;">
+    <small class="d-block text-muted">Nueva imagen seleccionada</small>
+  </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Botones -->
+    <div class="card-footer bg-light p-4">
+      <div class="d-flex flex-column flex-md-row gap-3 justify-content-end">
+        <button type="button" (click)="cancelar()" class="btn btn-outline-secondary px-4 py-2">
+          Cancelar
+        </button>
+        <button type="submit" id="submitBtn" class="btn btn-primary px-4 py-2">
+          Crear Producto
+        </button>
+        
+      </div>
+    </div>
+  </form>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>

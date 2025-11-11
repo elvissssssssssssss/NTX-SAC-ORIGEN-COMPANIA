@@ -1,0 +1,175 @@
+<!-- register.component.html -->
+<div id="contenidoPrincipal" class="seccion-contenido-pagina">
+    <div class="contenido-interno-pagina">
+        <div class="servicio">
+            <h1 class="titulo-servicio">
+                <span class="titulo-pagina">
+                    CREA UNA CUENTA
+                </span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="b-social_login m-full_width">
+    <p class="b-social_login-title">
+        Continuar con
+    </p>
+    
+    <div class="b-social_login-container">
+        <a href="">
+            <span class="b-social_login-button_title">Facebook</span>
+        </a>
+    </div>
+    
+    <p class="b-social_login-caption">
+        al continuar, aceptas nuestros 
+        <a href="" data-tau="checkout_terms_and_conditions" class="b-form_section-link" target="_blank">Términos y condiciones</a>
+        . Consulta nuestro 
+        <a href="" data-tau="checkout_privacy_policy" class="b-form_section-link" target="_blank">Aviso de privacidad</a>.
+    </p>
+</div>
+
+<div class="contenedor-flex">
+    <div class="imagen">
+        <picture class="baner-registro-cuenta">
+            <img class="imagen-baner-registro-cuenta" 
+                 src="/images/perfecta.jpg"
+                 alt="imagen" loading="lazy" width="683" height="750">
+        </picture>
+    </div>
+
+    <div class="register-container">
+        <section class="seccion-servicio">
+            <div class="seccion-servicio__interior div-conteiner">
+                <div class="formulario">
+                    <div class="caja-formulario">
+                        <h3 class="caja-formulario__titulo">Crear Cuenta</h3>
+                        
+                        <form class="formulario-registro" (ngSubmit)="onSubmit()">
+                            
+                            <!-- Mostrar errores -->
+                            <div class="alert alert-danger" *ngIf="errors.length > 0">
+                                <ul>
+                                    <li *ngFor="let error of errors">{{ error }}</li>
+                                </ul>
+                            </div>
+                        
+                            <div class="grupo-campos-formulario">
+                                <label class="seccion-formulario__etiqueta" for="campo-registro-email">
+                                    Email <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+                                </label>
+                                <input type="email" 
+                                       class="campo-entrada" 
+                                       id="campo-registro-email" 
+                                       name="email" 
+                                       [(ngModel)]="email" 
+                                       required 
+                                       maxlength="50" 
+                                       autocomplete="email">
+                            </div>
+                        
+                            <div class="grupo-campos-formulario">
+                                <label class="seccion-formulario__etiqueta" for="password">
+                                    Contraseña <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+                                </label>
+                                <input type="password" 
+                                       class="campo-entrada" 
+                                       id="password" 
+                                       name="password" 
+                                       [(ngModel)]="password" 
+                                       required 
+                                       minlength="6" 
+                                       maxlength="255" 
+                                       autocomplete="current-password">
+                            </div>
+                        
+                            <div class="grupo-campos-formulario">
+                                <label class="seccion-formulario__etiqueta" for="password_confirmation">
+                                    Confirmar Contraseña <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+                                </label>
+                                <div class="campo-entrada__contenedor">
+                                    <input [type]="showPasswordConfirmation ? 'text' : 'password'" 
+                                           class="campo-entrada" 
+                                           id="password_confirmation" 
+                                           name="password_confirmation" 
+                                           [(ngModel)]="password_confirmation" 
+                                           required 
+                                           minlength="6" 
+                                           maxlength="255" 
+                                           autocomplete="current-password">
+                                    <button type="button" 
+                                            class="campo-entrada__alternar-visibilidad"
+                                            (click)="togglePasswordConfirmationVisibility()">
+                                        {{ showPasswordConfirmation ? 'Ocultar' : 'Mostrar' }}
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="grupo-campos-formulario">
+                                <label class="seccion-formulario__etiqueta" for="nombre">
+                                    Nombre <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+                                </label>
+                                <input type="text" 
+                                       class="campo-entrada" 
+                                       id="nombre" 
+                                       name="nombre" 
+                                       [(ngModel)]="nombre" 
+                                       required>
+                            </div>
+                        
+                            <div class="grupo-campos-formulario">
+                                <label class="seccion-formulario__etiqueta" for="apellido">
+                                    Apellido <span class="seccion-formulario__requerido" aria-hidden="true">*</span>
+                                </label>
+                                <input type="text" 
+                                       class="campo-entrada" 
+                                       id="apellido" 
+                                       name="apellido" 
+                                       [(ngModel)]="apellido" 
+                                       required>
+                            </div>
+                        
+                            <div class="bloque-formulario__linea dd-mm-aa-bloque">
+                                <div class="bloque-formulario__seccion">
+                                    <select class="bloque-formulario__selector-entrada" 
+                                            name="dia" 
+                                            [(ngModel)]="dia" 
+                                            required>
+                                        <option value="">DIA</option>
+                                        <option *ngFor="let d of dias" [value]="d">{{ d }}</option>
+                                    </select>
+                                    <span class="bloque-formulario__selector-icono"></span>
+                                </div>
+                        
+                                <div class="bloque-formulario__seccion">
+                                    <select class="bloque-formulario__selector-entrada" 
+                                            name="mes" 
+                                            [(ngModel)]="mes" 
+                                            required>
+                                        <option value="">MES</option>
+                                        <option *ngFor="let m of meses" [value]="m.value">{{ m.name }}</option>
+                                    </select>
+                                    <span class="bloque-formulario__selector-icono"></span>
+                                </div>
+                        
+                                <div class="bloque-formulario__seccion">
+                                    <select class="bloque-formulario__selector-entrada" 
+                                            name="anio" 
+                                            [(ngModel)]="anio" 
+                                            required>
+                                        <option value="">AÑO</option>
+                                        <option *ngFor="let a of anios" [value]="a">{{ a }}</option>
+                                    </select>
+                                    <span class="bloque-formulario__selector-icono"></span>
+                                </div>
+                            </div>
+                        
+                            <button class="boton boton--ancho-completo" type="submit">Crear cuenta</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

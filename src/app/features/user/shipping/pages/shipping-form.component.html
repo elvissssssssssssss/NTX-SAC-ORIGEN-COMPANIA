@@ -1,0 +1,104 @@
+<div id="contenidoPrincipal" class="seccion-contenido-pagina">
+    <div class="contenido-interno-pagina">
+        <div class="servicio">
+            <h1 class="titulo-servicio">
+                <span class="titulo-pagina">Compra Fácil y Rápido</span>
+            </h1>
+        </div>
+    </div>
+    
+    <div class="b-social_login m-full_width">
+        <p class="b-social_login-caption">
+            Disfruta de una compra rápida y personalizada. Aprovecha nuestros descuentos y promociones especiales para ti.
+        </p>
+    </div>
+
+    <div class="contenedor-flex">
+        <div class="register-container">
+            <section class="seccion-servicio">
+                <div class="seccion-servicio__interior div-conteiner">
+                    <div class="formulario">
+                        <div class="caja-formulario">
+                            <h3 class="caja-formulario__titulo">Compra Fácil y Rápido</h3>
+                            
+                            <form (ngSubmit)="enviarEnvio()">
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="nombre">NOMBRE <span class="seccion-formulario__requerido">*</span></label>
+                                   
+                                </div>
+
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="direccion">DIRECCIÓN <span class="seccion-formulario__requerido">*</span></label>
+                                    <input type="text" id="direccion" class="campo-entrada" name="direccion" [(ngModel)]="envio.direccion" required>
+                                </div>
+
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="region">REGION <span class="seccion-formulario__requerido">*</span></label>
+                                    <select id="region" name="region" class="bloque-formulario__selector-entrada" [(ngModel)]="envio.region" (change)="cargarProvincias()">
+                                        <option value="">Seleccione una región</option>
+                                        <option value="Amazonas">Amazonas</option>
+                                        <option value="Ancash">Ancash</option>
+                                        <option value="Apurimac">Apurimac</option>
+                                        <option value="Arequipa">Arequipa</option>
+                                        <option value="Ayacucho">Ayacucho</option>
+                                        <option value="Cajamarca">Cajamarca</option>
+                                        <option value="Cusco">Cusco</option>
+                                        <option value="Huancavelica">Huancavelica</option>
+                                        <option value="Huanuco">Huanuco</option>
+                                        <option value="Ica">Ica</option>
+                                        <option value="Junin">Junin</option>
+                                        <option value="La Libertad">La Libertad</option>
+                                        <option value="Lambayeque">Lambayeque</option>
+                                        <option value="Lima">Lima</option>
+                                        <option value="Loreto">Loreto</option>
+                                        <option value="Madre de Dios">Madre de Dios</option>
+                                        <option value="Moquegua">Moquegua</option>
+                                        <option value="Pasco">Pasco</option>
+                                        <option value="Piura">Piura</option>
+                                        <option value="Puno">Puno</option>
+                                        <option value="San Martin">San Martin</option>
+                                        <option value="Tacna">Tacna</option>
+                                        <option value="Tumbes">Tumbes</option>
+                                        <option value="Ucayali">Ucayali</option>
+                                        <option value="Callao">Callao</option>
+                                    </select>
+                                </div>
+
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="provincia">PROVINCIA <span class="seccion-formulario__requerido">*</span></label>
+                                    <select id="provincia" name="provincia" class="bloque-formulario__selector-entrada" [(ngModel)]="envio.provincia" (change)="cargarLocalidades()">
+                                        <option value="">Seleccione una provincia</option>
+                                        <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="localidad">LOCALIDAD <span class="seccion-formulario__requerido">*</span></label>
+                                    <select id="localidad" name="localidad" class="bloque-formulario__selector-entrada" [(ngModel)]="envio.localidad">
+                                        <option value="">Seleccione una localidad</option>
+                                        <option *ngFor="let localidad of localidades" [value]="localidad">{{localidad}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="dni">DNI <span class="seccion-formulario__requerido">*</span></label>
+                                    <input type="text" id="dni" class="campo-entrada" name="dni" [(ngModel)]="envio.dni" required>
+                                </div>
+
+                                <div class="grupo-campos-formulario">
+                                    <label class="seccion-formulario__etiqueta" for="telefono">TELEFONO <span class="seccion-formulario__requerido">*</span></label>
+                                    <div style="display: flex; align-items: center;">
+                                        <span style="padding: 6px; background: #eee; border: 1px solid #ccc; border-right: none;">+51</span>
+                                        <input type="tel" id="telefono" class="campo-entrada" name="telefono" [(ngModel)]="telefonoSinPrefijo" placeholder="123456789" maxlength="9" required style="flex: 1; border-left: none;">
+                                    </div>
+                                </div>
+
+                                <button class="boton boton--ancho-completo" type="submit">CONTINUAR CON ENVIO</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

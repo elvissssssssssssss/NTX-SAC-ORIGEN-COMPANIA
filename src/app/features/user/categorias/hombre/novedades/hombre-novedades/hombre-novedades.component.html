@@ -1,0 +1,264 @@
+<!-- hombre-novedades.component.html -->
+<div class="contenido-principal">
+  <!-- Contenido Principal -->
+  <main role="main">
+    <div class="contenedor">
+      <!-- Ruta de Navegación -->
+      <div class="encabezado-plp__interior">
+        <nav class="ruta-navegacion">
+         
+          <ol class="ruta-navegacion__lista" [class.active]="menuVisible">
+            <li class="ruta-navegacion__item">
+              <a class="ruta-navegacion__enlace" routerLink="/home">
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li class="ruta-navegacion__item">
+              <span class="ruta-navegacion__separador">/</span>
+              <a routerLink="/mujer/novedades">
+                <span>Novedades Hombre</span>
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Título y Descripción -->
+      <h1 class="encabezado_plp-titulo">NOVEDADES Hombre</h1>
+      <div class="mas m-plp_nuevo" data-ref="contexto" style="--mostrar-lineas:3;">
+        Descubre las tendencias de la nueva temporada que necesitas con la gama de novedades para mujer.
+        Descubre las tendencias de la nueva temporada que necesitas con la gama de novedades para mujer.
+        Descubre las tendencias de la nueva temporada que
+      </div>
+    </div>
+
+    <div class="contenedor-principal">
+
+
+
+
+
+
+      <!-- Filtros -->
+     <!-- Filtros -->
+<aside class="l-plp-refinement b-refinements_vertical" id="refinements-panel-xl">
+  <div class="b-refinements_vertical-inner">
+
+    <div class="b-refinements_vertical-header">
+      <h2 class="b-refinements_vertical-title">Filtrar por</h2>
+    </div>
+
+    <div class="b-refinements_vertical-content b-refinements_accordion_vertical">
+      
+      <!-- Marca -->
+      <section class="b-refinements_accordion_vertical-item m-marca">
+        <div class="b-refinements_accordion_vertical-header">
+          <button class="b-refinements_accordion_vertical-button" type="button">
+            <span class="b-refinements_accordion_vertical-title">Marca</span>
+          </button>
+        </div>
+        <div class="b-refinements_accordion_vertical-content b-refinement">
+          <ul class="b-refinement-list m-checkboxes">
+            <li *ngFor="let marca of marcas" class="b-refinement-list_item">
+              <label class="b-refinement_checkbox">
+                <input
+                  type="checkbox"
+                  name="marca[]"
+                  [value]="marca"
+                  [checked]="marcasSeleccionadas.includes(marca)"
+                  (change)="onFiltroChange('marca', marca, $event)"
+                />
+                <span class="b-refinement_checkbox-label">{{ marca }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Color -->
+      <section class="b-refinements_accordion_vertical-item m-color">
+        <div class="b-refinements_accordion_vertical-header">
+          <button class="b-refinements_accordion_vertical-button" type="button">
+            <span class="b-refinements_accordion_vertical-title">Color</span>
+          </button>
+        </div>
+        <div class="b-refinements_accordion_vertical-content b-refinement">
+          <ul class="b-refinement-list m-swatches">
+            <li *ngFor="let color of colores" class="b-refinement-list_item">
+              <label class="b-refinement_checkbox">
+                <input
+                  type="checkbox"
+                  name="color[]"
+                  [value]="color"
+                  [checked]="coloresSeleccionados.includes(color)"
+                  (change)="onFiltroChange('color', color, $event)"
+                />
+                <span class="b-refinement_checkbox-label">{{ color }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </section>
+       <!-- PRECIO -->
+<section class="b-refinements_accordion_vertical-item m-price">
+  <div class="b-refinements_accordion_vertical-header">
+    <button class="b-refinements_accordion_vertical-button" type="button">
+      <span class="b-refinements_accordion_vertical-title">Precio</span>
+    </button>
+  </div>
+
+  <div class="b-refinements_accordion_vertical-content b-refinement">
+    <ul class="b-refinement-list m-price">
+      <li
+        *ngFor="let rango of rangosPrecio"
+        class="b-refinement-list_item"
+      >
+        <label class="b-refinement_radio">
+          <input
+            type="radio"
+            name="rangoPrecio"
+            [checked]="rangoSeleccionado === rango"
+            (change)="seleccionarRangoPrecio(rango)"
+          />
+          <span class="b-refinement_radio-label">{{ rango.label }}</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+</section>
+
+      <!-- Talla -->
+      <section class="b-refinements_accordion_vertical-item m-talla">
+        <div class="b-refinements_accordion_vertical-header">
+          <button class="b-refinements_accordion_vertical-button" type="button">
+            <span class="b-refinements_accordion_vertical-title">Talla</span>
+          </button>
+        </div>
+        <div class="b-refinements_accordion_vertical-content b-refinement">
+          <ul class="b-refinement-list m-checkboxes">
+            <li *ngFor="let talla of tallas" class="b-refinement-list_item">
+              <label class="b-refinement_checkbox">
+                <input
+                  type="checkbox"
+                  name="talla[]"
+                  [value]="talla"
+                  [checked]="tallasSeleccionadas.includes(talla)"
+                  (change)="onFiltroChange('talla', talla, $event)"
+                />
+                <span class="b-refinement_checkbox-label">{{ talla }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Botón limpiar -->
+      <div class="b-refinements_actions">
+        <button type="button" class="b-button m-reset" (click)="limpiarFiltros()">Limpiar filtros</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+
+      <!-- Productos con el estilo actualizado -->
+      <div class="productos" id="products-container">
+        <!-- Contador de productos -->
+      
+
+
+        <!-- Lista de productos -->
+        <div *ngFor="let producto of productosFiltrados" class="seccion-producto seccion-producto--grid seccion-producto--altura-auto">
+          <div class="caja-producto">
+            <!-- Imagen del Producto -->
+            <div class="seccion-producto__imagen seccion-producto__imagen--dcto-label">
+              <a [routerLink]="['/producto', producto.id]" class="seccion-producto__imagen-enlace">
+                <img [src]="getImageUrl(producto.imagen)"
+                     loading="lazy"
+                     class="seccion-producto__imagen-img"
+                     [alt]="producto.nombre"
+                     width="300"
+                     height="300">
+              </a>
+              
+              <!-- Etiqueta de descuento -->
+              <p *ngIf="producto.precioDescuento && producto.precioDescuento > 0 && producto.precioDescuento < producto.precio" 
+                 class="seccion-producto__imagen-dcto seccion-producto__imagen-dcto--rojo">
+                {{ calcularDescuento(producto.precio, producto.precioDescuento) }}%
+              </p>
+              
+              <!-- Etiqueta de nuevo producto -->
+             
+            </div>
+            
+            <!-- Detalles del Producto -->
+            <div class="seccion-producto__detalle seccion-producto__detalle--colores-label">
+              <div class="seccion-producto__titulo">
+                <a [routerLink]="['/producto', producto.id]" class="seccion-producto__titulo-enlace">
+                  {{ producto.nombre }}
+                </a>
+              </div>
+              
+              <!-- Marca 
+              <div class="seccion-producto__marca" *ngIf="producto.marca">
+                <span class="marca-texto">{{ producto.marca }}</span>
+              </div> -->
+              
+              <!-- Información adicional 
+              <div class="producto-info">
+                <span class="color" *ngIf="producto.color">Color: {{ producto.color }}</span>
+                <span class="talla" *ngIf="producto.talla">Talla: {{ producto.talla }}</span>
+              </div>  
+                   -->
+
+            <!-- Precios -->
+<div class="seccion-producto__precio-descuento">
+
+  <!-- Mostrar cuando hay descuento -->
+  <div
+    class="seccion-producto__precio-descuento-item"
+    *ngIf="producto.precioDescuento && producto.precioDescuento < producto.precio; else precioNormal"
+  >
+    <!-- Precio actual (real, con descuento) -->
+    <div class="seccion-producto__precio-descuento-item">
+      <strong>S/.{{ producto.precioDescuento }}</strong>
+    </div>
+
+    <!-- Precio anterior tachado -->
+    <div class="precio-original">
+      <span class="seccion-producto__precio seccion-producto__precio--tachado">
+        Antes S/.{{ producto.precio }}
+      </span>
+    </div>
+
+    <!-- Porcentaje de descuento -->
+
+  </div>
+
+  <!-- Mostrar cuando no hay descuento -->
+  <ng-template #precioNormal>
+    <div class="seccion-producto__precio-descuento-item">
+      S/.{{ producto.precioDescuento || producto.precio }}
+    </div>
+  </ng-template>
+</div>
+
+              
+              <!-- Botón de acción -->
+              <div class="btn-comprar seccion-producto__btn-comprar">
+                <a [routerLink]="['/producto', producto.id]" class="seccion-producto__btn-comprar-enlace">
+                  VISTA RÁPIDA
+                </a>
+              </div>
+              
+              <!-- Botón para agregar a favoritos -->
+              <div class="producto-acciones">
+            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

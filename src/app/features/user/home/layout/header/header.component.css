@@ -1,0 +1,2800 @@
+
+
+#logontx {
+    width: 85px; /* Ajusta el ancho de la imagen según lo 
+    margin-top: 22px; /* Agrega un espacio de 10 píxeles entre el logo y la parte superior de la pantalla */
+       margin-left: 44px;
+  margin-top: 10px;
+      border: 0px  solid #CBCBCB; /* color del borde plomo */
+      padding: 0px 41px;
+      
+  }
+  /*'============================================================='*/
+  /*'=====Estilos generales para todos los elementos HTML========'*/
+  /*'==========================================================='*/
+  
+  
+  body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif; /* Define la fuente predeterminada para el cuerpo */
+        display: flex;
+        flex-direction: column;
+       
+        min-height: 100vh;
+        
+    }
+    
+    /*'============================================'*/
+    /*'===== baner ¡50% EN TODO! AL INICIO   ======'*/
+    /*'==========================================='*/
+    
+   
+    
+    /*'=================================================='*/
+    /*'=====         Oculta el encabezado  =   ======='*/
+    /*'================================================='*/
+    
+    #header {
+     
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+    
+    #header.headerup {
+        transform: translateY(-100%);
+    }
+    
+    #footer {
+        position: relative;
+        z-index: 999;
+    }
+    #header.hidden {
+      opacity: -710; /* Oculta el encabezado */
+    }
+    
+    .main-content {
+      margin-top: 4px; /* Ajusta según la altura del encabezado */
+    }
+    
+    /* Otros estilos para el contenido principal */
+    
+    
+    /*'===============================    =============   ========'*/
+    /*'== "del todo"  MENU  FLEXIFLE EN EL CENTRO    ALTURA    ==='*/
+    /*'=================================================     ====='*/
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; 
+      height: 55px; /* Cambia el valor de altura a 10 píxeles  */
+    }
+    
+    /*'======================================'*/
+    /*'=== CLASE OPcION   MUJER HOMBRE  ==='*/
+    /*'======================================'*/
+    
+    .b-menu_bar-tab{
+      color: #1E1A1A;
+      text-decoration: none;  /* para que no este subrayado */
+    
+    }
+    
+    
+    
+    /* Estilo predeterminado del botón #mujer "____" sombrero*/
+    
+    #mujer {
+      /* Agrega cualquier estilo deseado para el botón aquí */
+      border-bottom: 1px solid #CBCBCB; /* Borde de en la parte inferior */
+    }
+    
+    /* Cuando el cursor está sobre el botón #mujer */
+    #mujer:hover {
+    
+      /* Cambia el color del borde inferior a negro cuando el cursor está sobre el botón */
+      border-bottom: 2px solid black; /* Ajusta el grosor  */
+    }
+    
+    
+    .menu-buttons {
+      display: flex; /* Activa el modo flexbox */
+    }
+    
+    /*'======================================'*/
+    /*'===             logo NTX          ==='*/
+    /*'======================================'*/
+    
+    #logontx {
+      width: 85px; /* Ajusta el ancho de la imagen según lo 
+      margin-top: 22px; /* Agrega un espacio de 10 píxeles entre el logo y la parte superior de la pantalla */
+         margin-left: 44px;
+    margin-top: 10px;
+        border: 0px  solid #CBCBCB; /* color del borde plomo */
+        padding: 0px 41px;
+        
+    }
+    /*'================    ======================'*/
+    /*'=== botones ocupen el mismo espacio    ==='*/
+    /*'================    ====================='*/
+    
+  
+  
+  
+  
+  
+  
+    .b-menu_bar-tab {
+      position: relative;
+      border-left: 1px solid #ddd;
+      font-size: 16px;
+      height: 54px;
+      letter-spacing: 1.6px;
+      line-height: 54px;
+      min-width: 113px;
+      text-align: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  }
+  
+  /* Estilo para la pestaña activa (subrayado en la parte inferior) */
+  .b-menu_bar-tab.m-active {
+      font-weight: 700;
+      border-bottom: 2px solid #3C3C3C; /* Línea de subrayado */
+      border-left: 1px solid #CBCBCB; /* Mantener el borde izquierdo */
+  }
+  
+  /* Estilo para el hover (mantener el subrayado) */
+  .b-menu_bar-tab:hover,
+  .b-menu_bar-tab.m-active {
+      cursor: pointer;
+      border-bottom: 2px solid #3C3C3C; /* Mantener el subrayado en hover */
+  }
+  
+  .b-menu_bar-tabs {
+      display: flex;
+  }
+  
+    /*'======================================'*/
+    /*'====  UBICA A LOS 3 USUARIOS  ========'*/
+    /*'======================================'*/
+    
+    .usuarios	 {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+     
+    .usuarios	 li a {
+      text-decoration: none;
+      color: black;
+      padding: 20px;
+    }
+    
+    
+    /*'===============                 ======================='*/
+    /*'====  Estilos personalizados para el buscador  ========'*/
+    /*'====================                 =================='*/
+    
+    
+    .BUSCADOR {
+      display: flex;
+      width: 79%;
+    }
+    
+    
+    
+    
+    /* Estilos para el contenedor del buscador */
+    
+    .BUSCADOR {
+      position: relative; /* Asegura que el buscador se posicione correctamente */
+      height: 100%; /* Altura inicial del contenedor */
+      display: flex; /* Usar flexbox para alinear elementos */
+      align-items: center; /* Alinear verticalmente los elementos */
+    }
+    
+    /* Estilos para el campo de búsqueda */
+    
+    .BUSCADOR input[type="text"] {
+        padding: 15px;
+      width: 10; /* Ocupa todo el ancho disponible del contenedor */
+      border: 1px solid #ccc;/*color del bode plomo */
+      border-radius: 0px;/*borde del buscador */
+      font-size: 14px;/* letras del buscador */
+      flex-grow: 1;
+    
+    }
+    
+    /* Estilos para la lupa posicionamiento "ícono"*/
+    
+    .BUSCADOR .fa-search {
+      position: absolute;
+      right: 10px; /* Ajusta la posición horizontal */
+      top: 50%;
+      transform: translateY(-50%); /* Centra verticalmente */
+      color: #201515; /* Color del ícono  */
+      pointer-events: none; /* Evita que el ícono capture eventos de clic */
+    }
+    
+    
+    
+    
+    
+    /* Estilos para pantallas más pequeñas */
+    @media screen and (max-width: 967px) {
+        
+        .option, .BUSCADOR {
+            display: none; /* Ocultar los elementos en pantallas más pequeñas */
+        }
+    
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px;
+            
+        }
+    
+       
+    
+        .usuarios {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding:0;
+        }
+    
+    
+    /*'========================  ==='*/
+    
+    .menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+        
+    }
+    
+    /*'================================='*/
+    
+    .sub-nav {
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+    
+    .sub-nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .sub-nav li a {
+      text-decoration: none;
+      color: black;
+      padding: 10px;
+    }
+         
+    
+    /*'================================================================================================'*/
+    /*'================================================================================================='*/
+    /*'====================================  MEGA MENU  ===========  =================================='*/
+    /*'================================================================================================='*/
+    /*'================================================================================================='*/
+    
+    
+    
+    
+    /* ============================================ */
+    /* ====ESTILO PARA LA BARRA DE NAVEGACION====== */
+    /* ============================================ */
+        .usuarios li {
+            margin-left: 20px;
+        }
+    }
+    
+    
+    .menu-desplegable.boton-desplegable:hover +.contenido-desplegable {
+      opacity: 0.8; /* Opaca un poco el contenido desplegable */
+    }
+    .barra-nav {
+        overflow: hidden;
+      
+        font-family: Arial, Helvetica, sans-serif;
+        padding-left: 26%;
+    
+    }
+    
+    /* Estilos para el menú desplegable */
+    .menu-desplegable {
+        float: left;
+        overflow: hidden;
+    }
+  
+    
+    .menu-desplegable .boton-desplegable {
+        font-size: 16px;
+       
+        outline: none;
+        color: #2F2F2F;
+        padding: 10px 17px;
+        background-color: inherit;
+        font: inherit;
+        margin: 0;
+        border:0.1px solid #594f4f13;/*color del bode plomo */
+      
+    }
+    
+    .barra-nav a:hover, .menu-desplegable:hover 
+    
+    
+    
+    
+    .boton-desplegable {
+       background-color: #f4f4f4;
+        
+    }
+    
+    .contenido-desplegable {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 90%;
+        left: 33px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        
+    
+        
+    }
+    
+    
+    
+    .menu-desplegable:hover .contenido-desplegable {
+        display: block; /* Cambié la propiedad display por block */
+    }
+    
+    /* Estilos para las columnas del menú desplegable */
+    .columna {
+        float: left;
+        width: 33.33%;
+        padding: 29px;
+        background-color: #f9f9f9;
+        height: 250px;
+    }
+    
+    .columna a {
+        float: none;
+        color: #24272C;
+        padding: 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+    
+    .columna a:hover {
+              background-color: #f1efefb0;
+    }
+    
+    /* Limpiar flotaciones después de las columnas */
+    .fila:after {
+        content: "";
+        display: table;
+        clear: both;
+        
+    }
+    
+    
+    
+
+
+
+
+
+
+
+    
+    /* Diseño responsivo para pantallas pequeñas */
+    @media screen and (max-width: 600px) {
+        .columna {
+            width: 100%;
+            height: auto;
+        }
+    }
+    
+    /* Estilos para el banner de descuento */
+    .banner-descuento {
+        background-color: black;
+        color: aliceblue;
+        text-align: center;
+        padding: 5px;
+        font-weight: bold;
+
+        
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    /*'================================================================================================'*/
+
+
+/* === BARRA SUPERIOR === */
+.barra-nav {
+ 
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-fondo);
+  border-bottom: 1px solid #e3e3e3;
+  font-family: var(--fuente);
+  text-transform: uppercase;
+
+}
+
+/* === BOTONES PRINCIPALES === */
+
+.boton-desplegable {
+  background: none;
+  border: none;
+  color: var(--color-texto);
+  padding: 16px 28px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease;
+}
+
+
+
+/* === CONTENIDO DESPLEGABLE === */
+.contenido-desplegable {
+ 
+
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+
+  z-index: 50;
+}
+
+.menu-desplegable:hover .contenido-desplegable {
+  display: block;
+}
+
+/* === DISTRIBUCIÓN DE COLUMNAS === */
+.fila {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.columna {
+  flex: 1;
+  min-width: 180px;
+}
+
+.columna h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-texto);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.columna a {
+  display: block;
+  color: var(--color-texto);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 400;
+  margin: -6px 0;
+  transition: color 0.2s ease;
+}
+
+.columna a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* === BANNER INFERIOR === */
+.banner-descuento {
+  background-color: var(--color-banner);
+  color: #fff;
+  text-align: center;
+ 
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 25px;
+}
+
+/* === LIMPIEZA === */
+.fila::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .contenido-desplegable {
+    padding: 20px 5%;
+  }
+
+  .fila {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .columna {
+    width: 100%;
+  }
+
+  .boton-desplegable {
+    padding: 12px 18px;
+  }
+}
+
+    /*'================================================================================================='*/
+    /*'==================================== estyle de busqueda  ===========  =================================='*/
+    /*'================================================================================================='*/
+    /*'================================================================================================='*/
+    
+  
+  
+    
+  
+  .encabezado__medio {
+    width: 70%;
+  }
+  
+  .busqueda--activa {
+    background-color: #fff;
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .busqueda {
+        background-color: #fff;
+        position: relative;
+    }
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .busqueda__formulario-contenedor {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+  }
+  
+  .busqueda__entrada {
+  
+      background: rgba(0, 0, 0, 0);
+    border: none;
+    box-sizing: border-box;
+    height: 54px;
+    line-height: 54px;
+    margin-left: 20px;
+    padding: 20px 0;
+    text-align: left;
+    width: auto;
+  }
+  
+  .busqueda__entrada-contenedor {
+    align-items: center;
+    display: flex;
+    padding-right: 15px;
+    width: calc(100% - 100px);
+  }
+  
+  .busqueda__ayuda-tamaño {
+    color: transparent;
+    padding-left: 2px;
+    position: fixed;
+    visibility: hidden;
+  }
+  
+  .busqueda__entrada-input, .busqueda__ayuda-tamaño {
+    font-size: 13px;
+  }
+  
+  .busqueda__entrada-input {
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    height: 54px;
+    line-height: 54px;
+    margin-left: 20px;
+    padding: 20px 0;
+    text-align: left;
+    width: auto;
+  }
+  
+  .busqueda__entrada--vacia {
+    width: 60% !important;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media screen and (min-width: 1025px) {
+    .busqueda--activa .busqueda__sugerencias {
+        display: block;
+       
+        opacity: 1;
+        transition: max-height, opacity cubic-bezier(.3, .46, .45, .94) .4s;
+    }
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .busqueda__sugerencias {
+        border: 1px solid #ddd;
+        display: none;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        overflow-y: auto;
+        position: absolute;
+        top: 100%;
+        transition: max-height, opacity cubic-bezier(.3, .46, .45, .94) .4s;
+        width: 100%;
+        z-index: 1;
+    }
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .sugerencias__internas {
+        display: flex;
+        flex-wrap: wrap;
+    }
+  }
+  
+  .sugerencias__internas {
+    transition: opacity cubic-bezier(.3, .46, .45, .94) .2s;
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .sugerencias__seccion {
+        flex: 1 0 50%;
+        padding: 20px;
+    }
+  }
+  
+  .sugerencias__titulo {
+    font-size: 14px;
+    letter-spacing: .7px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    font-weight: 700;
+    margin:-20px 2px 20px;
+    padding-bottom: 1px;
+    width: max-content;
+  
+  }
+  .sugerencias__opcion, .sugerencias__enlace {
+    font-weight: 500;
+    letter-spacing: .33px;
+  
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .sugerencias__opcion {
+        display: block;
+        width: max-content;
+    }
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .sugerencias__opcion+.sugerencias__opcion {
+        margin-top: 15px;
+    }
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+  }
+  
+  .sugerencias__seccion+.sugerencias__seccion {
+    border-left: 1px solid #ddd;
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  .busqueda__sugerencias {
+    background-color: #fff; /* Fondo blanco */
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .busqueda__enviar {
+    border: none; /* Sin borde */
+    background: #fff; /* Fondo blanco para el botón */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    width: 40px; /* Tamaño del botón */
+    height: 40px; /* Tamaño del botón */
+    display: flex; /* Usamos Flexbox para centrar el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    position: absolute; /* Posicionamiento absoluto para un control preciso */
+    right:40px; /* Ajusta la posición horizontal  AQUIIIIII*/
+    top: 7px; /* Ajusta este valor para moverlo más abajo */
+    color: #201515; /* Color del ícono */
+  }
+  
+  .busqueda__enviar:hover {
+    opacity: 0.7; /* Efecto de opacidad al pasar el cursor */
+  }
+  
+  .fa-search {
+    font-size: 21px; /* Tamaño del ícono de la lupa */
+    color: #201515; /* Color del ícono */
+    /* Elimina cualquier posicionamiento aquí para que se centre correctamente */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .busqueda__borrar-texto {
+    background: #fff; /* Fondo blanco para el botón */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 50%; /* Forma circular */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    width: 20px; /* Tamaño del botón más pequeño */
+    height: 20px; /* Tamaño del botón más pequeño */
+    display: flex; /* Para centrar el ícono */
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    margin-left: 10px; /* Espaciado entre botones */
+    transition: opacity 0.3s ease; /* Transición suave de opacidad al hacer hover */
+  
+  }
+  
+  .busqueda__borrar-texto:hover {
+    opacity: 0.7; /* Efecto de opacidad al pasar el cursor */
+  }
+  
+  .busqueda__borrar-texto .fa-times {
+    color: #000; /* Color negro para el ícono */
+    font-size: 15px; /* Tamaño del ícono más pequeño */
+  }
+  
+  
+  
+  
+  .busqueda__borrar {
+    background: #fff; /* Fondo blanco para el botón */
+    border: none; /* Sin borde */
+    border-radius: 50%; /* Forma circular */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    width: 50px; /* Ajusta el tamaño del botón */
+    height: 50px; /* Ajusta el tamaño del botón */
+    display: flex; /* Para centrar el ícono */
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    position: absolute; /* Posiciona el botón de manera absoluta */
+    top: 1px; /* Ajusta la distancia desde la parte superior */
+    right: 3px; /* Ajusta la distancia desde la parte derecha */
+    transition: opacity 0.3s ease; /* Transición suave de opacidad al hacer hover */
+  }
+  
+  .busqueda__borrar:hover {
+    opacity: 0.7; /* Efecto de opacidad al pasar el cursor */
+  }
+  
+  .fa-times { /* Usa Font Awesome para el ícono de "x" */
+    color: #000; /* Color negro para el ícono */
+    font-size: 29px; /* Tamaño del ícono */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .busqueda__cerrar {
+    align-items: center;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    min-width: 36px;
+    text-align: center;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Oculta el botón de navegación en pantallas grandes */
+  #main-navigation-toggle {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    /* Muestra el botón de navegación en pantallas pequeñas */
+    #main-navigation-toggle {
+      display: block;
+    }
+  
+    /* Oculta el menú en pantallas pequeñas */
+    .b-menu_bar-tabs {
+      display: none;
+    }
+  
+    /* Agrega estilos para cuando el menú esté activo */
+    .b-menu_bar-tabs.active {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media screen and (max-width: 1024px) {
+      .b-header_actions-item.m-hamburger {
+          margin-right: 10px;
+      }
+  }
+  
+  .b-header_actions {
+      align-items: center;
+      display: flex
+  ;
+      height: 100%;
+  }
+  *, *::before, *::after {
+      box-sizing: inherit;
+  }
+  @media screen and (max-width: 1024px) {
+      .b-header_button {
+          height: 48px;
+          min-width: 48px;
+      }
+  }
+  .b-header_button {
+      align-items: center;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(0, 0, 0, 0);
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      display: flex
+  ;
+      flex-shrink: 0;
+      height: 54px;
+      justify-content: center;
+      min-width: 36px;
+      padding: 0 10px;
+      text-align: center;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Oculta el menú en pantallas pequeñas */
+  .b-menu_bar-tabs {
+    display: flex; /* Visibilidad normal para pantallas grandes */
+  }
+  
+  @media (max-width: 768px) {
+    .b-menu_bar-tabs {
+      display: none; /* Ocultar el menú */
+    }
+  
+    /* Cuando el menú está activo, se muestra */
+    .b-menu_bar-tabs.active {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  
+  
+  
+  
+  /* Ocultar barra-nav en pantallas pequeñas */
+  @media (max-width: 768px) {
+    .barra-nav {
+      display: none; /* Oculta todo el contenido */
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Ocultar el input del buscador en pantallas pequeñas */
+  @media (max-width: 768px) {
+    .busqueda_headrer input[type="text"] {
+      display: none;
+    }
+    
+    .busqueda_headrer i {
+      display: inline-block;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Estilos generales del header */
+  .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+     
+      position: relative;
+      z-index: 10; /* Para asegurarnos de que el header quede por encima */
+  }
+  
+  /* Logo */
+
+  /* Logo para móviles y escritorio */
+  .logo img {
+    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
+
+  /* Estilos específicos para pantallas pequeñas */
+  @media screen and (max-width: 768px) {
+    .logo img {
+      width: 70px; /* Ajusta el tamaño del logo para móviles */
+      margin-left: -24px;
+    }
+  }
+
+  /* Estilos específicos para pantallas grandes */
+  @media screen and (min-width: 769px) {
+    .logo img {
+      width: 120px; /* Ajusta el tamaño del logo para escritorio */
+      margin-top: 21px;
+              margin-left: 22px;
+    }
+  }
+  
+  /* Botón de abrir el menú hamburguesa */
+  .b-header_button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+  }
+  
+  /* Menú de navegación */
+  .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: absolute;
+      top: 14%; /* Lo coloca justo debajo del header */
+      left: 0; /* Alineado al lado izquierdo */
+      right: 0;
+         box-shadow: 0 0 0 100vmax rgb(140 137 137 / 50%);
+      padding: 2rem;
+     
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+  
+  }
+  
+  /* Estilos de la lista de navegación */
+  .nav-list {
+      list-style-type: none;
+      padding: 0;
+  }
+  
+  .nav-list li a {
+      text-decoration: none;
+              color: #221b1b;
+      font-size: 18px;
+  }
+  
+  /* Botón de cerrar el menú */
+  .cerrar-menu {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #ececec;
+      align-self: flex-end;
+      position: absolute;
+  }
+  
+  /* Estilo para mostrar el menú (cuando se agrega la clase .visible) */
+  .nav.visible {
+      opacity: 1;
+      visibility: visible;
+      background-color: #ffffff; 
+  }
+  
+  /* Estilo en pantallas pequeñas para ocultar el menú por defecto */
+  @media screen and (max-width: 550px) {
+      .nav {
+          opacity: 0;
+          visibility: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: start; /* Alineamos el contenido al lado izquierdo */
+          gap: 1rem;
+          position: absolute;
+          top: 14%; /* Ajuste justo debajo del header */
+          left: 0;
+          right: 0;
+          background-color: #1c1c1c;
+          padding: 2rem;
+              box-shadow: 0 0 0 100vmax rgb(140 137 137 / 50%);
+      }
+      .nav-list li a {
+                  color: #221b1b;
+      }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Media query para pantallas pequeñas (hasta 767px) */
+  @media screen and (max-width: 767px) {
+      .nav {
+          width: 241px;
+      }
+  }
+  
+  /* Estilo para el botón de cerrar */
+  .cerrar-menu {
+      position: absolute;
+      top: -10px;
+      right: -40px;
+      background: transparent;
+      border: none;
+      
+      font-size: 40px; /* Tamaño del ícono */
+      cursor: pointer;
+      z-index: 10;
+      transition: color 0.3s ease;  
+      
+      height: 74px;
+      width: 144px;
+       
+  }
+  @media screen and (max-width: 768px) {
+    .b-menu_bar-tabs2 {
+        display: flex; /* Coloca los elementos en línea */
+        flex-direction: row; /* Orientación horizontal */
+        justify-content: space-between; /* Espacio entre los botones */
+        align-items: center; /* Alineación vertical centrada */
+        
+        width: 100%; /* Se adapta al ancho del contenedor */
+    }
+
+    .b-menu_bar-tabs2 button {
+        flex-grow: 1; /* Los botones se expanden para ocupar espacio equitativamente */
+        padding: 10px;
+        text-align: center;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+}
+
+  /* Estilo para el ícono cuando pasa el mouse por encima */
+  .cerrar-menu:hover {
+      color: #ff5e5e; /* Color rojo al pasar el mouse */
+  }
+  
+  /* Si deseas darle un estilo específico al <i> directamente */
+  .bi-x {
+      font-size: 46px; /* Tamaño grande del icono */
+      color: #220F0F; /* Color blanco */
+      transition: color 0.3s ease;
+  }
+  
+  /* Cambio de color al hacer hover sobre el ícono */
+  .bi-x:hover {
+      color: #ff5e5e; /* Rojo cuando el mouse pasa por encima */
+  }
+  
+   /*'================    ======================'*/
+    /*'=== botones ocupen el mismo espacio    ==='*/
+    /*'================    ====================='*/
+    
+  
+  
+  
+  .b-main_menu {
+      
+      bottom: 0; /* Posición inferior */
+      left: 0;
+      width: 100%;
+      background-color: #fff; /* Fondo blanco */
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      
+      z-index: 100;
+  }
+  
+  .b-main_menu__tab {
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+      padding: 10px 15px;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+  }
+  
+  .b-main_menu__tab--mujer.m-active,
+  .b-main_menu__tab--hombre.m-active {
+      font-weight: bold;
+      border-bottom: 2px solid #3C3C3C;
+  }
+  
+  .b-main_menu__tab:hover {
+      color: #555;
+      border-bottom: 2px solid #3C3C3C;
+  }
+  
+    /*'======================================'*/
+  
+  
+  
+  
+  
+  
+  /* Estilo base para el enlace del menú */
+  .b-menu__item-link {
+      color: #000;
+      display: inline-block;
+      padding: 6px 0;
+      position: relative;
+      text-decoration: none;
+      transition: all 0.3s ease;
+  }
+  
+  /* Estilo para dispositivos táctiles */
+  @media not all and (pointer: coarse) {
+      .b-menu__item-link {
+          cursor: pointer;
+      }
+  }
+  
+  /* Estilos para diferentes resoluciones */
+  @media screen and (max-width: 1024px) {
+      .b-menu__item-link {
+          align-items: center;
+          cursor: pointer;
+          display: flex;
+          font-size: 16px;
+          font-weight: normal;
+          line-height: 19px;
+          padding: 20px;
+          text-transform: uppercase;
+           border: 1px solid #ddd; /* Borde agregado */
+      
+            border-radius: 4px; /* Bordes redondeados opcionales */	
+      }
+  }
+  
+  @media screen and (max-width: 1024px) and (orientation: landscape) {
+      .b-menu__item-link {
+          border-bottom: 1px solid #ddd;
+          font-size: 13px;
+          letter-spacing: 0.65px;
+          line-height: 16px;
+          min-height: 54px;
+          width: auto;
+      }
+  }
+  
+  /* Estilo para el estado regular */
+  .b-menu__item-link--regular {
+      font-weight: 400;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .b-menu__panel {
+      display: none;
+  }
+  
+  .b-menu__panel.m-active {
+      display: block;
+  }
+  
+  .b-menu_bar-tab {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: none;
+      background: none;
+  }
+  
+  .b-menu_bar-tab.m-active {
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+  }
+  
+  
+  
+  
+  
+  
+      
+  
+  
+  .b-menu__panel {
+      display: none;
+  }
+  
+  .b-menu__panel.m-active {
+      display: block;
+  }
+  
+  .b-menu_bar-tab {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: none;
+      background: none;
+  }
+  
+  .b-menu_bar-tab.m-active {
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+  }
+  
+  
+  
+  
+  
+  /* Ocultar los elementos en dispositivos pequeños o grandes, según el caso */
+  .m-hide-lg_up {
+      display: none;
+  }
+  
+  .m-hide-md_down {
+      display: none;
+  }
+  
+  /* Mostrar los botones de <button> solo en dispositivos pequeños (por ejemplo, menos de 768px) */
+  @media (max-width: 768px) {
+      .m-hide-lg_up {
+          display: block; /* Mostrar el botón en dispositivos pequeños */
+      }
+      
+      .m-hide-md_down {
+          display: none; /* Ocultar el enlace en dispositivos pequeños */
+      }
+  }
+  
+  /* Mostrar los botones de <a> solo en dispositivos grandes (por ejemplo, más de 768px) */
+  @media (min-width: 769px) {
+      .m-hide-md_down {
+          display: inline-block; /* Mostrar el enlace en dispositivos grandes */
+      }
+      
+      .m-hide-lg_up {
+          display: none; /* Ocultar el botón en dispositivos grandes */
+      }
+  }
+  
+  /* Contenedor de los botones - Alineación horizontal con flexbox */
+  .b-menu_bar-tabs {
+     
+      justify-content: space-between; /* Los botones se distribuyen a lo largo del contenedor */
+      
+
+  }
+  
+  /* Estilos de los botones */
+  .b-menu_bar-tab {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: none;
+      background: none;
+      text-align: center;
+      white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  }
+  
+  /* Estilo para el botón activo */
+  .b-menu_bar-tab.m-active {
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+  }
+  
+  
+  
+  
+      /* Ocultar los elementos en dispositivos pequeños o grandes, según el caso */
+      .m-hide-lg_up {
+          display: none;
+      }
+  
+      .m-hide-md_down {
+          display: none;
+      }
+  
+      /* Mostrar los botones de <button> solo en dispositivos pequeños (por ejemplo, menos de 768px) */
+      @media (max-width: 768px) {
+          .m-hide-lg_up {
+              display: block; /* Mostrar el botón en dispositivos pequeños */
+          }
+  
+          .m-hide-md_down {
+              display: none; /* Ocultar el enlace en dispositivos pequeños */
+          }
+      }
+  
+      /* Mostrar los botones de <a> solo en dispositivos grandes (por ejemplo, más de 768px) */
+      @media (min-width: 769px) {
+          .m-hide-md_down {
+              display: inline-block; /* Mostrar el enlace en dispositivos grandes */
+          }
+  
+          .m-hide-lg_up {
+              display: none; /* Ocultar el botón en dispositivos grandes */
+          }
+      }
+  
+      /* Estilos para los paneles y pestañas */
+      .b-menu__panel {
+          display: none;
+      }
+  
+      .b-menu__panel.m-active {
+          display: block;
+      }
+  
+      .b-menu_bar-tab {
+          cursor: pointer;
+          padding: 0px 20px;
+          border: none;
+          background: none;
+      }
+  
+      .b-menu_bar-tab.m-active {
+          font-weight: bold;
+          border-bottom: 2px solid #333;
+      }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+/* Efecto hover para cambiar de color */
+.icono-carrito:hover .icono,
+.icono-carrito:hover svg path {
+    color: #8C8C8C; /* Cambia a gris cuando el mouse pasa por encima */
+}
+
+
+.icono {
+    
+   
+color: #000000; /* Negro por defecto */
+    
+   
+transition: color 0.3s ease;
+    fill: currentColor;
+}
+
+
+.icono {
+		align-items: center;		
+		appearance: none;		
+		border: none;
+		display: flex;
+		flex-shrink: 0;
+		justify-content: center;
+		min-width: 46px;
+		padding: 0 10px;
+		text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.b-menu_bar-tab {
+    position: relative;
+    border-left: 1px solid #ddd;
+    font-size: 16px;
+    height: 54px;
+    letter-spacing: 1.6px;
+    line-height: 54px;
+    min-width: 113px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #CBCBCB;
+}
+
+/* Estilo para la pestaña activa (subrayado en la parte inferior) */
+.b-menu_bar-tab.m-active {
+    font-weight: 700;
+    border-bottom: 2px solid #3C3C3C; /* Línea de subrayado */
+    border-left: 1px solid #CBCBCB; /* Mantener el borde izquierdo */
+}
+
+/* Estilo para el hover (mantener el subrayado) */
+.b-menu_bar-tab:hover,
+.b-menu_bar-tab.m-active {
+    cursor: pointer;
+    border-bottom: 2px solid #3C3C3C; /* Mantener el subrayado en hover */
+}
+
+
+
+
+
+.BUSCADOR input[type="text"] {
+  padding: 19px;
+  width: 10;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Encabezado de Utilidad */
+.encabezado_utilidad {
+      background-color: var(--color-banner);
+    color: #000;
+    pointer-events: all;
+    visibility: visible;
+}
+
+.encabezado_utilidad_interior {
+    width: 100%;
+}
+
+/* Carrusel Promocional */
+.carrusel_promocional {
+    --carousel-height: 31px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Contenido del Carrusel */
+.carrusel_paginacion_contenido {
+    align-items: center;
+    display: flex;
+}
+
+/* Control de elementos del Carrusel */
+.carrusel_ruta {
+    align-items: center;
+    display: flex;
+    min-height: var(--carousel-height);
+    overflow: hidden;
+    justify-content: center;
+}
+
+.carrusel_elemento {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1.25;
+    max-width: 100%;
+    min-width: 100%;
+    text-align: center;
+    position: absolute;
+    transition: cubic-bezier(.56,.03,.47,.98) .8s;
+    transition-property: transform, visibility;
+    visibility: hidden;
+      
+}
+
+.carrusel_elemento.actual {
+    position: static;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+/* Enlaces */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Encabezado de Promoción */
+.encabezado_promocion {
+    color: #fff !important;
+    font-size: 14px;
+  font-weight: bold;
+}
+
+/* Estilos del Banner */
+
+
+.titulo_banner {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+  font-weight: bold;
+}
+/* Carrusel Promocional */
+.carrusel_promocional {
+    --carousel-height: 31px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ruta del carrusel */
+.carrusel_ruta {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Transición suave al deslizar */
+}
+
+/* Elementos del carrusel */
+.carrusel_elemento {
+    min-width: 100%; /* Cada banner ocupa el 100% del ancho */
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    position: absolute;
+}
+
+/* Elemento activo (visible) */
+.carrusel_elemento.actual {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Elemento anterior (fuera de pantalla a la izquierda) */
+.carrusel_elemento.anterior {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* Elemento siguiente (fuera de pantalla a la derecha) */
+.carrusel_elemento.siguiente {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+
+
+
+
+.BUSCADOR {
+    display: flex;
+    width: 79%;
+  }
+  .menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 57px;
+}
+
+
+/* Base styles */
+.encabezado__medio {
+    width: 70%;
+    height: 55px;
+    position: relative;
+}
+
+/* Mobile search icon - Hidden by default on desktop */
+.mobile-search-icon {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    padding: 5px;
+height: 55px;
+
+}
+
+
+.mobile-search-icon .fa-search {
+font-size: 21px;
+color: #757575;
+}
+
+
+/* Search bar styles */
+.busqueda {
+    width: 100%;
+    background-color: #fff;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    /* Hide desktop search bar */
+    .busqueda {
+        display: none;
+    }
+
+    /* Show mobile search icon */
+    .mobile-search-icon {
+        display: block;
+    }
+
+    /* When search is active on mobile */
+    .busqueda.mobile-active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        z-index: 1000;
+    }
+
+    /* Adjust input container for mobile */
+    .busqueda.mobile-active .busqueda__entrada-contenedor {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    /* Show desktop search bar */
+    .busqueda {
+        display: block;
+    }
+
+    /* Hide mobile search icon */
+    .mobile-search-icon {
+        display: none;
+    }
+}
+      
+ 
+
+.b-menu_bar-tab {
+  position: relative;
+  border-left: 1px solid #ddd;
+  font-size: 16px;
+  height: 54px;
+  letter-spacing: 1.6px;
+  line-height: 54px;
+  min-width: 113px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #a49999;
+}
+
+
+
+
+
+
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    height: 55px; /* Cambia el valor de altura a 10 píxeles  */
+  }
+
+
+
+.encabezado__medio {
+    width: 70%; 
+    height: 55 px;
+    
+    box-sizing: border-box; 
+}
+
+.busqueda__entrada-contenedor {
+    align-items: center;
+    display: flex;
+    padding-right: 100px;
+    width: calc(100% - 100px);
+    
+    
+
+}
+    
+
+.busqueda--activa {
+    background-color: #fff;
+}
+
+@media screen and (min-width: 1025px) {
+    .busqueda {
+        background-color: #fff;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .busqueda__formulario-contenedor {
+               
+                border: 1px solid #a8a3a3cc;
+    }
+}
+
+/* Versión activa en dispositivos móviles */
+@media screen and (max-width: 1024px) {
+    .busqueda.mobile-active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgb(244 244 244 / 75%); /* Fondo semitransparente */
+        z-index: 1000;
+
+        /* Centrado del contenido */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .sugerencias__opcion  {
+        font-weight: 500;
+        letter-spacing: .33px;
+    }
+
+
+
+    
+
+
+
+.busqueda__entrada {
+
+        background: rgba(0, 0, 0, 0);
+    border: none;
+    box-sizing: border-box;
+    height: 54px;
+    line-height: 54px;
+    margin-left: 20px;
+    padding: 20px 0;
+    text-align: left;
+    width: auto;
+}
+
+
+
+.busqueda__ayuda-tamaño {
+    color: transparent;
+    padding-left: 2px;
+    position: fixed;
+    visibility: hidden;
+    
+}
+
+.busqueda__entrada-input, .busqueda__ayuda-tamaño {
+    font-size: 13px;
+}
+
+.busqueda__entrada-input {
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    height: 54px;
+    line-height: 54px;
+    margin-left: 20px;
+    padding: 20px 0;
+    text-align: left;
+    width: auto;
+}
+
+.busqueda__entrada--vacia {
+    width: 60% !important;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1025px) {
+    .busqueda--activa .busqueda__sugerencias {
+        display: block;
+        max-height: calc(100vh - var(--header-height));
+        opacity: 1;
+        transition: max-height, opacity cubic-bezier(.3, .46, .45, .94) .4s;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .busqueda__sugerencias {
+        border: 1px solid #ddd;
+        display: none;
+        max-height: 0;    
+        opacity: 0;
+        overflow: hidden;
+        overflow-y: auto;
+        position: absolute;
+        top: 100%;
+        transition: max-height, opacity cubic-bezier(.3, .46, .45, .94) .4s;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .sugerencias__internas {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.sugerencias__internas {
+    transition: opacity cubic-bezier(.3, .46, .45, .94) .2s;
+}
+
+@media screen and (min-width: 1025px) {
+    .sugerencias__seccion {
+        flex: 1 0 50%;
+        padding: 20px;
+    }
+}
+
+.sugerencias__titulo {
+    font-size: 14px;
+    letter-spacing: .7px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    font-weight: 700;
+    margin:-20px 2px 20px;
+    padding-bottom: 1px;
+    
+    
+
+}
+  
+        .sugerencias__seccion {
+        flex: 1 0 50%;
+        padding: 60px;
+    }
+        .sugerencias__opcion {
+        margin-top: 15px;
+    }
+}
+.sugerencias__opcion, .sugerencias__enlace {
+    font-weight: 500;
+    letter-spacing: .33px;
+    
+}
+
+@media screen and (min-width: 1025px) {
+    .sugerencias__opcion {
+        display: block;
+        width: max-content;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .sugerencias__opcion+.sugerencias__opcion {
+        margin-top: 15px;
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.sugerencias__seccion+.sugerencias__seccion {
+    border-left: 1px solid #ddd;
+
+}
+
+
+
+
+
+
+
+.busqueda__sugerencias {
+  background-color: #efefef;
+
+
+}
+
+
+
+
+
+
+
+.icono {
+        
+       
+  color: #000000; /* Negro por defecto */
+      
+     
+  transition: color 0.3s ease;
+      fill: currentColor;
+  }
+  .icono {
+  width: 44px;
+  height: 34px;
+  display: inline-block;
+  vertical-align: middle;
+  
+}
+.boder1 {
+  border-bottom: 1px solid #ddd; /* Solo borde inferior */
+  height: 57px;
+  width: 59px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+
+
+
+  .icono {
+          align-items: center;		
+          appearance: none;		
+          border: none;
+          display: flex;
+          flex-shrink: 0;
+          justify-content: center;
+        
+          padding: 0 10px;
+          text-align: center;
+  }
+
+
+  .discount-banner {
+    height: 12px;
+}
+
+.busqueda__enviar {
+    border: none; /* Sin borde */
+    background: #fff; /* Fondo blanco para el botón */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    width: 40px; /* Tamaño del botón */
+    height: 40px; /* Tamaño del botón */
+    display: flex; /* Usamos Flexbox para centrar el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    position: absolute; /* Posicionamiento absoluto para un control preciso */
+    right:40px; /* Ajusta la posición horizontal  AQUIIIIII*/
+    top: 7px; /* Ajusta este valor para moverlo más abajo */
+    color: #201515; /* Color del ícono */
+}
+
+.busqueda__enviar:hover {
+    opacity: 0.7; /* Efecto de opacidad al pasar el cursor */
+}
+
+.fa-search {
+    font-size: 21px; /* Tamaño del ícono de la lupa */
+    color: #201515; /* Color del ícono */
+    /* Elimina cualquier posicionamiento aquí para que se centre correctamente */
+}
+
+
+
+
+
+
+
+
+
+
+
+.busqueda__borrar-texto {
+    background: #fff; /* Fondo blanco para el botón */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 50%; /* Forma circular */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    width: 20px; /* Tamaño del botón más pequeño */
+    height: 20px; /* Tamaño del botón más pequeño */
+    display: flex; /* Para centrar el ícono */
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    margin-left: 10px; /* Espaciado entre botones */
+    transition: opacity 0.3s ease; /* Transición suave de opacidad al hacer hover */
+
+}
+
+.busqueda__borrar-texto:hover {
+    opacity: 0.7; /* Efecto de opacidad al pasar el cursor */
+}
+
+.busqueda__borrar-texto .fa-times {
+    color: #000; /* Color negro para el ícono */
+    font-size: 15px; /* Tamaño del ícono más pequeño */
+}
+
+
+
+
+.busqueda__borrar {
+    background: #fff; /* Fondo blanco para el botón */
+    border: none; /* Sin borde */
+    border-radius: 50%; /* Forma circular */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    width: 50px; /* Ajusta el tamaño del botón */
+    height: 50px; /* Ajusta el tamaño del botón */
+    display: flex; /* Para centrar el ícono */
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    position: absolute; /* Posiciona el botón de manera absoluta */
+    top: 1px; /* Ajusta la distancia desde la parte superior */
+    right: 3px; /* Ajusta la distancia desde la parte derecha */
+    transition: opacity 0.3s ease; /* Transición suave de opacidad al hacer hover */
+}
+
+.busqueda__borrar:hover {
+    opacity: 0.7; /* Efecto de opacidad al pasar el cursor */
+}
+
+.fa-times { /* Usa Font Awesome para el ícono de "x" */
+    color: #000; /* Color negro para el ícono */
+    font-size: 29px; /* Tamaño del ícono */
+}
+
+
+
+
+
+
+
+
+.busqueda__cerrar {
+    align-items: center;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    min-width: 36px;
+    text-align: center;
+}
+
+
+
+
+
+#resultados-busqueda {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas de al menos 200px */
+ 
+  padding: 10px;
+}
+   
+   #seccion-producto__precio {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
+  color: #000; /* Color negro para el texto general */
+  line-height: 23px;
+}
+
+#seccion-producto__precio strong {
+  color: #000; /* Color negro para "Precio:" */
+}
+
+#seccion-producto__precio .precio-valor {
+  color: #c1122b; /* Color rojo para el valor del precio */
+}
+
+.seccion-producto__titulo {
+  width: 100%;
+  margin-top: 0px;
+  text-align: center;
+  height: 55px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 19px;
+  color: #000;
+  text-decoration: none;
+}
+
+.producto-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.producto-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.producto-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.producto-item p {
+  margin: 10px 0;
+}
+      .producto-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.producto-item:hover {
+  background-color: #f9f9f9;
+}
+
+
+.producto-item img {
+  max-width: 20%
+  ;
+  
+  height: auto;
+}
+ 
+
+
+.busqueda__sugerencias {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none; /* Oculto por defecto */
+}
+
+.sugerencias__opcion {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.sugerencias__opcion:hover {
+  background-color: #f9f9f9;
+} /* AQUIIIIII  */
+
+    /* Estilos para la lupa estática */
+    .busqueda__lupa-estatica {
+        position: absolute;
+        right: 40px;
+        top: 7px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none; /* La lupa estática no es clickeable */
+    }
+    
+    .busqueda__lupa-estatica .fa-search {
+        font-size: 21px;
+        color: #201515;
+        opacity: 0.5; /* Lupa estática más tenue */
+    }
+    
+    /* Estilos para el botón de búsqueda */
+    .busqueda__enviar {
+        border: none;
+        background: #fff;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: none; /* Oculto por defecto */
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 40px;
+        top: 7px;
+        transition: opacity 0.3s ease;
+    }
+    
+    .busqueda__enviar .fa-search {
+        font-size: 21px;
+        color: #201515;
+    }
+    
+    .busqueda__enviar:hover {
+        opacity: 0.7;
+    }
+    
+    /* Media queries para móvil */
+    @media screen and (max-width: 1024px) {
+        .busqueda__lupa-estatica {
+            display: none; /* Ocultar lupa estática en móvil */
+        }
+    }
+
+    .nav {
+       
+      z-index: 9999; /* Asegura que esté por encima de todo */
+  }
+
+
+
+
+
+
+
+  /* OPCIÓN 1: Nombre al lado del icono */
+.boder1 {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el icono y el nombre */
+}
+
+.boder1 span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap; /* Evita que el texto se corte */
+  line-height: 1.2; /* Mejora el espaciado vertical */
+}
+
+/* OPCIÓN 2: Nombre debajo del icono (centrado) */
+.boder1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.boder1 span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  text-align: center;
+  max-width: 80px; /* Limita el ancho */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* OPCIÓN 3: Tooltip/dropdown style */
+.boder1 {
+  position: relative;
+  display: inline-block;
+}
+
+.boder1 span {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+/* Flecha del tooltip */
+.boder1 span::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-bottom-color: #333;
+}
+
+/* OPCIÓN 4: Responsive - horizontal en desktop, vertical en mobile */
+.boder1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boder1 span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .boder1 {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .boder1 span {
+    font-size: 11px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* OPCIÓN 5: Solo visible en hover */
+.boder1 {
+  position: relative;
+}
+
+.boder1 span {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 8px;
+}
+
+.boder1:hover span {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ESTILOS ADICIONALES PARA EL ICONO */
+.icono-carrito {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.icono-carrito:hover {
+  background-color: #f8f8f8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        .sugerencias--activas {
+            display: block;
+        }
+
+        /* Sección de sugerencias */
+        .sugerencias__seccion {
+            padding: 0;
+        }
+
+        /* Título de la sección */
+        .sugerencias__titulo {
+            padding: 20px 24px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: #ffffff;
+            border-bottom: 2px solid #f5f5f5;
+            margin: 0;
+        }
+
+        /* Grid de productos - 4 columnas */
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* AJUSTAR COLUMNAS: Cambia el 4 por 3, 5, 6, etc. */
+            gap: 20px; /* AJUSTAR ESPACIADO: Distancia entre productos */
+            padding: 24px; /* AJUSTAR PADDING: Espaciado interno del contenedor */
+            background: #ffffff;
+        }
+
+        /* Card de producto */
+        .sugerencias__opcion {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: #ffffff;
+            border-radius: 8px; /* AJUSTAR BORDES: Cambia para bordes más o menos redondeados */
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #6b6868;
+            cursor: pointer;
+            /* AJUSTAR TAMAÑO TOTAL: Descomentar para fijar altura total de la card */
+            /* height: 400px; */
+        }
+
+        .sugerencias__opcion:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border-color: #e0e0e0;
+        }
+
+        /* Contenedor de imagen */
+        .producto-imagen-container {
+            position: relative;
+            width: 100%;
+            height: 270px; /* AJUSTAR ALTURA: Cambia este valor para hacer las imágenes más altas o más bajas */
+            background: #f8f8f8;
+            overflow: hidden;
+        }
+
+        .img-producto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .sugerencias__opcion:hover .img-producto {
+            transform: scale(1.05);
+        }
+
+        /* Contenido del producto */
+        .producto-info {
+            padding: 16px;
+        }
+
+        .producto-nombre {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #1a1a1a;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 2.8em;
+        }
+
+        .producto-precio {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 8px;
+        }
+
+        .precio-descuento {
+            color: #e74c3c;
+            margin-right: 8px;
+        }
+
+        .precio-original {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .descuento-porcentaje {
+            color: #e74c3c;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .resultados-grid {
+                grid-template-columns: repeat(4, 1fr); /* AJUSTAR: Columnas en tablet */
+                gap: 18px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resultados-grid {
+                grid-template-columns: repeat(2, 1fr); /* AJUSTAR: Columnas en móvil grande */
+                gap: 16px;
+                padding: 16px;
+            }
+
+            .producto-imagen-container {
+                height: 220px; /* AJUSTAR: Altura imagen en móvil */
+            }
+
+            .sugerencias__titulo {
+                padding: 16px 20px 12px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resultados-grid {
+                grid-template-columns: 1fr; /* AJUSTAR: Una sola columna en móvil pequeño */
+                gap: 16px;
+                padding: 16px;
+            }
+
+            .producto-imagen-container {
+                height: 300px; /* AJUSTAR: Altura imagen en móvil pequeño */
+            }
+
+            .busqueda__sugerencias {
+                margin: 10px;
+                border-radius: 6px;
+            }
+        }
+
+        /* Animación de entrada */
+        .busqueda__sugerencias {
+            animation: fadeInUp 0.4s ease-out;
+        }
+/* Contenedor fijo para la imagen */
+.producto-imagen-container {
+    height: 200px;   /* 🔧 Ajusta la altura que quieres para todas las imágenes */
+    
+    
+}
+
+/* Imagen interna */
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Badge de descuento */
+        .badge-descuento {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        /* Estados de carga */
+        .producto-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Utilidades Bootstrap */
+        .d-flex {
+            display: flex !important;
+        }
+
+        .align-items-center {
+            align-items: center !important;
+        }
+
+        .img-thumbnail {
+            padding: 0.25rem;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+        }

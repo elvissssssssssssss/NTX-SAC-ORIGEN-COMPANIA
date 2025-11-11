@@ -1,0 +1,271 @@
+<main class="main">
+  <!-- /admin/atencionCliente/atencionCliente.component.html -->
+
+  <!-- Encabezado -->
+  <div class="content-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="m-0 text-dark">
+        <i class="fas fa-headset mr-2"></i> Atención al Cliente
+      </h1>
+
+      <!-- Estadísticas rápidas -->
+      <div class="stats-badges">
+        <span class="badge badge-primary">Total: {{ totalMensajes }}</span>
+        <span class="badge badge-warning">Pendientes: {{ mensajesPendientes }}</span>
+        <span class="badge badge-success">Respondidos: {{ mensajesRespondidos }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid mt-4">
+    <!-- ======================= BANDEJA: Mensajes recibidos ======================= -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">
+          <i class="fas fa-envelope-open-text mr-2"></i> Mensajes Recibidos
+        </h5>
+
+        <div class="header-actions">
+          <!-- Filtro por estado -->
+          <select
+            class="form-control form-control-sm d-inline-block mr-2"
+            style="width: auto;"
+            [(ngModel)]="filtroEstado"
+            (change)="filtrarPorEstado(filtroEstado)"
+          >
+            <option value="todos">Todos</option>
+            <option value="pendiente">Pendientes</option>
+            <option value="leido">Leídos</option>
+            <option value="respondido">Respondidos</option>
+          </select>
+
+          <button class="btn btn-light btn-sm" (click)="cargarMensajes()" [disabled]="cargando">
+            <i
+              class="fas"
+              [class.fa-sync-alt]="!cargando"
+              [class.fa-spinner]="cargando"
+              [class.fa-spin]="cargando"
+            ></i>
+            {{ cargando ? 'Cargando...' : 'Actualizar' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body p-0">
+        <!-- 👇 Scroll interno de la tabla -->
+        <div class="table-responsive inbox-scroll">
+          <table class="table table-striped table-hover mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>#</th>
+                <th>Nombres</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Mensaje</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr
+                *ngFor="let mensaje of mensajes; let i = index"
+                (click)="marcarComoLeido(mensaje)"
+                [class.table-warning]="mensaje.estado === 'pendiente'"
+              >
+                <td>{{ i + 1 }}</td>
+
+                <td>
+                  <strong>{{ mensaje.nombre }}</strong>
+                  <small *ngIf="mensaje.userId" class="d-block text-muted">
+                    <i class="fas fa-user"></i> Usuario #{{ mensaje.userId }}
+                  </small>
+                </td>
+
+                <td>
+                  <a [href]="'mailto:' + mensaje.correo">{{ mensaje.correo }}</a>
+                </td>
+
+                <td>
+                  <a [href]="'tel:' + mensaje.telefono">{{ mensaje.telefono }}</a>
+                </td>
+
+                <td>
+                  <span class="mensaje-preview" [title]="mensaje.mensaje">
+                    {{ mensaje.mensaje.length > 50 ? (mensaje.mensaje | slice:0:50) + '...' : mensaje.mensaje }}
+                  </span>
+                </td>
+
+                <td>
+                  <span id="letra" class="badge" [ngClass]="getBadgeClass(mensaje.estado)">
+                    {{ mensaje.estado | uppercase }}
+                  </span>
+                </td>
+
+                <td>
+                  <small>{{ mensaje.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+                </td>
+
+                <td>
+                  <div class="btn-group" role="group">
+                    <button
+                      class="btn btn-sm btn-outline-success"
+                      (click)="responderMensaje(mensaje); $event.stopPropagation()"
+                      [disabled]="mensaje.estado === 'respondido'"
+                      title="Responder"
+                    >
+                      <i class="fas fa-reply"></i>
+                    </button>
+
+                    <button
+                      class="btn btn-sm btn-outline-info"
+                      (click)="marcarComoLeido(mensaje); $event.stopPropagation()"
+                      [disabled]="mensaje.estado !== 'pendiente'"
+                      title="Marcar como leído"
+                    >
+                      <i class="fas fa-check"></i>
+                    </button>
+
+                    <button
+                      class="btn btn-sm btn-outline-danger"
+                      (click)="(mensaje.id); $event.stopPropagation()"
+                      title="Eliminar"
+                    >
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr *ngIf="mensajes.length === 0 && !cargando">
+                <td colspan="8" class="text-center text-muted py-4">
+                  <i class="fas fa-inbox fa-3x mb-2"></i>
+                  <p>No hay mensajes {{ filtroEstado !== 'todos' ? 'con estado: ' + filtroEstado : 'recibidos' }}</p>
+                </td>
+              </tr>
+
+              <tr *ngIf="cargando">
+                <td colspan="8" class="text-center py-4">
+                  <i class="fas fa-spinner fa-spin fa-2x"></i>
+                  <p>Cargando mensajes...</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /table-responsive -->
+      </div>
+    </div>
+    <!-- ======================= /BANDEJA ======================= -->
+
+    <!-- ======================= CHAT EN VIVO ADMIN ======================= -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-comments mr-2"></i> Chat</h5>
+      </div>
+
+      <div class="card-body chat-admin">
+        <!-- Sidebar de clientes (scroll interno en CSS) -->
+        <div class="chat-sidebar">
+          <h6 class="px-3 py-2 bg-light">
+            <i class="fas fa-users"></i> Clientes Activos
+            <span class="badge badge-success ml-2">{{ clientesActivos.length }}</span>
+          </h6>
+
+          <ul class="list-unstyled">
+            <li
+              *ngFor="let cliente of clientesActivos"
+              class="cliente-item"
+              [class.active]="cliente.id === clienteSeleccionado?.id"
+              (click)="(cliente)"
+            >
+              <i class="fas fa-user-circle"></i>
+              <span>{{ cliente.nombre }}</span>
+              <span *ngIf="cliente.online" class="status-dot online" title="En línea"></span>
+              <span *ngIf="!cliente.online" class="status-dot offline" title="Desconectado"></span>
+            </li>
+
+            <li *ngIf="clientesActivos.length === 0" class="text-center text-muted py-3">
+              <i class="fas fa-user-slash"></i>
+              <p class="mb-0">No hay clientes activos</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ventana de chat -->
+        <div class="chat-window" *ngIf="clienteSeleccionado; else sinCliente">
+          <div class="chat-header d-flex justify-content-between align-items-center bg-light p-3">
+            <div>
+              <strong>
+                <i class="fas fa-user-circle text-primary"></i>
+                {{ clienteSeleccionado.nombre }}
+              </strong>
+              <span *ngIf="clienteSeleccionado.online" class="badge badge-success ml-2">En línea</span>
+            </div>
+
+            <button class="btn btn-sm btn-outline-secondary" (click)="cerrarChat()">
+              <i class="fas fa-times"></i> Cerrar
+            </button>
+          </div>
+
+          <!-- 👇 Área con scroll interno -->
+          <div class="chat-messages p-3 chat-scroll" #chatMessages>
+            <div
+              *ngFor="let msg of mensajesChat"
+              [ngClass]="{
+                'message-admin': msg.tipo === 'admin',
+                'message-cliente': msg.tipo === 'cliente',
+                'message-sistema': msg.tipo === 'sistema'
+              }"
+              class="message mb-3"
+            >
+              <div class="message-content p-2 rounded">
+                {{ msg.texto }}
+              </div>
+              <div class="message-time text-muted small">
+                {{ msg.timestamp | date:'HH:mm' }}
+              </div>
+            </div>
+
+            <div *ngIf="mensajesChat.length === 0" class="text-center text-muted py-5">
+              <i class="fas fa-comment-dots fa-2x mb-2"></i>
+              <p>No hay mensajes aún. Inicia la conversación.</p>
+            </div>
+          </div>
+
+          <!-- Input -->
+          <div class="chat-input p-3 bg-light border-top">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="nuevoMensajeChat"
+                (keyup.enter)="enviarMensajeChat()"
+                placeholder="Escribe un mensaje..."
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  (click)="enviarMensajeChat()"
+                  [disabled]="!nuevoMensajeChat.trim()"
+                >
+                  <i class="fas fa-paper-plane"></i> Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #sinCliente>
+          <div class="text-center text-muted py-5">
+            <i class="fas fa-user-friends fa-3x mb-3 text-secondary"></i>
+            <h5>Selecciona un cliente</h5>
+            <p>Haz clic en un cliente de la lista para iniciar la conversación</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <!-- ======================= /CHAT EN VIVO ADMIN ======================= -->
+  </div>
+</main>

@@ -1,0 +1,365 @@
+
+  
+  <!--  pago.component.html -->
+  <div id="contenidoPrincipal" class="seccion-contenido-pagina">
+      <div class="contenido-interno-pagina">
+          <div class="servicio">
+              <h1 class="titulo-servicio">
+                  <span class="titulo-pagina">Asegúrese que su tarjeta esté habilitada por su banco para compras por internet</span>
+              </h1>
+          </div>
+      </div>
+  </div>
+
+  <div id="layout">
+      <main id="principal" role="main">
+          <div id="cuerpo">
+              <div id="titulo-carrito">PRODUCTOS AGREGADOS</div>
+              <div id="resumen-carrito1">
+                  <div id="resumen-documento">
+                      <input type="hidden" name="tfacturacion" id="tfacturacion" value="">
+                      <a href="#" class="enlace-enfasis">Mis Compras</a>
+                  </div>
+              </div>
+        
+              <div id="lista-productos-carrito">
+                  <div *ngIf="carrito.length === 0">
+                      <p>Tu carrito está vacío.</p>
+                  </div>
+                  <div *ngFor="let item of carrito; let i = index">
+                      <div class="linea-carrito"></div>
+                      <div class="producto-carrito">
+                          <div class="imagen-producto-carrito">
+                                  <a [href]="'/producto/' + item.id">
+                                  <img [src]="getImageUrl(item.productImage ?? '')" 
+                                      id="imagen-carrito" 
+                                      alt="Producto">
+                              </a>
+                          </div>
+                          
+                          <div class="detalle-producto-carrito">
+                              <div class="nombre-producto-carrito">
+                                  <a [href]="'/product/' + item.productId">
+              {{ item.productName }}
+            </a>
+                              </div>
+                              <div class="color-producto-carrito">
+            Color: {{ item.color }}
+          </div>
+                              <div class="talla-producto-carrito">
+                                  Talla: {{ item.talla }}
+                              </div>
+                              <div class="quitar-producto-carrito">
+                              
+                              </div>
+                          </div>
+
+                          <div class="cantidad-producto-carrito">
+                              <select name="quantity" class="select-cantidad" [value]="item.quantity" >
+                                  <option value="1" [selected]="item.quantity === 1">1</option>
+                                  
+                              </select>
+                          </div>
+                          
+                          <div class="precio-producto-carrito">
+                              <span>S/. {{ item.totalPrice | number:'1.2-2' }}</span> <br>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+
+      <aside id="resumen-carrito">
+          <section class="b-summary_order-item m-order" data-tau="summary" aria-label="Resumen del pedido">
+              <div class="b-summary_order-header">
+                  <h2 class="b-summary_order-title">Resumen del pedido</h2>
+              </div>
+              <div data-widget="label" data-listen-events="order.updated" data-initialized="1">
+                  <div class="b-summary_order-details" data-ref="summaryOrderDetails">
+                      <table class="b-summary_table">
+                          <tbody>
+                              <tr class="b-summary_table-item">
+                                  <th scope="row" class="b-summary_table-name">Subtotal</th>
+                                  <td class="b-summary_table-value">S/. {{ subTotal | number:'1.2-2' }}</td>
+                              </tr>
+                              <tr class="b-summary_table-item">
+                                  <th scope="row" class="b-summary_table-name">Envío</th>
+                                  <td class="b-summary_table-value">S/. {{ envioGasto | number:'1.2-2' }}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <table class="b-summary_table">
+                      <tbody>
+                          <tr class="b-summary_table-item m-total" data-tau="summary_total_null">
+                              <th scope="row" class="b-summary_table-name">Total del pedido (incluido el envío)</th>
+                              <td class="b-summary_table-value m-top_align">S/. {{ total | number:'1.2-2' }}</td>
+                          </tr>
+                          <tr class="b-summary_table-item m-tax">
+                              <td class="b-summary_table-name" colspan="2">
+                                  <div class="b-summary_table-tax">
+                                      *Impuestos incluidos en los precios
+                                  </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </section>
+
+       <div class="container">
+  <h1>Métodos de Pago</h1>
+
+  <!-- Sin form principal, ya no usamos ngSubmit -->
+  <div class="form-check">
+   
+    <label class="form-check-label" for="metodo-tarjeta">Tarjeta de crédito</label>
+  </div>
+
+  <div class="comprobante-section">
+    <h2 class="comprobante-title">Tipo de comprobante</h2>
+
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" name="tipo_comprobante" id="boleta" value="boleta" class="form-check-input" [(ngModel)]="tipoComprobante" (change)="onComprobanteChange()" checked>
+        <span>Boleta</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="tipo_comprobante" id="factura" value="factura" class="form-check-input" [(ngModel)]="tipoComprobante" (change)="onComprobanteChange()">
+        <span>Factura</span>
+      </label>
+    </div>
+
+    <div id="datos-factura" class="factura-extra" [style.display]="tipoComprobante === 'factura' ? 'block' : 'none'">
+      <div class="form-group">
+        <label for="ruc">RUC</label>
+        <input type="text" name="ruc" id="ruc" maxlength="11" class="input-field" [(ngModel)]="datosFactura.ruc" [required]="tipoComprobante === 'factura'">
+      </div>
+      <div class="form-group">
+        <label for="razon_social">Razón Social</label>
+       <input type="text" name="razon_social" id="razon_social" class="input-field" [(ngModel)]="datosFactura.razonSocial" [required]="tipoComprobante === 'factura'">
+
+    </div>
+  </div>
+
+
+  
+
+  <!-- Datos de envío confirmados -->
+  <!-- Actualiza la sección de datos de envío confirmados -->
+<div class="datos-envio-confirmados" style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+  <h3>Datos de envío confirmados</h3>
+  
+  <!-- ✅ Campos para nombres usando variables del componente -->
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label for="clienteNombres" style="display: block; font-weight: bold; margin-bottom: 5px;">
+      <span style="color: red;">*</span> Nombres:
+    </label>
+    <input type="text" 
+           id="clienteNombres" 
+           name="clienteNombres"
+           class="input-field" 
+           [(ngModel)]="clienteNombres" 
+           placeholder="Ingresa tus nombres completos"
+           required 
+           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+  </div>
+  
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label for="clienteApellidos" style="display: block; font-weight: bold; margin-bottom: 5px;">
+      <span style="color: red;">*</span> Apellidos:
+    </label>
+    <input type="text" 
+           id="clienteApellidos" 
+           name="clienteApellidos"
+           class="input-field" 
+           [(ngModel)]="clienteApellidos" 
+           placeholder="Ingresa tus apellidos completos"
+           required 
+           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+  </div>
+  
+  <!-- Mostrar datos una vez completados -->
+  <div *ngIf="clienteNombres && clienteApellidos" 
+       style="background: #e8f5e8; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+    <p style="margin: 0;"><strong>✅ Cliente:</strong> {{ clienteNombres }} {{ clienteApellidos }}</p>
+  </div>
+  
+  <!-- Datos de envío existentes -->
+  <div style="border-top: 1px solid #ddd; padding-top: 15px;">
+    <h4 style="margin-bottom: 10px;">📍 Datos de Envío:</h4>
+    <p><strong>Dirección:</strong> {{ envio.direccion }}</p>
+    <p><strong>Región:</strong> {{ envio.region }}</p>
+    <p><strong>Provincia:</strong> {{ envio.provincia }}</p>
+    <p><strong>Localidad:</strong> {{ envio.localidad }}</p>
+    <p><strong>DNI:</strong> {{ envio.dni }}</p>
+    <p><strong>Teléfono:</strong> {{ envio.telefono }}</p>
+  </div>
+  
+  <!-- ✅ Validación visual -->
+  <div *ngIf="!clienteNombres?.trim() || !clienteApellidos?.trim()" 
+       style="color: #d32f2f; font-size: 14px; margin-top: 15px; padding: 10px; background: #ffebee; border-radius: 4px;">
+    <strong>⚠️ IMPORTANTE:</strong> Complete sus nombres y apellidos antes de proceder con el pago.
+    <br><small>Estos datos son requeridos para la emisión del comprobante electrónico.</small>
+  </div>
+  
+  <!-- ✅ Confirmación visual cuando todo esté completo -->
+  <div *ngIf="clienteNombres?.trim() && clienteApellidos?.trim()" 
+       style="color: #2e7d32; font-size: 14px; margin-top: 15px; padding: 10px; background: #e8f5e8; border-radius: 4px;">
+    <strong>✅ Datos completos:</strong> Puede proceder con el pago
+  </div>
+</div>
+
+  <!-- Formulario oculto para Niubiz -->
+
+<!-- pago.component.html 
+<button class="btn btn-primary" (click)="abrirCheckoutJS()">
+  Pagar con Niubiz (Modal) </button> -->
+<!-- Sección de Mercado Pago -->
+<div class="card">
+  <div class="card-header">
+    <h2>Pago con MercadoS Pago</h2>
+    <div class="mp-logo">
+      <!-- Logo SVG -->
+      <svg viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.999 0.5H7.49902V15.5H10.999V0.5Z" fill="#009EE3"/>
+        <path d="M24.499 0.5H20.999V15.5H24.499V0.5Z" fill="#009EE3"/>
+        <path d="M38.999 0.5H35.499V15.5H38.999V0.5Z" fill="#009EE3"/>
+        <path d="M16.499 4.5H12.999V8H16.499V4.5Z" fill="#009EE3"/>
+        <path d="M30.999 4.5H27.499V8H30.999V4.5Z" fill="#009EE3"/>
+        <path d="M45.499 4.5H41.999V8H45.499V4.5Z" fill="#009EE3"/>
+        <path d="M0.5 0.5H4V15.5H0.5V0.5Z" fill="#009EE3"/>
+      </svg>
+    </div>
+  </div>
+
+
+
+    <!-- Datos de tarjeta de prueba -->
+   
+  </div>
+  <div id="paymentBrick_container"></div>
+ <!-- Datos de tarjeta de prueba -->
+<button *ngIf="!paymentBrickInitialized" 
+        class="btn-init-payment" 
+        (click)="initPaymentBrick()"
+        [disabled]="!mercadoPagoLoaded || total <= 0">
+  {{ mercadoPagoLoaded ? 'Mostrar Métodos de Pago' : 'Cargando...' }}
+</button>
+
+</div>
+
+
+
+  <!-- Resumen de precios -->
+ 
+
+  <!-- Botones de pago -->
+  <div class="payment-section">
+    <h3>Método de Pago</h3>
+    
+    <div class="payment-method">
+      <div class="mercado-pago-info">
+        <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.3/mercadopago/logo__small.png" 
+             alt="Mercado Pago" 
+             class="payment-logo">
+        <div class="payment-description">
+          <p><strong>Pago seguro con Mercado Pago</strong></p>
+       
+        </div>
+      </div>
+  <!-- Botones de pago -->
+      <button class="btn-mercado-pago" 
+              (click)="iniciarCheckoutPro()"
+              [disabled]="total <= 0 || carrito.length === 0 || isProcessingPayment"
+              [class.processing]="isProcessingPayment">
+        <span *ngIf="!isProcessingPayment">
+          <i class="fas fa-credit-card"></i>
+          Pagar con Mercado Pago - S/ {{ total | number:'1.2-2' }}
+        </span>
+        <span *ngIf="isProcessingPayment">
+          <i class="fas fa-spinner fa-spin"></i>
+          Procesando...
+        </span>
+      </button>
+
+      <div class="payment-security">
+        <p class="security-text">
+          <i class="fas fa-shield-alt"></i>
+          Tu información está protegida con encriptación SSL
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información adicional -->
+  <div class="info-adicional">
+    <div class="info-item">
+      <i class="fas fa-truck"></i>
+      <span>Envío en 2-5 días hábiles</span>
+    </div>
+    
+    <div class="info-item">
+      <i class="fas fa-shield-alt"></i>
+      <span>Compra 100% segura</span>
+    </div>
+    
+  
+
+  <!-- Botones de navegación -->
+  <div class="navigation-buttons">
+ 
+
+ <div class="test-card">
+      <h4>Tarjeta de Prueba:</h4>
+      <div class="card-details">
+        <div><strong>Número:</strong> 4235 6477 2802 5682</div>
+        <div><strong>CVV:</strong> 123</div>
+        <div><strong>Fecha Exp.:</strong> 11/2025</div>
+        <div><strong>Nombre:</strong> APRO</div>
+        <div><strong>DNI:</strong> 12345678</div>
+      </div>
+    </div>
+
+<!-- ✅ Botones de prueba - temporal -->
+<div class="test-buttons" style="margin: 20px 0; padding: 15px; background: #ffffcc; border: 1px solid #ccc;">
+  <h4>🧪 Pruebas (Temporal)</h4>
+  <button class="btn btn-warning" (click)="probarEmisionComprobante()">
+    Probar Boleta
+  </button>
+  <button class="btn btn-info" (click)="probarEmisionFactura()">
+    Probar Factura
+  </button>
+  <button class="btn btn-secondary" (click)="verificarDatosAntes()">
+    Verificar Datos
+  </button>
+</div>
+
+
+
+
+
+<!-- Botón de prueba - agregar temporalmente -->
+<button (click)="simularRegresoDeMercadoPago()" 
+        style="background: #ff6b35; color: white; padding: 10px; margin: 10px; border: none; border-radius: 4px;">
+✅ Ya Pagué - Completar Pedido</button>
+
+
+
+
+
+
+
+
+    
+    <!-- Botones de debug - agregar temporalmente 
+<div style="background: #f0f8ff; padding: 15px; margin: 10px 0; border-radius: 8px;">
+  <h4>🧪 Debug Tools</h4>
+  <button (click)="probarVentaDirecta()" style="margin: 5px; padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 4px;">
+    Probar Venta Directa
+  </button>
+  <button (click)="verificarRutas()" style="margin: 5px; padding: 8px 15px; background: #17a2b8; color: white; border: none; border-radius: 4px;">
+    Verificar Rutas
+  </button>
+</div> -->

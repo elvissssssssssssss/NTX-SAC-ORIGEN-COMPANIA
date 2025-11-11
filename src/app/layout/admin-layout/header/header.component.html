@@ -1,0 +1,78 @@
+<!-- src/app/layout/header/header.component.html  -->
+ 
+<div class="main-content">
+  <!-- tu contenido -->
+
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand ps-3" href="index.html">Mi Proyecto</a>
+  <!-- Sidebar Toggle-->
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand ps-3" routerLink="/admin/dashboard">Panel Administrativo</a>
+
+  <!-- Toggle Sidebar -->
+  <button
+    class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+    id="sidebarToggle"
+    type="button"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Notificaciones -->
+  <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        id="notificationsDropdown"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-bell fa-fw"></i>
+        <span class="badge bg-danger">3</span>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="notificationsDropdown"
+      >
+        <li><a class="dropdown-item" href="#!">Notificación 1</a></li>
+        <li><a class="dropdown-item" href="#!">Notificación 2</a></li>
+        <li><a class="dropdown-item" href="#!">Notificación 3</a></li>
+      </ul>
+    </li>
+
+    <!-- Usuario logueado -->
+    <li class="nav-item dropdown" *ngIf="currentUser">
+      <a
+        class="nav-link dropdown-toggle d-flex align-items-center"
+        id="userDropdown"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-user fa-fw me-1"></i>
+        <span>{{ currentUser.nombre }}</span>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="userDropdown"
+      >
+        <li class="dropdown-header text-center">
+          <strong>{{ currentUser.rol }}</strong><br>
+          <small class="text-muted">{{ currentUser.email }}</small>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="#">Configuración</a></li>
+        <li><a class="dropdown-item" href="#">Actividad</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item text-danger" (click)="logout()">Cerrar sesión</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</nav>
+</div>

@@ -1,0 +1,298 @@
+ <!-- src/app/features/admin/envios/envios.component.html -->
+
+
+
+<main class="main">
+
+<div class="container-fluid"></div>
+
+
+
+  <!-- src/app/features/admin/envios/envios.component.html -->
+<main class="main">
+  <div class="container-fluid">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h1 class="h3 mb-0">Gestión de Envíos</h1>
+        <p class="text-muted">Administra el seguimiento y documentos de los envíos</p>
+      </div>
+    </div>
+
+    <!-- Búsqueda de envío -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Buscar Envío</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="busquedaForm" (ngSubmit)="buscarEnvio()">
+              <div class="input-group">
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  formControlName="ventaId"
+                  placeholder="Ingrese ID de venta"
+                  required>
+                <button 
+                  class="btn btn-primary" 
+                  type="submit"
+                  [disabled]="busquedaForm.invalid || cargando">
+                  <i class="fas fa-search" *ngIf="!cargando"></i>
+                  <span class="spinner-border spinner-border-sm" *ngIf="cargando"></span>
+                  {{ cargando ? 'Buscando...' : 'Buscar' }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estados disponibles -->
+    <div class="row mb-4" *ngIf="estados.length > 0">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Estados Disponibles</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 mb-2" *ngFor="let estado of estados">
+                <div class="badge bg-info text-wrap p-2 w-100">
+                  <strong>{{ estado.nombre }}</strong><br>
+                  <small>{{ estado.descripcion }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información del envío -->
+    <div class="row" *ngIf="ventaSeleccionada">
+      <!-- Seguimiento actual -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Seguimiento - Venta #{{ ventaSeleccionada }}</h5>
+          </div>
+          <div class="card-body">
+            <div *ngIf="seguimientos.length === 0" class="text-muted">
+              No hay seguimientos registrados
+            </div>
+            
+            <div *ngFor="let seguimiento of seguimientos; let i = index" 
+                 class="d-flex mb-3 pb-3 border-bottom">
+              <div class="flex-shrink-0 me-3">
+                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" 
+                     style="width: 40px; height: 40px;">
+                  <small>{{ i + 1 }}</small>
+                </div>
+              </div>
+              <div class="flex-grow-1">
+                <h6 class="mb-1">{{ seguimiento.estado_nombre }}</h6>
+                <p class="text-muted small mb-1">{{ seguimiento.estado_descripcion }}</p>
+                <p class="mb-1"><strong>Ubicación:</strong> {{ seguimiento.ubicacion_actual }}</p>
+                <p class="mb-1" *ngIf="seguimiento.observaciones">
+                  <strong>Observaciones:</strong> {{ seguimiento.observaciones }}
+                </p>
+                <small class="text-muted">
+                  {{ seguimiento.fecha_cambio | date:'dd/MM/yyyy HH:mm' }}
+                </small>
+                <div *ngIf="seguimiento.confirmado_por_cliente" class="mt-1">
+                  <span class="badge bg-success">
+                    <i class="fas fa-check"></i> Confirmado por cliente
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agregar nuevo seguimiento -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Agregar Seguimiento</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="seguimientoForm" (ngSubmit)="agregarSeguimiento()">
+              <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-control" formControlName="estado_id" required>
+                  <option value="">Seleccionar estado</option>
+                  <option *ngFor="let estado of estados" [value]="estado.id">
+                    {{ estado.nombre }}
+                  </option>
+                </select>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Ubicación Actual</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  formControlName="ubicacion_actual"
+                  placeholder="Ej: Oficina Principal - Lima"
+                  required>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Observaciones</label>
+                <textarea 
+                  class="form-control" 
+                  formControlName="observaciones"
+                  rows="3"
+                  placeholder="Observaciones adicionales..."></textarea>
+              </div>
+              
+              <button 
+                type="submit" 
+                class="btn btn-success w-100"
+                [disabled]="seguimientoForm.invalid || enviandoSeguimiento">
+                <i class="fas fa-plus" *ngIf="!enviandoSeguimiento"></i>
+                <span class="spinner-border spinner-border-sm" *ngIf="enviandoSeguimiento"></span>
+                {{ enviandoSeguimiento ? 'Agregando...' : 'Agregar Seguimiento' }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documentos -->
+      <div class="col-12 mb-4">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">Documentos</h5>
+            <button 
+              class="btn btn-primary btn-sm" 
+              type="button"
+              data-bs-toggle="collapse" 
+              data-bs-target="#subirDocumento">
+              <i class="fas fa-plus"></i> Subir Documento
+            </button>
+          </div>
+          
+          <!-- Formulario para subir documento -->
+          <div class="collapse" id="subirDocumento">
+            <div class="card-body border-bottom">
+              <form [formGroup]="documentoForm" (ngSubmit)="subirDocumento()">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <label class="form-label">Tipo de Documento</label>
+                    <select class="form-control" formControlName="tipo_documento" required>
+                      <option value="">Seleccionar tipo</option>
+                      <option value="boleta">Boleta</option>
+                      <option value="foto_envio">Foto del Envío</option>
+                      <option value="guia_remision">Guía de Remisión</option>
+                      <option value="comprobante_entrega">Comprobante de Entrega</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-4 mb-3">
+                    <label class="form-label">Archivo</label>
+                    <input 
+                      type="file" 
+                      class="form-control" 
+                      (change)="onArchivoSeleccionado($event)"
+                      accept=".pdf,.jpg,.jpeg,.png"
+                      required>
+                  </div>
+                  
+                  <div class="col-md-4 mb-3 d-flex align-items-end">
+                    <button 
+                      type="submit" 
+                      class="btn btn-success w-100"
+                      [disabled]="documentoForm.invalid || !archivoSeleccionado || subiendoDocumento">
+                      <i class="fas fa-upload" *ngIf="!subiendoDocumento"></i>
+                      <span class="spinner-border spinner-border-sm" *ngIf="subiendoDocumento"></span>
+                      {{ subiendoDocumento ? 'Subiendo...' : 'Subir' }}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Lista de documentos -->
+          <div class="card-body">
+            <div *ngIf="documentos.length === 0" class="text-muted">
+              No hay documentos registrados
+            </div>
+            
+            <div class="table-responsive" *ngIf="documentos.length > 0">
+              <table class="table table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Archivo</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let documento of documentos">
+                    <td>
+                      <span class="badge bg-secondary">{{ getTipoDocumentoLabel(documento.tipo_documento) }}</span>
+                    </td>
+                    <td>{{ documento.nombre_archivo }}</td>
+                    <td>{{ documento.fecha_subida | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>
+                      <button 
+                        class="btn btn-outline-primary btn-sm"
+                        (click)="descargarDocumento(documento)">
+                        <i class="fas fa-download"></i> Ver
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirmar entrega -->
+      <div class="col-12 mb-4" *ngIf="puedeConfirmarEntrega()">
+        <div class="card border-warning">
+          <div class="card-header bg-warning text-dark">
+            <h5 class="card-title mb-0">
+              <i class="fas fa-exclamation-triangle"></i> Confirmar Entrega
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="mb-3">¿Está seguro que desea marcar este envío como entregado?</p>
+            <button 
+              class="btn btn-warning"
+              (click)="confirmarEntregaEnvio()"
+              [disabled]="confirmandoEntrega">
+              <i class="fas fa-check" *ngIf="!confirmandoEntrega"></i>
+              <span class="spinner-border spinner-border-sm" *ngIf="confirmandoEntrega"></span>
+              {{ confirmandoEntrega ? 'Confirmando...' : 'Confirmar Entrega' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alertas -->
+    <div class="row" *ngIf="mensaje">
+      <div class="col-12">
+        <div class="alert alert-dismissible fade show" 
+             [class]="'alert-' + (tipoMensaje === 'error' ? 'danger' : tipoMensaje)">
+          {{ mensaje }}
+          <button type="button" class="btn-close" (click)="cerrarMensaje()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+
+
+</main>

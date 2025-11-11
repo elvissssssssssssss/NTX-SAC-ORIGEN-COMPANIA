@@ -1,0 +1,74 @@
+
+        
+      
+       <main class="main-content">
+    <div class="banner-oferta">
+        <a href="#" class="oferta-link">
+            <h2 class="oferta-title">¡45% EN TODO!</h2>
+            <p class="oferta-description">*No se aplica a artículos seleccionados ni rebajas.</p>
+        </a>
+    </div>
+
+    <div class="carrusel">
+        <!-- Diapositivas -->
+        <div 
+            class="carrusel__diapositiva" 
+            *ngFor="let imagen of imagenesCarrusel; let i = index"
+            [style.display]="esDiapositivaActiva(i) ? 'block' : 'none'">
+            <img 
+                [src]="imagen.src" 
+                [alt]="imagen.alt" 
+                class="carrusel__imagen"
+                loading="lazy">
+        </div>
+        
+        <!-- Controles de navegación -->
+        <a 
+            class="carrusel__control carrusel__control--prev" 
+            (click)="pasarDiapositiva(-1)"
+            role="button"
+            aria-label="Diapositiva anterior"
+            tabindex="0">
+            &#10094;
+        </a>
+        <a 
+            class="carrusel__control carrusel__control--siguiente" 
+            (click)="pasarDiapositiva(1)"
+            role="button"
+            aria-label="Siguiente diapositiva"
+            tabindex="0">
+            &#10095;
+        </a>
+        
+        <!-- Indicadores -->
+        <div class="carrusel__indicadores">
+            <span 
+                class="carrusel__indicador"
+                [class.carrusel__indicador--activo]="esDiapositivaActiva(i)"
+                *ngFor="let imagen of imagenesCarrusel; let i = index" 
+                (click)="diapositivaActual(i)"
+                role="button"
+                [attr.aria-label]="'Ir a diapositiva ' + (i + 1)"
+                tabindex="0">
+            </span>
+        </div>
+    </div>
+
+    <!-- Contenedor de productos -->
+    <div id="products-container" class="body">
+        <div class="product-carousel-horizontal">
+            <!-- Aquí puedes agregar tus productos -->
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,458 @@
+    <header id="resouces/header">
+      <!-- BANNER PROMOCIONAL -->
+      <div class="encabezado_utilidad">
+        <div class="encabezado_utilidad_interior" id="encabezado_pagina_utilidad">
+          <div class="elemento_encabezado_utilidad promo_slot">
+            <div class="carrusel_promocional inicializado" [attr.data-autoplay-duration]="8000">
+              
+              <!-- Paginación del carrusel -->
+              <div class="carrusel_paginacion" data-ref="pagination">
+                <div class="carrusel_paginacion_contenido"></div>
+              </div>
+
+              <!-- Elementos del carrusel -->
+              <div class="carrusel_ruta" data-ref="elemCarouselTrack">
+                <div class="carrusel_elemento promocion anterior" id="promocion_diapositiva-0" aria-label="1 de 3">
+                  <div class="carrusel_elemento_interior">
+                    <div class="encabezado_promocion_contenedor">
+                      <a href="">
+                        <span class="encabezado_promocion">¡50% EN TODO!</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="carrusel_elemento promocion actual" id="promocion_diapositiva-1" aria-label="2 de 3">
+                  <div class="carrusel_elemento_interior">
+                    <div class="banner_negro">
+                      <a href="" class="enlace_banner">
+                        <span class="titulo_banner">¡ENVIO GRATIS!</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="carrusel_elemento promocion siguiente" id="promocion_diapositiva-2" aria-label="3 de 3">
+                  <div class="carrusel_elemento_interior">
+                    <div class="banner_negro">
+                      <a href="" class="enlace_banner">
+                        <span class="titulo_banner">¡AHORA PUEDES PAGAR CON YAPE Y PLIN!</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENU PRINCIPAL -->
+      <div class="menu">
+        <div class="header">
+          <button 
+            id="main-navigation-toggle" 
+            class="b-header_button m-active" 
+            type="button" 
+            aria-controls="main-navigation" 
+            aria-haspopup="true" 
+            [attr.aria-expanded]="isMenuOpen" 
+            title="Show navigation"
+            (click)="toggleMenu()">
+            <svg role="img" class="i-icon i-icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+              <g fill="currentColor">
+                <rect x="3.11" y="3" width="18" height="1"></rect>
+                <rect x="3.11" y="20" width="18" height="1"></rect>
+                <rect x="3.11" y="11.5" width="18" height="1"></rect>
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menú de navegación -->
+        <nav class="nav" id="nav" [class.visible]="isMenuOpen">
+          <button class="cerrar-menu" id="cerrar" (click)="closeMenu()">
+            <i class="bi bi-x"></i>
+          </button>	
+
+          <div class="b-menu_bar-tabs2">
+            <!-- Botón para MUJER -->
+            <button 
+              role="tab"
+              [attr.aria-selected]="activeTab === 'mujer'"
+              aria-controls="womens-panel" 
+              class="b-menu_bar-tab btn-mujer"
+              [class.m-active]="activeTab === 'mujer'"
+              id="tab-mujer"
+              (click)="setActiveTab('mujer')">
+              <a class="b-menu__item-link b-menu__item-link--regular">MUJER</a>
+            </button>
+            
+            <!-- Botón para HOMBRE -->
+            <button 
+              role="tab"
+              [attr.aria-selected]="activeTab === 'hombre'"
+              aria-controls="mens-panel" 
+              class="b-menu_bar-tab btn-hombre"
+              [class.m-active]="activeTab === 'hombre'"
+              id="tab-hombre"
+              (click)="setActiveTab('hombre')">
+              <a class="b-menu__item-link b-menu__item-link--regular">HOMBRE</a>
+            </button>
+          </div>
+
+          <!-- Panel de MUJER -->
+          <div id="womens-panel" class="b-menu__panel" [class.m-active]="activeTab === 'mujer'">
+            <p>Contenido de MUJER</p>
+            <div class="b-menu__item">
+              <a routerLink="/mujer" class="b-menu__item-link b-menu__item-link--regular">INICIO</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/mujer/noved" class="b-menu__item-link b-menu__item-link--regular">NOVEDADES</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/mujer/ropa-corporativa" class="b-menu__item-link b-menu__item-link--regular">ROPA CORPORATIVA</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/mujer/ntx-prom" class="b-menu__item-link b-menu__item-link--regular">NTX PROM</a>
+            </div>
+            <div class="b-menu__item">
+              <a href="#" class="b-menu__item-link b-menu__item-link--regular">SOBRE NOSOTROS</a>
+            </div>
+          </div>
+
+          <!-- Panel de HOMBRE -->
+          <div id="mens-panel" class="b-menu__panel" [class.m-active]="activeTab === 'hombre'">
+            <p>Contenido de HOMBRE</p>
+            <div class="b-menu__item">
+              <a routerLink="/hombre" class="b-menu__item-link b-menu__item-link--regular">INICIO</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/hombre/novedades" class="b-menu__item-link b-menu__item-link--regular">NOVEDADES</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/hombre/uniformes-deportivas" class="b-menu__item-link b-menu__item-link--regular">UNIFORMES DEPORTIVAS</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/hombre/ropa-corporativa" class="b-menu__item-link b-menu__item-link--regular">ROPA CORPORATIVA</a>
+            </div>
+            <div class="b-menu__item">
+              <a routerLink="/hombre/ntx-prom" class="b-menu__item-link b-menu__item-link--regular">NTX PROM</a>
+            </div>
+            <div class="b-menu__item">
+              <a href="#" class="b-menu__item-link b-menu__item-link--regular">SOBRE NOSOTROS</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- LOGO -->
+        <div class="logo" id="mujr">
+          <a routerLink="/mujer">
+            <img src="images/logo.png" alt="logo" width="110" height="80">
+          </a>
+        </div>
+
+        <!-- NAVEGACIÓN PRINCIPAL -->
+        <nav>
+          <div data-ref="tablist" role="tablist" aria-label="Menú principal" class="b-menu_bar-tabs">
+            <a 
+              role="link" 
+              aria-label="MUJER" 
+              routerLink="/mujer" 
+              class="b-menu_bar-tab"
+              routerLinkActive="active">
+              MUJER
+            </a>
+            
+            <a 
+              role="link" 
+              aria-label="HOMBRE" 
+              routerLink="/hombre" 
+              class="b-menu_bar-tab"
+              routerLinkActive="active">
+              HOMBRE
+            </a>
+          </div>
+        </nav>
+
+        <!-- BUSCADOR -->
+        <div class="encabezado__medio">
+          <!-- Mobile Search Icon -->
+          <button class="mobile-search-icon" (click)="toggleMobileSearch()">
+            <i class="fa fa-search"></i>
+          </button>
+
+          <!-- Desktop/Tablet Search Bar -->
+          <div 
+            id="cuadro-busqueda-dialogo" 
+            class="busqueda busqueda--activa"
+            [class.mobile-active]="isMobileSearchActive"
+            data-widget="searchBox">
+            <div class="busqueda__dialogo busqueda__dialogo--abierto">
+              <div class="busqueda__formulario-contenedor">
+                <form role="search" (ngSubmit)="onSearch()" name="simpleSearch">
+                  <div class="busqueda__entrada-contenedor">
+                    <span class="busqueda__ayuda-tamaño" data-ref="sizeHelper"></span>
+                    <input 
+                      id="encabezado-busqueda-entrada" 
+                      class="busqueda__entrada"
+                      [class.busqueda__entrada--vacia]="searchQuery === ''"
+                      type="search" 
+                      [(ngModel)]="searchQuery"
+                      name="q" 
+                      placeholder="¿Qué estás buscando?" 
+                      autocomplete="off"
+                      (focus)="onSearchFocus()"
+                      (input)="onSearchInput()">
+                    <div class="busqueda__lupa-estatica" [style.display]="searchQuery ? 'none' : 'flex'">
+                      <i class="fa fa-search">&nbsp;</i>
+                    </div>
+                    <button 
+                      class="busqueda__borrar" 
+                      type="button" 
+                      title="Cerrar"
+                      [style.display]="searchQuery ? 'flex' : 'none'"
+                      (click)="clearSearch()">
+                      <i class="fa fa-times"></i>
+                    </button>
+                    <button 
+                      class="busqueda__enviar" 
+                      type="submit"
+                      [style.display]="searchQuery ? 'flex' : 'none'">
+                      <i class="fa fa-search">&nbsp;</i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+        <div class="busqueda__sugerencias" id="sugerencias" [style.display]="showSuggestions ? 'block' : 'none'">
+  <div id="lista-sugerencias-busqueda" class="sugerencias sugerencias--activas" role="listbox">
+    <div class="sugerencias__seccion sugerencias__seccion--popular">
+      <div class="sugerencias__titulo">Productos</div>
+      
+      <!-- Grid de productos -->
+      <!-- Grid de productos -->
+      <div class="resultados-grid">
+        <div *ngFor="let product of suggestions" class="sugerencias__opcion">
+          
+          <!-- Contenedor completo con routerLink -->
+          <a [routerLink]="['/producto', product.id]" class="producto-card">
+            
+            <!-- Imagen -->
+            <div class="producto-imagen-container">
+              <img [src]="getImageUrl(product.imagen)"
+                   [alt]="product.nombre"
+                   class="img-producto">
+              <!-- Descuento (si aplica) -->
+            
+            </div>
+            
+            <!-- Información -->
+            <div class="producto-info">
+              <h3 class="producto-nombre">{{ product.nombre }}</h3>
+              
+              <div class="producto-precio">
+                <span class="precio-descuento" *ngIf="product.precioDescuento">
+                  €{{ product.precioDescuento }}
+                </span>
+                <span class="precio-original" 
+                      [class.tachado]="product.precioDescuento">
+                  €{{ product.precio }}
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <!-- ICONOS DE USUARIO -->
+        <div class="boder1">
+          <!-- Solo mostrar si está autenticado -->
+
+
+<!-- Solo mostrar si NO está autenticado       aquiiiiiiiiiiiiiiiiiiiiiiii -->
+
+<!-- header.component.html -->
+
+
+
+          <a 
+            class="icono-carrito enlace-boton-header" 
+            [routerLink]="isAuthenticated ? '/user/profile' : '/auth/login'"
+            [title]="isAuthenticated ? 'Mi Perfil' : 'Iniciar Sesión'"
+            [attr.aria-label]="isAuthenticated ? 'Mi Perfil' : 'Iniciar Sesión'">
+            <svg role="img" class="icono" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false">
+              <path fill="currentColor" d="M12.02,12c2.49,0,4.5-2.01,4.5-4.5S14.5,3,12.02,3s-4.5,2.01-4.5,4.5S9.53,12,12.02,12z M12.02,4c1.93,0,3.5,1.57,3.5,3.5c0,1.93-1.57,3.5-3.5,3.5s-3.5-1.57-3.5-3.5C8.52,5.57,10.09,4,12.02,4z"></path>
+              <path fill="currentColor" d="M12,13.07c-4.42,0-8,3.58-8,8h1c0-3.86,3.14-7,7-7s7,3.14,7,7h1C20,16.65,16.42,13.07,12,13.07z"></path>
+            </svg>
+          </a>
+          <span *ngIf="isAuthenticated">
+  {{ nombreUsuario }}
+</span>
+
+        </div>
+
+        <!-- LISTA DE DESEOS -->
+        <div class="boder1" >
+          <a 
+            class="icono-carrito enlace-boton-header" 
+            routerLink="/lista-deseos"
+            title="Lista de deseos" 
+            aria-label="Ver tu lista de deseos">
+            <svg role="img" class="icono" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+              <path fill="currentColor" d="M16.5,4C19,4,21,6,21,8.5c0,1.2-0.5,2.4-1.4,3.2L12,19.6l-7.7-7.9C3.5,10.9,3,9.7,3,8.5C3,6,5,4,7.5,4 c1.5,0,2.8,0.7,3.7,1.9L12,7.1l0.8-1.2C13.7,4.7,15.1,4,16.5,4 M16.5,3C14.7,3,13,3.9,12,5.3C11,3.9,9.4,3,7.5,3 C4.5,3,2,5.5,2,8.5c0,1.5,0.6,2.9,1.6,3.9L12,21l8.3-8.6c1-1,1.7-2.4,1.7-3.9C22,5.5,19.6,3,16.5,3L16.5,3z"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- CARRITO -->
+        <div class="boder1">
+          <a 
+            class="icono-carrito enlace-boton-header" 
+            routerLink="/carrito" 
+            title="Ver carrito" 
+            aria-label="Ver tu carrito">
+            <svg role="img" class="icono" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+              <path fill="currentColor" d="M20,7h-4l0,0c0-2.21-1.79-4-4-4S8,4.79,8,7l0,0H4H3v1v12v1h1h16h1v-1V8V7H20z M9,7c0-1.65,1.35-3,3-3s3,1.35,3,3l0,0H9L9,7z M20,20H4V8h4v3h1V8h6v3h1V8h4V20z"></path>
+            </svg>
+            <!-- Contador de productos en el carrito -->
+            <span 
+              id="cart-counter" 
+              class="cart-counter"
+              [style.display]="cartCount > 0 ? 'inline' : 'none'">
+              {{ cartCount }}
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- MEGA MENU -->
+      <div class="barra-nav">
+
+
+                     <!-- header.component.html -->
+               
+
+        <!-- NOVEDADES DE MUJER -->
+        <div class="menu-desplegable">
+          <button class="boton-desplegable">HOMBRE NOVEDADES</button>
+          <div class="contenido-desplegable">
+            <div class="fila">
+              <div class="columna">
+                <h3>Categoría</h3>
+                 <a routerLink="/hombre/novedades">Novedades Hombre</a>
+               <a routerLink="/hombre/ntx-prom">NTX Prom Hombre</a>
+             
+                <a >NTX Prom</a>
+              </div>
+                 <div class="columna">
+                <h3>atencion</h3>
+                
+                <a href="/soporte">ATENCION AL CLIENTE</a>
+              </div>
+              
+              <div class="columna">
+                <h3>Categoría</h3>
+                
+              
+                <a href="/sobre-nosotros">SOBRE NOSOTROS</a>
+                <a href="/contacto">CONTACTANOS</a>
+               
+              </div>
+              
+            </div>
+            <div class="banner-descuento">50% de descuento</div>
+          </div>
+        </div>
+
+        <!-- ROPA CORPORATIVA -->
+        <div class="menu-desplegable">
+          <button class="boton-desplegable">MUJER  NOVEDADES </button>
+          <div class="contenido-desplegable">
+            <div class="fila">
+              <div class="columna">
+                <h3>Categoría</h3>
+                  <a routerLink="/mujer/uniformes-deportivas">NOVEDADES</a>
+                <a routerLink="/mujer/ropa-corporativa">Ropa Corporativa Mujer</a>
+                   <a href="#"> Prom</a>
+              </div>
+                 <div class="columna">
+                <h3>atencion</h3>
+                
+                <a href="/soporte">ATENCION AL CLIENTE</a>
+              </div>
+            <div class="columna">
+                <h3>Categoría</h3>
+                
+              
+                <a href="/sobre-nosotros">SOBRE NOSOTROS</a>
+                <a href="/contacto">CONTACTANOS</a>
+               
+              </div>
+            </div>
+            <div class="banner-descuento">50% de descuento</div>
+          </div>
+        </div>
+
+        
+    
+
+        <!-- NTX PROM -->
+        <div class="menu-desplegable">
+          <button class="boton-desplegable">NTX PROM</button>
+          <div class="contenido-desplegable">
+            <div class="fila">
+              <div class="columna">
+                <h3>Categoría</h3>
+                <a routerLink="/mujer/ntx-prom">NTX PROM</a>
+                <a href="#">Enlace 2</a>
+                <a href="#">Enlace 3</a>
+              </div>
+              <div class="columna">
+                <h3>polos corporativos</h3>
+                <a href="#">Enlace 1</a>
+                <a href="cotizar.php">¡COTIZAR AHORA!</a>
+                <a href="#">¡CONFECCIONAMOS TUS PEDIDO!</a>
+              </div>
+            </div>
+            <div class="banner-descuento">50% de descuento</div>
+          </div>
+        </div>
+
+        <!-- SOBRE NOSOTROS -->
+        <div class="menu-desplegable">
+          <button class="boton-desplegable">SOBRE NOSOTROS</button>
+           
+          <div class="contenido-desplegable">
+            <div class="fila">
+              <div class="columna">
+                <h3>Categoría</h3>
+                
+              
+                <a href="/sobre-nosotros">SOBRE NOSOTROS</a>
+                <a href="/contacto">CONTACTANOS</a>
+               
+              </div>
+               <div class="columna">
+                <h3>atencion</h3>
+                
+                <a href="/soporte">ATENCION AL CLIENTE</a>
+              </div>
+            </div>
+            <div class="banner-descuento">50% de descuento</div>
+          </div>
+        </div>
+      </div>
+
+      
+    </header>

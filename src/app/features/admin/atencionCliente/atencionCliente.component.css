@@ -1,0 +1,435 @@
+.main {
+  
+padding: 20px;
+  margin-left: 264px;
+}
+/* ===========================
+   ADMIN — ESTILOS SOLO CSS
+   (pegar y reemplazar tu bloque actual)
+   =========================== */
+
+/* --------- Variables --------- */
+:root{
+  --ad-primary: #0d6efd;     /* azul */
+  --ad-success: #28a745;
+  --ad-warning: #ffc107;
+  --ad-danger:  #dc3545;
+  --ad-info:    #17a2b8;
+  --ad-muted:   #6c757d;
+  --ad-bg:      #f5f7fb;
+  --ad-card:    #ffffff;
+  --ad-border:  #e9ecef;
+  --ad-text:    #1f2937;
+}
+
+/* --------- Layout base --------- */
+.main{
+  padding: 24px;
+  margin-left: 264px;
+  background: var(--ad-bg);
+  min-height: 100vh;
+  color: var(--ad-text);
+}
+
+/* --------- Header + badges --------- */
+.content-header{
+  background: transparent;
+  margin-bottom: 4px;
+}
+.content-header h1{
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.stats-badges .badge{
+  margin-left: 8px;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+.badge-primary{ background: #e7f0ff; color: #0b57cf; }
+.badge-warning{ background: #fff6de; color: #a87900; }
+.badge-success{ background: #e8f7ee; color: #137a3d; }
+.badge-info{    background: #e6f8fb; color: #0f6d7a; }
+
+/* --------- Cards --------- */
+.card{
+  border: 1px solid var(--ad-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.card-header{
+  padding: 12px 16px !important;
+}
+.card.shadow-sm{ box-shadow: 0 10px 24px rgba(0,0,0,.05); }
+
+/* --------- Tabla de mensajes --------- */
+.table-responsive{
+  max-height: 420px;   /* scroll vertical elegante */
+  overflow-y: auto;
+}
+.table{
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.thead-light th{
+  position: sticky; top: 0;
+  background: #f8fafc !important;
+  z-index: 1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: .4px;
+  color: #64748b;
+  border-bottom: 1px solid var(--ad-border);
+}
+.table tbody tr{
+  transition: background .15s ease;
+}
+.table tbody tr:hover{
+  background: #f7fbff;
+}
+.table td, .table th{
+  vertical-align: middle;
+}
+.mensaje-preview{
+  display: inline-block;
+  max-width: 420px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* estado fila pendiente */
+.table-warning{
+  background-color: #fff7e0 !important;
+}
+
+/* badge estado */
+#letra.badge{
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+#letra.badge-warning{ background: #fff1c2; color:#7a5a00; }
+#letra.badge-info{    background: #dff7fd; color:#0f6d7a; }
+#letra.badge-success{ background: #e8f7ee; color:#137a3d; }
+
+/* --------- Header acciones --------- */
+.header-actions{
+  display:flex; align-items:center; gap:10px;
+}
+.header-actions .form-control{
+  border-radius: 10px;
+  border: 1px solid var(--ad-border);
+  padding: 6px 10px;
+  height: 34px;
+}
+.header-actions .btn{
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+/* --------- Chat Admin Layout --------- */
+.chat-admin{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 600px;
+  gap: 0;
+}
+
+/* Sidebar de clientes */
+.chat-sidebar{
+  border-right: 1px solid var(--ad-border);
+  background: var(--ad-card);
+  overflow-y: auto;
+}
+.chat-sidebar h6{
+  margin: 0; font-weight: 700;
+  font-size: 13px; color:#334155;
+  border-bottom: 1px solid var(--ad-border);
+}
+.cliente-item{
+  padding: 12px 14px;
+  display: flex; align-items: center; gap:10px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f3f5;
+  transition: background .15s;
+  position: relative;
+}
+.cliente-item i{ color:#64748b; }
+.cliente-item:hover{ background: #f6f9ff; }
+.cliente-item.active{
+  background: #edf4ff;
+  outline: 2px solid #d7e7ff;
+  color: #0b57cf;
+}
+.status-dot{
+  width: 9px; height: 9px; border-radius: 50%;
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+}
+.status-dot.online{  background: var(--ad-success); box-shadow: 0 0 0 3px rgba(40,167,69,.18); }
+.status-dot.offline{ background: var(--ad-muted); }
+
+/* Ventana de chat */
+.chat-window{
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--ad-card);
+}
+
+/* mensajes */
+.chat-messages{
+  padding: 14px;
+  overflow-y: auto;
+  background:
+    radial-gradient(#0000 6px, #d3d8c5 6px) 0 0/28px 28px,
+    radial-gradient(#0000 6px, #d3d8c5 6px) 14px 14px/28px 28px,
+    #ece5dd; /* fondo tipo WhatsApp sutil */
+}
+.chat-messages .message{
+
+  gap: 4px;
+}
+.message-admin{ text-align: right; }
+.message-admin .message-content{
+  display: inline-block;
+  background: #DCF8C6;         /* salida */
+  color: #0f172a;
+  border: 1px solid #cdebb1;
+  max-width: 72%;
+  padding: 8px 10px;
+  border-radius: 12px 12px 4px 12px;
+  position: relative;
+}
+.message-admin .message-content:after{
+  content:""; position:absolute; right:-6px; bottom:0;
+  width:12px; height:12px; transform: translateY(-3px) rotate(-45deg);
+  background:#DCF8C6; border-right:1px solid #cdebb1; border-bottom:1px solid #cdebb1;
+}
+.message-cliente .message-content{
+  display: inline-block;
+  background: #ffffff;         /* entrada */
+  color: #0f172a;
+  border: 1px solid var(--ad-border);
+  max-width: 72%;
+  padding: 8px 10px;
+  border-radius: 12px 12px 12px 4px;
+  position: relative;
+}
+.message-cliente .message-content:after{
+  content:""; position:absolute; left:-6px; bottom:0;
+  width:12px; height:12px; transform: translateY(-3px) rotate(45deg);
+  background:#ffffff; border-left:1px solid var(--ad-border); border-bottom:1px solid var(--ad-border);
+}
+.message-sistema .message-content{
+  display: inline-block;
+  background: #fff7e0;
+  border: 1px solid #ffe49a;
+  color: #7a5a00;
+  max-width: 90%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* hora del mensaje */
+.message-time{
+  color: #64748b;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* input de chat */
+.chat-window .chat-input{
+  background: #f0f2f5;
+  border-top: 1px solid var(--ad-border);
+}
+.chat-window .input-group .form-control{
+  border-radius: 999px 0 0 999px !important;
+  border: 1px solid var(--ad-border);
+}
+.chat-window .input-group .btn{
+  border-radius: 0 999px 999px 0 !important;
+}
+
+/* --------- Paginación --------- */
+.pagination{
+  display: inline-flex;
+  gap: 6px;
+  margin: 12px 0;
+}
+.page-item{ list-style: none; }
+.page-link{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--ad-border);
+  background: #fff;
+  color: #334155;
+  font-weight: 600;
+  transition: all .12s ease;
+  text-decoration: none;
+}
+.page-link:hover{ border-color: #cfe0ff; background: #f3f8ff; color:#0b57cf; }
+.page-item.active .page-link{
+  background: #e7f0ff; color:#0b57cf; border-color:#cfe0ff;
+  box-shadow: 0 2px 6px rgba(11,87,207,.15) inset;
+}
+.page-item.disabled .page-link{
+  opacity: .45; cursor:not-allowed; background:#f8f9fb;
+}
+
+/* --------- Botonera acciones --------- */
+.btn-group .btn{ margin: 0 2px; border-radius: 10px; }
+.btn-outline-success{ border-color: #cfe8da; color:#157347; }
+.btn-outline-success:hover{ background:#eaf7f0; }
+.btn-outline-info{ border-color: #cfe7ed; color:#0f6d7a; }
+.btn-outline-info:hover{ background:#eaf6f8; }
+.btn-outline-danger{ border-color: #f3c6cc; color:#b02a37; }
+.btn-outline-danger:hover{ background:#fdecee; }
+
+/* --------- Scrollbars suaves --------- */
+.table-responsive::-webkit-scrollbar,
+.chat-sidebar::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar{ width: 8px; height: 8px; }
+.table-responsive::-webkit-scrollbar-thumb,
+.chat-sidebar::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb{
+  background: #cfd8e3; border-radius: 10px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover,
+.chat-sidebar::-webkit-scrollbar-thumb:hover,
+.chat-messages::-webkit-scrollbar-thumb:hover{
+  background: #b9c6d8;
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 1200px){
+  .chat-admin{ grid-template-columns: 240px 1fr; }
+}
+@media (max-width: 992px){
+  .main{ margin-left: 0; padding: 18px; }
+  .chat-admin{ grid-template-columns: 1fr; height: auto; }
+  .chat-sidebar{ height: 220px; }
+  .chat-window{ height: 520px; }
+}
+/* ====== Alturas maestras para habilitar scroll interno ====== */
+/* Evita que la página completa haga scroll infinito;
+   en su lugar, scrollean los paneles internos */
+.main {
+ 
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* El contenedor toma el alto restante bajo el header */
+.container-fluid.mt-4 {
+  flex: 1 1 auto;
+  min-height: 0; /* importantísimo para que calc funcione */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ====== Bandeja de entrada (tabla) ====== */
+/* La cabecera de la tabla queda fija y el body scrollea */
+.inbox-scroll {
+  max-height: calc(40vh);         /* ajusta a gusto (30–55vh) */
+  overflow: auto;
+  border-top: 1px solid #e9ecef;
+}
+.inbox-scroll .thead-light th {
+  position: sticky; top: 0; z-index: 2;
+  background: #f8fafc !important;
+}
+.inbox-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+.inbox-scroll::-webkit-scrollbar-thumb { background: #cfd8e3; border-radius: 8px; }
+.inbox-scroll::-webkit-scrollbar-thumb:hover { background: #b9c6d8; }
+
+/* ====== Panel de chat (grid) ====== */
+/* El panel completo ocupa una fracción de la altura de viewport */
+.chat-admin {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  height: clamp(420px, 50vh, 720px); /* altura adaptable con límites */
+ 
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden; /* oculta overflow de contenedor, scrollean hijos */
+}
+
+/* Sidebar con scroll propio */
+.chat-sidebar {
+  overflow: auto;
+}
+.chat-sidebar::-webkit-scrollbar { width: 10px; }
+.chat-sidebar::-webkit-scrollbar-thumb { background: #cfd8e3; border-radius: 8px; }
+
+/* Ventana de chat como columna: header fijo, mensajes scrollean, input fijo */
+.chat-window {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header / mensajes / input */
+  min-height: 0; /* clave para que el middle scrollee */
+}
+
+/* Área de mensajes con scroll vertical */
+.chat-scroll {
+  overflow-y: auto;
+  min-height: 0;
+  background:#f8f9fa;
+}
+.chat-scroll::-webkit-scrollbar { width: 10px; }
+.chat-scroll::-webkit-scrollbar-thumb { background: #cfd8e3; border-radius: 8px; }
+.chat-scroll::-webkit-scrollbar-thumb:hover { background: #b9c6d8; }
+
+/* ====== Detalles de mensajes (sin tocar tu lógica) ====== */
+.message-admin .message-content {
+  background: #DCF8C6;
+  border: 1px solid #cdebb1;
+  color: #0f172a;
+  display: inline-block;
+  max-width: 78%;
+  padding: 8px 10px;
+  border-radius: 12px 12px 4px 12px;
+  position: relative;
+}
+.message-admin .message-content:after{
+  content:""; position:absolute; right:-6px; bottom:0;
+  width:12px; height:12px; transform: translateY(-3px) rotate(-45deg);
+  background:#DCF8C6; border-right:1px solid #cdebb1; border-bottom:1px solid #cdebb1;
+}
+.message-cliente .message-content {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  color: #0f172a;
+  display: inline-block;
+  max-width: 78%;
+  padding: 8px 10px;
+  border-radius: 12px 12px 12px 4px;
+  position: relative;
+}
+.message-cliente .message-content:after{
+  content:""; position:absolute; left:-6px; bottom:0;
+  width:12px; height:12px; transform: translateY(-3px) rotate(45deg);
+  background:#ffffff; border-left:1px solid #e9ecef; border-bottom:1px solid #e9ecef;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 992px){
+  .main{ margin-left: 0; }
+  .chat-admin{
+    grid-template-columns: 1fr;
+    height: clamp(420px, 60vh, 760px);
+  }
+  .chat-sidebar{
+    height: 220px; /* sidebar arriba con su propio scroll */
+    border-bottom: 1px solid #e9ecef;
+  }
+}

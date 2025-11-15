@@ -1,3 +1,4 @@
+// src/app/features/user/payment/pago-exitoso/pago-exitoso.component.ts
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';

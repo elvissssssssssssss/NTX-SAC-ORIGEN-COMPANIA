@@ -1,3 +1,5 @@
+// src/app/features/user/payment/services/comprobante.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +10,7 @@ import { ComprobanteRequest, ComprobanteResponse } from '../models/comprobante.m
 })
 export class ComprobanteService {
 
-  private apiUrl = 'https://pusher-backend-elvis.onrender.com/api/Comprobantes/emitir';
+  private apiUrl = 'https://pusher-backend-elvis.onrender.com/api/Comprobantes';
 
   constructor(private http: HttpClient) {}
 

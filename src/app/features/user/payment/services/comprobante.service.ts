@@ -8,7 +8,7 @@ import { ComprobanteRequest, ComprobanteResponse } from '../models/comprobante.m
 })
 export class ComprobanteService {
 
-  private apiUrl = 'https://pusher-backend-elvis.onrender.com/api/Comprobantes';
+  private apiUrl = 'https://pusher-backend-elvis.onrender.com/api/Comprobantes/emitir';
 
   constructor(private http: HttpClient) {}
 

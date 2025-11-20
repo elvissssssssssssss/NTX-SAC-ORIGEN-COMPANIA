@@ -17,26 +17,34 @@ import { Router, RouterModule } from '@angular/router';
 export class VentasComponent implements OnInit {
   ventas: VentaResponse[] = [];
   ventaSeleccionada: VentaResponse | null = null;
-
+  cargando: boolean = false;
 
   constructor(
-    
     private ventaService: VentaService,
-      
-        private fb: FormBuilder, 
-        private router: Router
-    
+    private fb: FormBuilder, 
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.cargarVentas();
+  }
+
+  cargarVentas(): void {
+    this.cargando = true;
     this.ventaService.obtenerVentas().subscribe({
-      next: data => this.ventas = data,
-      error: err => console.error('Error al obtener ventas:', err)
+      next: data => {
+        this.ventas = data;
+        this.cargando = false;
+        console.log('Ventas con envío:', data);
+      },
+      error: err => {
+        console.error('Error al obtener ventas:', err);
+        this.cargando = false;
+      }
     });
   }
 
-
-// Función para ver el detalle completo de una venta
+  // Función para ver el detalle completo de una venta
   verDetalleCompleto(venta: VentaResponse): void {
     this.ventaSeleccionada = venta;
     
@@ -54,8 +62,20 @@ export class VentasComponent implements OnInit {
     this.ventaSeleccionada = null;
   }
 
-  // Imprimir venta
+  // Imprimir venta CON información de envío
   imprimirVenta(venta: VentaResponse): void {
+    const seccionEnvio = venta.envio ? `
+      <div class="info">
+        <h3>Información de Envío</h3>
+        <p><strong>Dirección:</strong> ${venta.envio.direccion}</p>
+        <p><strong>Región:</strong> ${venta.envio.region}</p>
+        <p><strong>Provincia:</strong> ${venta.envio.provincia}</p>
+        <p><strong>Localidad:</strong> ${venta.envio.localidad}</p>
+        <p><strong>DNI:</strong> ${venta.envio.dni}</p>
+        <p><strong>Teléfono:</strong> ${venta.envio.telefono}</p>
+      </div>
+    ` : '';
+
     const contenidoImpresion = `
       <html>
         <head>
@@ -105,6 +125,11 @@ export class VentasComponent implements OnInit {
               text-align: center;
               margin-bottom: 20px;
             }
+            h3 {
+              color: #333;
+              border-bottom: 2px solid #007bff;
+              padding-bottom: 5px;
+            }
           </style>
         </head>
         <body>
@@ -119,10 +144,13 @@ export class VentasComponent implements OnInit {
           </div>
           
           <div class="info">
+            <h3>Información del Cliente</h3>
             <p><strong>Cliente:</strong> ${venta.usuarioEmail}</p>
             <p><strong>Método de Pago:</strong> ${venta.metodoPagoNombre}</p>
             <p><strong>Fecha:</strong> ${new Date(venta.fechaVenta).toLocaleString('es-PE')}</p>
           </div>
+
+          ${seccionEnvio}
 
           <table>
             <thead>
@@ -165,18 +193,28 @@ export class VentasComponent implements OnInit {
     }
   }
 
-  // Exportar venta a CSV
+  // Exportar venta a CSV CON información de envío
   exportarVenta(venta: VentaResponse): void {
+    const datosEnvio = venta.envio ? [
+      [''],
+      ['INFORMACIÓN DE ENVÍO'],
+      ['Dirección', venta.envio.direccion],
+      ['Región', venta.envio.region],
+      ['Provincia', venta.envio.provincia],
+      ['Localidad', venta.envio.localidad],
+      ['DNI', venta.envio.dni],
+      ['Teléfono', venta.envio.telefono]
+    ] : [];
+
     const datosCSV = [
-      // Información general
       ['INFORMACIÓN DE VENTA'],
       ['ID', venta.id],
       ['Usuario', venta.usuarioEmail],
       ['Método de Pago', venta.metodoPagoNombre],
       ['Total', venta.total],
       ['Fecha', venta.fechaVenta],
+      ...datosEnvio,
       [''],
-      // Detalle de productos
       ['DETALLE DE PRODUCTOS'], 
       ['Producto', 'Cantidad', 'Precio Unitario', 'Subtotal'],
       ...venta.detalles.map(det => [
@@ -204,7 +242,17 @@ export class VentasComponent implements OnInit {
     link.click();
     document.body.removeChild(link);
     
-    // Mensaje de confirmación
     alert('Venta exportada exitosamente');
   }
+  
+// ✅ Método para obtener iniciales del nombre completo
+getInitialsFromName(nombreCompleto: string): string {
+  if (!nombreCompleto) return '?';
+  
+  const partes = nombreCompleto.trim().split(' ');
+  if (partes.length >= 2) {
+    return (partes[0].charAt(0) + partes[1].charAt(0)).toUpperCase();
+  }
+  return partes[0].charAt(0).toUpperCase();
+}
 }

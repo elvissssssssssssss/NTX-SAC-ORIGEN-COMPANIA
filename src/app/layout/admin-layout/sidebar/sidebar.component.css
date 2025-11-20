@@ -1,3 +1,21 @@
+.sidebar {
+  width: 251px;
+  /* ... demás estilos ... */
+  transition: transform 0.3s cubic-bezier(.23,1.07,.65,.99);
+}
+.sidebar.sidebar-hidden {
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
 .sb-sidenav-menu-heading {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -14,6 +32,7 @@
   width: 250px;
   height: 100vh;
   position: fixed;
+  
   background: linear-gradient(180deg, #2d2d3f 0%, #1c1c2b 100%);
   color: #fff;
   overflow-y: auto;
@@ -48,13 +67,6 @@
 }
 
 
-.sidebar-header {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
 
 .sidebar-menu {
   flex-grow: 1;
@@ -119,4 +131,101 @@
   padding: 20px;
   background-color: #f8f9fa;
   min-height: 100vh;
+}
+
+.sidebar {
+  width: 245px;
+  height: 100vh;
+  position: fixed;
+
+  left: 0;
+  background: #fff;
+  color: #262940;
+  font-family: 'Inter', Arial, sans-serif;
+  box-shadow: 2px 0 14px #163d5a10;
+  padding-top: 24px;
+  z-index: 1000;
+  border-top-right-radius: 18px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-section {
+  font-size: 1.rem;
+  font-weight: 500;
+  color: #b8b8b9;
+  padding: 15px 0 9px 24px;
+  letter-spacing: 0.04em;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 7px 18px 7px 26px;
+  color: #242639;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1.09rem;
+  font-weight: 500;
+  gap: 13px;
+  margin-bottom: 3px;
+  transition: background 0.18s, color 0.17s;
+  position: relative;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: #f1f3f6;
+  font-weight: 600;
+  color: #222;
+}
+
+.sidebar-link .ms-auto {
+  margin-left: auto;
+  color: #bbbbbb;
+  font-size: 1.18em;
+  padding-right: 3px;
+}
+
+.sidebar-link i:not(.ms-auto) {
+  font-size: 1.07rem;
+  margin-right: 9px;
+  min-width: 26px;
+  text-align: center;
+  /* Ejemplo de color personalizado por icono/fa:
+     Puedes usar ngClass/ngStyle para más variantes */
+}
+
+.sidebar-submenu {
+  flex-direction: column;
+  padding-left: 32px;
+  margin-top: 5px;
+  border-left: 2px solid #e5e8ee;
+}
+
+.sidebar-sublink {
+  color: #9caec9;
+  padding: 7px 10px;
+  font-size: 0.98rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-bottom: 2px;
+  font-weight: 400;
+  transition: background 0.16s, color 0.13s;
+}
+.sidebar-sublink:hover,
+.sidebar-sublink.active {
+  background-color: #f4f6fa;
+  color: #272939;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ececec;
+  border-radius: 6px;
 }

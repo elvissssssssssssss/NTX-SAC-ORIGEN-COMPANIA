@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
+  
   imports: [
     CommonModule,
     RouterModule,
@@ -16,13 +17,18 @@ import { FooterComponent } from './footer/footer.component';
     SidebarComponent,
     FooterComponent
   ],
+  
   template: `
-    <app-header></app-header>
-    <app-sidebar></app-sidebar>
-    <main class="main-content">
-      <router-outlet></router-outlet>
-    </main>
-    <app-footer></app-footer>
-  `
+<app-header (sidebarToggle)="toggleSidebar()"></app-header>
+<app-sidebar [open]="sidebarOpen"></app-sidebar>
+<div class="main-content" [class.main-full]="!sidebarOpen">
+  <router-outlet></router-outlet>
+</div>
+ <app-footer></app-footer>
+  `,
+  styleUrls: ['./admin-layout.css']
 })
-export class AdminLayoutComponent {}
+  export class AdminLayoutComponent  {
+  sidebarOpen = true;
+  toggleSidebar() { this.sidebarOpen = !this.sidebarOpen; }
+}

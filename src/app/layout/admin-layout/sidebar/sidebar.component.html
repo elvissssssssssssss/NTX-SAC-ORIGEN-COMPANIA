@@ -1,10 +1,7 @@
-<aside class="sidebar">
-  <div class="sidebar-header">
-    <h2>Textil Admin</h2>
-  </div>
-
+<aside class="sidebar" [class.sidebar-hidden]="!open">
+ 
   <div class="sidebar-menu">
-    <div class="sidebar-section">Menú Principal</div>
+    <div class="sidebar-section">navegacion</div>
 
     <ng-container *ngFor="let item of menus">
       <a
@@ -15,7 +12,75 @@
         [attr.aria-controls]="item.grupo"
         aria-expanded="false"
       >
-        <i [class]="item.icon"></i>
+           <!-- Aquí va el SVG dinámico -->
+     <span class="sidebar-icon">
+  <ng-container [ngSwitch]="item.icon">
+    <!-- Dashboard -->
+    <svg *ngSwitchCase="'home'" width="24" height="24" fill="none">
+      <path d="M4 10.75L12 4.5L20 10.75"
+        stroke="#d65a78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 10.75V18.25C4 18.6642 4.33579 19 4.75 19H8.25V15.5C8.25 15.0858 8.58579 14.75 9 14.75H15C15.4142 14.75 15.75 15.0858 15.75 15.5V19H19.25C19.6642 19 20 18.6642 20 18.25V10.75"
+        stroke="#d65a78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <!-- Gestión -->
+    <svg *ngSwitchCase="'gestion'" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <rect x="4" y="8" width="16" height="10" rx="2" stroke="#77b255" stroke-width="1.7" fill="#eaf8e1"/>
+      <rect x="7" y="5" width="10" height="6" rx="2" stroke="#77b255" stroke-width="1.1" fill="#fff"/>
+      <rect x="10" y="10.7" width="4" height="2.6" rx="0.7" fill="#77b255"/>
+      <rect x="2.5" y="16" width="6" height="5" rx="1.2" fill="#c5e8a1" stroke="#77b255" stroke-width="1"/>
+      <rect x="15.5" y="16" width="6" height="5" rx="1.2" fill="#c5e8a1" stroke="#77b255" stroke-width="1"/>
+    </svg>
+    <!-- Ventas -->
+    <svg *ngSwitchCase="'ventas'" width="24" height="24" fill="none">
+      <rect x="4" y="6.5" width="16" height="9" rx="2" stroke="#3986fa" stroke-width="1.7" fill="#e8f1ff"/>
+      <circle cx="8" cy="18" r="1.4" fill="#3986fa"/>
+      <circle cx="16" cy="18" r="1.4" fill="#3986fa"/>
+      <rect x="7" y="7.5" width="4.5" height="2.5" rx="0.8" fill="#aedaef"/>
+      <rect x="12.5" y="7.5" width="4.5" height="2.5" rx="0.8" fill="#aedaef"/>
+      <rect x="18.2" y="8" width="0.8" height="5" rx="0.4" fill="#3986fa"/>
+    </svg>
+    <!-- Usuarios/Roles -->
+    <svg *ngSwitchCase="'users'" width="24" height="24" fill="none">
+      <circle cx="12" cy="9" r="3.3" stroke="#FCC063" stroke-width="1.7"/>
+      <path d="M5 19c0-3.25 4-5 7-5s7 1.75 7 5" stroke="#FCC063" stroke-width="1.7"/>
+    </svg>
+    <!-- Soporte (auriculares) -->
+    <svg *ngSwitchCase="'support'" width="24" height="24" fill="none">
+      <circle cx="12" cy="12" r="8" stroke="#db7486" stroke-width="1.7"/>
+      <rect x="10" y="10" width="4" height="7" rx="2" fill="#db7486"/>
+      <circle cx="12" cy="7" r="2" fill="#fff" stroke="#db7486" stroke-width="1.7"/>
+    </svg>
+    <!-- Finanzas -->
+    <svg *ngSwitchCase="'money'" width="24" height="24" fill="none">
+      <rect x="5" y="7" width="14" height="10" rx="2" stroke="#6ac87d" stroke-width="2"/>
+      <path d="M12 10v4" stroke="#6ac87d" stroke-width="1.5"/>
+      <circle cx="12" cy="13" r="0.9" fill="#6ac87d"/>
+    </svg>
+    <!-- Admin Shield -->
+    <svg *ngSwitchCase="'shield'" width="24" height="24" fill="none">
+      <path d="M12 3L19 7V13C19 16.87 15.88 19.94 12 21C8.12 19.94 5 16.87 5 13V7L12 3Z"
+        stroke="#b599ff" stroke-width="1.7" fill="#edeafc"/>
+      <path d="M12 3V21" stroke="#b599ff" stroke-width="1.7"/>
+    </svg>
+    <!-- Clientes -->
+    <svg *ngSwitchCase="'clientes'" width="24" height="24" fill="none">
+      <circle cx="8" cy="10" r="3" stroke="#3da7d4" stroke-width="1.5" fill="#e7f8fe"/>
+      <circle cx="16" cy="10" r="3" stroke="#3da7d4" stroke-width="1.5" fill="#e7f8fe"/>
+      <ellipse cx="12" cy="17" rx="7" ry="3" fill="#e7f8fe" stroke="#3da7d4" stroke-width="1"/>
+    </svg>
+    <!-- Reportes -->
+    <svg *ngSwitchCase="'reportes'" width="24" height="24" fill="none">
+      <rect x="4" y="5" width="16" height="14" rx="3" fill="#fff8e1" stroke="#ffb403" stroke-width="1.5"/>
+      <rect x="8" y="9" width="8" height="2" rx="1" fill="#ffce6f"/>
+      <rect x="8" y="13" width="5" height="2" rx="1" fill="#ffce6f"/>
+      <rect x="8" y="17" width="3" height="2" rx="1" fill="#ffce6f"/>
+    </svg>
+    <!-- Default (si hay icon font) -->
+    <i *ngSwitchDefault [class]="item.icon"></i>
+  </ng-container>
+</span>
+
+
         <span>{{ item.title }}</span>
         <i class="fas fa-angle-down ms-auto"></i>
       </a>

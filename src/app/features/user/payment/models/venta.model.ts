@@ -2,6 +2,9 @@
 // 🟢 Para registrar venta (POST)
 
 // src/app/features/user/pedido/models/venta.model.ts
+// 🟢 Para registrar venta (POST)
+
+// src/app/features/user/pedido/models/venta.model.ts
 
 // ✅ Para registrar una venta con detalles (POST /api/Ventas/completa)
 export interface VentaDetalleRequest {
@@ -52,4 +55,41 @@ export interface VentaResponse {
   total: number;
   fechaVenta: string;
   detalles: VentaDetalleResponse[];
+}
+// src/app/features/user/payment/models/venta.model.ts
+
+export interface VentaDetalleResponse {
+  productoId: number;
+  nombreProducto: string;
+  cantidad: number;
+  precio: number;
+}
+
+// ✅ Modelo para información de envío
+export interface EnvioInfo {
+  id: number;
+  userId: number;
+  direccion: string;
+  region: string;
+  provincia: string;
+  localidad: string;
+  dni: string;
+  telefono: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ✅ Modelo de respuesta de venta CON envío
+export interface VentaResponse {
+  id: number;
+  usuarioEmail: string;       // Email del usuario
+  usuarioNombre?: string;     // ✅ Nombre completo del usuario
+  userId: number;
+  
+  metodoPagoId: number;
+  metodoPagoNombre: string;
+  total: number;
+  fechaVenta: string;
+  detalles: VentaDetalleResponse[];
+  envio?: EnvioInfo;  // ✅ Información de envío (opcional)
 }

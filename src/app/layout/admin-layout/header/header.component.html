@@ -1,64 +1,121 @@
-<!-- src/app/layout/header/header.component.html  -->
+<!-- src/app/layout/header/header.component.html -->
+<nav class="guru-header">
+
+
+
+<div class="guru-header-left">
  
-<div class="main-content">
-  <!-- tu contenido -->
 
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand ps-3" href="index.html">Mi Proyecto</a>
-  <!-- Sidebar Toggle-->
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand ps-3" routerLink="/admin/dashboard">Panel Administrativo</a>
+  <span class="guru-logo-text">
+<svg width="160" height="38" viewBox="0 0 160 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <text x="2" y="28" font-family="Arial, Inter, sans-serif" font-size="28" font-weight="bold" fill="#fff">NTX</text>
+  <text x="75" y="28" font-family="Arial, Inter, sans-serif" font-size="28" font-weight="400" fill="#D1D5DD">prom</text>
+</svg>
 
-  <!-- Toggle Sidebar -->
-  <button
-    class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-    id="sidebarToggle"
-    type="button"
-  >
-    <i class="fas fa-bars"></i>
+
+  </span>
+    <!--  -->
+<button class="guru-menu-btn" id="sidebarToggle" (click)="toggleSidebar()">
+  <span class="guru-menu-icon">
+    <!-- SVG hamburguesa -->
+    <svg width="32" height="32" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="15" stroke="#fff" stroke-width="1.4" fill="none"/>
+      <rect x="10" y="13" width="12" height="2" rx="1" fill="#fff"/>
+      <rect x="10" y="17" width="12" height="2" rx="1" fill="#fff"/>
+      <rect x="10" y="21" width="12" height="2" rx="1" fill="#fff"/>
+    </svg>
+  </span>
+</button>
+
+</div>
+
+
+
+
+
+  <div class="guru-header-center">
+<!-- Ejemplo para Angular/TS: -->
+<li class="header-action">
+  <button class="fullscreen-btn" apptogglefullscreen (click)="toggleFullscreen()" aria-label="Pantalla completa">
+ <svg width="28" height="28" viewBox="0 0 28 28">
+  <g stroke="#23254d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Flecha superior izquierda -->
+    <line x1="7" y1="11" x2="7" y2="7"/>
+    <line x1="7" y1="7" x2="11" y2="7"/>
+    <line x1="7" y1="7" x2="12" y2="12"/>
+    <!-- Flecha superior derecha -->
+    <line x1="21" y1="11" x2="21" y2="7"/>
+    <line x1="21" y1="7" x2="17" y2="7"/>
+    <line x1="21" y1="7" x2="16" y2="12"/>
+    <!-- Flecha inferior izquierda -->
+    <line x1="7" y1="17" x2="7" y2="21"/>
+    <line x1="7" y1="21" x2="11" y2="21"/>
+    <line x1="7" y1="21" x2="12" y2="16"/>
+    <!-- Flecha inferior derecha -->
+    <line x1="21" y1="17" x2="21" y2="21"/>
+    <line x1="21" y1="21" x2="17" y2="21"/>
+    <line x1="21" y1="21" x2="16" y2="16"/>
+  </g>
+</svg>
+
   </button>
+</li>
 
-  <!-- Notificaciones -->
-  <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-    <li class="nav-item dropdown">
-      <a
-        class="nav-link dropdown-toggle"
-        id="notificationsDropdown"
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <i class="fas fa-bell fa-fw"></i>
-        <span class="badge bg-danger">3</span>
-      </a>
-      <ul
-        class="dropdown-menu dropdown-menu-end"
-        aria-labelledby="notificationsDropdown"
-      >
-        <li><a class="dropdown-item" href="#!">Notificación 1</a></li>
-        <li><a class="dropdown-item" href="#!">Notificación 2</a></li>
-        <li><a class="dropdown-item" href="#!">Notificación 3</a></li>
-      </ul>
-    </li>
+  </div>
+  <div class="guru-header-right">
 
-    <!-- Usuario logueado -->
-    <li class="nav-item dropdown" *ngIf="currentUser">
-      <a
-        class="nav-link dropdown-toggle d-flex align-items-center"
-        id="userDropdown"
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <i class="fas fa-user fa-fw me-1"></i>
-        <span>{{ currentUser.nombre }}</span>
+
+
+
+   
+   <!-- Notificación campana con punto rosa -->
+
+
+<!-- Chat con punto verde -->
+<ul class="top" style="display: flex; gap: 56px;">
+  <!-- Campana (notificación) -->
+  <li class="header-notification">
+    <a class="notification-link" href="javascript:;">
+      <span class="icon-dot icon-dot-pink"></span>
+      <span class="icon-svg">
+        <!-- Campana SVG -->
+        <svg width="26" height="32" viewBox="0 0 32 32">
+          <path d="M24 24v-9a8 8 0 00-16 0v9l-2 2v1h20v-1z" stroke="#23254d" stroke-width="2" fill="none"/>
+          ircle cx="16" cy="28" r="2" fillll="#23254d"/>
+        </svg>
+      </span>
+    </a>
+  </li>
+  <!-- Chat -->
+  <li class="header-notification">
+    <a class="notification-link" href="javascript:;">
+      <span class="icon-dot icon-dot-green"></span>
+      <span class="icon-svg">
+        <!-- Chat SVG -->
+        <svg width="26" height="32" viewBox="0 0 32 32">
+          <rect x="7" y="7" width="18" height="14" rx="4" stroke="#23254d" stroke-width="2" fill="none"/>
+          <path d="M11 21l-2.5 2.5c-.5.5.5 1.5 1 1L13 22" stroke="#23254d" stroke-width="2" fill="none"/>
+        </svg>
+      </span>
+    </a>
+  </li>
+</ul>
+
+
+
+
+    <li class="guru-user" *ngIf="currentUser">
+      <a href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="images/logo.png"  class="guru-user-img" />
+       <span class="guru-user-text">{{ currentUser.rol }}</span>
+      
+
+       <svg width="22" height="22" viewBox="0 0 22 22" class="guru-arrow-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="6 9 11 14 16 9" stroke="#23254d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
       </a>
-      <ul
-        class="dropdown-menu dropdown-menu-end"
-        aria-labelledby="userDropdown"
-      >
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
         <li class="dropdown-header text-center">
           <strong>{{ currentUser.rol }}</strong><br>
           <small class="text-muted">{{ currentUser.email }}</small>
@@ -70,9 +127,5 @@
         <li><a class="dropdown-item text-danger" (click)="logout()">Cerrar sesión</a></li>
       </ul>
     </li>
-  </ul>
+  </div>
 </nav>
-
-
-</nav>
-</div>

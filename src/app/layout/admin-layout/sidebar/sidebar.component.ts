@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Menu } from '../../../core/models/menu.model';
 import { AuthService, User } from '../../../core/services/auth.service';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,9 @@ import { AuthService, User } from '../../../core/services/auth.service';
 export class SidebarComponent implements OnInit {
   currentUser: User | null = null;
   menus: Menu[] = [];
+ @Input() open: boolean = true;
 
+   
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class SidebarComponent implements OnInit {
     // 🔹 Menú base (visible para todos)
     const baseMenu: Menu[] = [
       {
-        icon: 'fas fa-tachometer-alt',
+        icon: 'home',
         title: 'Dashboard',
         grupo: 'dashboard',
         children: [{ title: 'Inicio', link: '/admin/dashboard' }]
@@ -42,7 +45,7 @@ export class SidebarComponent implements OnInit {
     // 🔹 Menú completo (para SuperAdmin)
     const fullMenu: Menu[] = [
       {
-        icon: 'fas fa-boxes',
+        icon: 'gestion',
         title: 'Gestión',
         grupo: 'mantenimiento',
         children: [
@@ -51,7 +54,7 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-        icon: 'fas fa-shopping-cart',
+        icon: 'ventas',
         title: 'Ventas',
         grupo: 'ventas',
         children: [
@@ -60,7 +63,7 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-        icon: 'fas fa-users-cog',
+        icon: 'users',
         title: 'Roles y Usuarios',
         grupo: 'usuarios',
         children: [
@@ -78,7 +81,7 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-        icon: 'fas fa-file-invoice-dollar',
+        icon: 'money',
         title: 'Finanzas',
         grupo: 'finanzas',
         children: [
@@ -87,7 +90,7 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-  icon: 'fas fa-user-shield',
+  icon: 'shield',
   title: 'Administradores',
   grupo: 'usuarioss',
   children: [

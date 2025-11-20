@@ -1,1 +1,9 @@
-<p>admin-layouaaat works!</p>
+
+<app-header (sidebarToggle)="toggleSidebar()"></app-header>
+
+<app-sidebar [open]="sidebarOpen"></app-sidebar>
+
+<div class="main-content" [class.main-full]="!sidebarOpen">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>

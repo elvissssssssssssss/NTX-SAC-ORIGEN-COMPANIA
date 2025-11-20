@@ -1,127 +1,187 @@
+<!-- ventas.component.html -->
 
-
-<main class="main">
- 
-
-
-<!-- ventas.component.html - Versión simplificada -->
-<div class="container-fluid">
-  <h2>Historial de Ventas</h2>
-  
-  <table class="table table-bordered table-striped">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Usuario</th>
-        <th>Método de Pago</th>
-        <th>Total</th>
-        <th>Fecha</th>
-        <th>Detalles</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let venta of ventas">
-       
-          <tr *ngFor="let venta of ventas">
-                  <td>{{ venta.id }}</td>
-                  <td>
-                    {{ venta.usuarioEmail }}
-                    <small class="text-muted d-block">ID: {{ venta.userId }}</small>
-                  </td>
-                  <td>
-                    {{ venta.metodoPagoNombre }}
-                    <small class="text-muted d-block">ID: {{ venta.metodoPagoId }}</small>
-                  </td>
-
-        <td>{{ venta.total | currency:'PEN' }}</td>
-        <td>{{ venta.fechaVenta | date:'short' }}</td>
-        <td>
-          <div *ngIf="venta.detalles && venta.detalles.length > 0; else noDetalles">
-            <ul>
-              <li *ngFor="let det of venta.detalles">
-                <strong>Producto:</strong> {{ det.nombreProducto }} <br />
-                <strong>Cantidad:</strong> {{ det.cantidad }} <br />
-                <strong>Precio unitario:</strong> S/. {{ det.precio }}
-              </li>
-            </ul>
-          </div>
-          <ng-template #noDetalles>
-            <em>Sin detalles</em>
-          </ng-template>
-        </td>
-        <td>
-          <button 
-            class="btn btn-sm btn-primary" 
-            (click)="verDetalleCompleto(venta)"
-            title="Ver más detalles">
-            <i class="fas fa-eye"></i> Ver
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Sección de detalle completo (se muestra cuando se selecciona una venta) -->
-  <div *ngIf="ventaSeleccionada" class="card mt-4">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <h4>Detalles de Venta #{{ ventaSeleccionada.id }}</h4>
-      <button class="btn btn-sm btn-secondary" (click)="cerrarDetalle()">
-        <i class="fas fa-times"></i> Cerrar
-      </button>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-6">
-          <h5>Información General</h5>
-          <p><strong>Cliente:</strong> {{ ventaSeleccionada.usuarioEmail }}</p>
-          <p><strong>Método de Pago:</strong> {{ ventaSeleccionada.metodoPagoNombre }}</p>
-          <p><strong>Total:</strong> {{ ventaSeleccionada.total | currency:'PEN' }}</p>
-          <p><strong>Fecha:</strong> {{ ventaSeleccionada.fechaVenta | date:'dd/MM/yyyy HH:mm' }}</p>
-          
-        </div>
-        <div class="col-md-6">
-          <h5>Productos:</h5>
-          <div class="table-responsive">
-            <table class="table table-sm">
-              <thead>
-                <tr>
-                  <th>Producto</th>
-                  <th>Cantidad</th>
-                  <th>Precio Unitario</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let det of ventaSeleccionada.detalles">
-                  <td>{{ det.nombreProducto }}</td>
-                  <td>{{ det.cantidad }}</td>
-                  <td>S/. {{ det.precio | number:'1.2-2' }}</td>
-                  <td>S/. {{ (det.cantidad * det.precio) | number:'1.2-2' }}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr class="table-info">
-                  <td colspan="3"><strong>Total:</strong></td>
-                  <td><strong>{{ ventaSeleccionada.total | currency:'PEN' }}</strong></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
+  <div class="container-fluid">
+    <h2>Historial de Ventas</h2>
+    
+    <!-- Indicador de carga -->
+    <div *ngIf="cargando" class="text-center my-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
       </div>
-      
-      <div class="mt-3">
-        <button class="btn btn-success me-2" (click)="imprimirVenta(ventaSeleccionada)">
-          <i class="fas fa-print"></i> Imprimir
+      <p>Cargando ventas...</p>
+    </div>
+    
+    <table class="table table-bordered table-striped" *ngIf="!cargando">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Método de Pago</th>
+          <th>Total</th>
+          <th>Fecha</th>
+          <th>Detalles</th>
+          <th>Envío</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let venta of ventas">
+          <td>{{ venta.id }}</td>
+          
+          <!-- ✅ Mostrar nombre y email del usuario -->
+          <td>
+            <div class="user-info">
+              <div class="d-flex align-items-center">
+                <div class="avatar-circle bg-primary me-2">
+                  {{ getInitialsFromName(venta.usuarioNombre || '') }}
+                </div>
+                <div>
+                  <strong class="d-block">{{ venta.usuarioNombre || 'Usuario desconocido' }}</strong>
+                  <a [href]="'mailto:' + venta.usuarioEmail" class="text-primary small">
+                    <i class="fas fa-envelope me-1"></i>{{ venta.usuarioEmail }}
+                  </a>
+                  <small class="text-muted d-block">ID: {{ venta.userId }}</small>
+                </div>
+              </div>
+            </div>
+          </td>
+          
+          <td>
+            {{ venta.metodoPagoNombre }}
+            <small class="text-muted d-block">ID: {{ venta.metodoPagoId }}</small>
+          </td>
+          <td>{{ venta.total | currency:'PEN' }}</td>
+          <td>{{ venta.fechaVenta | date:'short' }}</td>
+          <td>
+            <div *ngIf="venta.detalles && venta.detalles.length > 0; else noDetalles">
+              <ul class="mb-0">
+                <li *ngFor="let det of venta.detalles">
+                  <strong>{{ det.nombreProducto }}</strong><br />
+                  Cant: {{ det.cantidad }} | S/. {{ det.precio }}
+                </li>
+              </ul>
+            </div>
+            <ng-template #noDetalles>
+              <em>Sin detalles</em>
+            </ng-template>
+          </td>
+          <td>
+            <div *ngIf="venta.envio; else sinEnvio">
+              <i class="fas fa-shipping-fast text-success"></i>
+              <small class="d-block">{{ venta.envio.provincia }}, {{ venta.envio.region }}</small>
+            </div>
+            <ng-template #sinEnvio>
+              <span class="badge bg-warning">Sin envío</span>
+            </ng-template>
+          </td>
+          <td>
+            <button 
+              class="btn btn-sm btn-primary" 
+              (click)="verDetalleCompleto(venta)"
+              title="Ver más detalles">
+              <i class="fas fa-eye"></i> Ver
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Sección de detalle completo -->
+    <div *ngIf="ventaSeleccionada" class="card mt-4 shadow">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Detalles de Venta #{{ ventaSeleccionada.id }}</h4>
+        <button class="btn btn-sm btn-light" (click)="cerrarDetalle()">
+          <i class="fas fa-times"></i> Cerrar
         </button>
-        <button class="btn btn-info" (click)="exportarVenta(ventaSeleccionada)">
-          <i class="fas fa-download"></i> Exportar CSV
-        </button>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <!-- Columna izquierda: Info general -->
+          <div class="col-md-6">
+            <h5><i class="fas fa-info-circle"></i> Información General</h5>
+            <hr>
+            
+            <!-- ✅ Información del usuario mejorada -->
+            <div class="user-detail mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <div class="avatar-circle bg-primary me-2">
+                  {{ getInitialsFromName(ventaSeleccionada.usuarioNombre || '') }}
+                </div>
+                <div>
+                  <strong class="d-block">{{ ventaSeleccionada.usuarioNombre }}</strong>
+                  <a [href]="'mailto:' + ventaSeleccionada.usuarioEmail" class="text-primary">
+                    <i class="fas fa-envelope me-1"></i>{{ ventaSeleccionada.usuarioEmail }}
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <p><strong>Método de Pago:</strong> {{ ventaSeleccionada.metodoPagoNombre }}</p>
+            <p><strong>Total:</strong> {{ ventaSeleccionada.total | currency:'PEN' }}</p>
+            <p><strong>Fecha:</strong> {{ ventaSeleccionada.fechaVenta | date:'dd/MM/yyyy HH:mm' }}</p>
+            
+            <!-- Sección de envío -->
+            <div *ngIf="ventaSeleccionada.envio" class="mt-4">
+              <h5><i class="fas fa-map-marker-alt"></i> Información de Envío</h5>
+              <hr>
+              <div class="alert alert-info">
+                <p class="mb-2"><strong>Dirección:</strong> {{ ventaSeleccionada.envio.direccion }}</p>
+                <p class="mb-2"><strong>Región:</strong> {{ ventaSeleccionada.envio.region }}</p>
+                <p class="mb-2"><strong>Provincia:</strong> {{ ventaSeleccionada.envio.provincia }}</p>
+                <p class="mb-2"><strong>Localidad:</strong> {{ ventaSeleccionada.envio.localidad }}</p>
+                <p class="mb-2"><strong>DNI:</strong> {{ ventaSeleccionada.envio.dni }}</p>
+                <p class="mb-0"><strong>Teléfono:</strong> {{ ventaSeleccionada.envio.telefono }}</p>
+              </div>
+            </div>
+            <div *ngIf="!ventaSeleccionada.envio" class="mt-4">
+              <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i> No hay información de envío registrada
+              </div>
+            </div>
+          </div>
+          
+          <!-- Columna derecha: Productos -->
+          <div class="col-md-6">
+            <h5><i class="fas fa-shopping-cart"></i> Productos</h5>
+            <hr>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unit.</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let det of ventaSeleccionada.detalles">
+                    <td>{{ det.nombreProducto }}</td>
+                    <td>{{ det.cantidad }}</td>
+                    <td>S/. {{ det.precio | number:'1.2-2' }}</td>
+                    <td>S/. {{ (det.cantidad * det.precio) | number:'1.2-2' }}</td>
+                  </tr>
+                </tbody>
+                <tfoot class="table-success">
+                  <tr>
+                    <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                    <td><strong>{{ ventaSeleccionada.total | currency:'PEN' }}</strong></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Botones de acción -->
+        <div class="mt-4 text-center">
+          <button class="btn btn-success me-2" (click)="imprimirVenta(ventaSeleccionada)">
+            <i class="fas fa-print"></i> Imprimir
+          </button>
+          <button class="btn btn-info" (click)="exportarVenta(ventaSeleccionada)">
+            <i class="fas fa-download"></i> Exportar CSV
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-</main>

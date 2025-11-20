@@ -11,7 +11,11 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
   summaryCards = [
+  
+    
     { 
       value: '150', 
       label: 'Pedidos nuevos', 

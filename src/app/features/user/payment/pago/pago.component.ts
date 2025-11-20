@@ -11,10 +11,14 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ComprobanteService } from '../../../user/payment/services/comprobante.service';
 import { ComprobanteRequest, ComprobanteResponse } from '../../../user/payment/models/comprobante.model';
+import { Observable } from 'rxjs';
+
 
 import { CommonModule } from '@angular/common';
 import { VentaService } from '../../../user/payment/services/venta.service';
 import { VentaCompletaRequest } from '../../../user/payment/models/venta.model';
+
+//user/pago/pago.component.ts
 
 
 
@@ -38,7 +42,7 @@ export class PagoComponent implements OnInit {
    
   
   tax: number = 0;
-  envioGasto: number = 15.00;
+  envioGasto: number = 0; // Costo fijo de envío
   mercadoPagoLoaded: boolean = false;
    isProcessingPayment: boolean = false;
   paymentBrickInitialized: boolean = false;
@@ -632,6 +636,7 @@ simularRegresoDeMercadoPago(): void {
     this.isProcessingPayment = false;
     alert('Pago cancelado');
   }
+  
 
 
   

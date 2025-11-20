@@ -122,11 +122,15 @@
 
     <div class="radio-group">
       <label class="radio-option">
-        <input type="radio" name="tipo_comprobante" id="boleta" value="boleta" class="form-check-input" [(ngModel)]="tipoComprobante" (change)="onComprobanteChange()" checked>
+        <input type="radio" name="tipo_comprobante" id="boleta" value="boleta" class="form-check-input" 
+        [(ngModel)]="tipoComprobante" 
+        (change)="onComprobanteChange()" checked>
         <span>Boleta</span>
       </label>
       <label class="radio-option">
-        <input type="radio" name="tipo_comprobante" id="factura" value="factura" class="form-check-input" [(ngModel)]="tipoComprobante" (change)="onComprobanteChange()">
+        <input type="radio" name="tipo_comprobante" id="factura" value="factura" class="form-check-input"
+         [(ngModel)]="tipoComprobante"
+          (change)="onComprobanteChange()">
         <span>Factura</span>
       </label>
     </div>

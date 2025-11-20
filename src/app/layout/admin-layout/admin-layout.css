@@ -1,4 +1,11 @@
+/* src/app/layout/admin-layout/admin-layout.component.css */
 .main-content {
-  margin-left: 250px; 
-  padding: 20px;
+  margin-left: 280px;
+  transition: margin-left 0.3s cubic-bezier(.23,1.07,.65,.99);
+  padding: 24px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+.main-content.main-full {
+  margin-left: 0;
 }

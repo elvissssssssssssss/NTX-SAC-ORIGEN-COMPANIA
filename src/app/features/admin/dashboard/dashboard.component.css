@@ -2,12 +2,36 @@
 .card:hover {
   transform: scale(1.02);
 }
-.dashboard-container {
-  padding: 20px;
-  margin-left: 252px; /* Adjusted for sidebar width */
 
-}.dashboard-container {
-  padding: 1.5rem;
+.sidebar {
+  width: 280px;
+  /* ...resto igual... */
+}
+
+.main-content {
+  transition: margin-left 0.3s cubic-bezier(.23,1.07,.65,.99);
+  margin-left: 280px;   /* igual al ancho del sidebar */
+  padding: 24px;
+}
+
+/* Cuando sidebar se esconde 👉 ocupa todo el ancho */
+.main-content.main-full {
+  margin-left: 0;
+}
+
+/* Opcional para extra responsividad en móviles */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 220px;
+  }
+  .main-content {
+    margin-left: 220px;
+    padding: 12px;
+  }
+  .main-content.main-full {
+    margin-left: 0;
+    padding: 6px;
+  }
 }
 
 .summary-card {

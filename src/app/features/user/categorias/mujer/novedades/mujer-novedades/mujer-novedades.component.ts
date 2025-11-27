@@ -121,9 +121,11 @@ export class MujerNovedadesComponent implements OnInit { // ← aquí corregido
     return `https://pusher-backend-elvis.onrender.com/${cleanedPath}`;
   }
 
-  calcularDescuento(precio: number, precioDescuento: number): number {
-    return Math.round(((precioDescuento - precio) / precioDescuento) * 100);
-  }
+calcularDescuento(precioAntes: number, precioActual: number): number {
+  if (!precioAntes || !precioActual || precioActual >= precioAntes) return 0;
+  return Math.round(((precioAntes - precioActual) / precioAntes) * 100);
+}
+
 
   // Método para verificar si hay productos
   hayProductos(): boolean {

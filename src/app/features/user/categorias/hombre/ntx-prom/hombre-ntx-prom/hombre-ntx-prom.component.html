@@ -202,38 +202,38 @@
                 <span class="talla" *ngIf="producto.talla">Talla: {{ producto.talla }}</span>
               </div>  
                    -->
+   </div>  
+                   -->
 
-              <!-- Precios -->
+         <!-- Precios -->
             <div class="seccion-producto__precio-descuento">
 
   <!-- Mostrar cuando hay descuento -->
-  <div
-    class="seccion-producto__precio-descuento-item"
-    *ngIf="producto.precioDescuento && producto.precioDescuento < producto.precio; else precioNormal"
-  >
-    <!-- Precio actual (real, con descuento) -->
-    <div class="seccion-producto__precio-descuento-item">
-      <strong>S/.{{ producto.precioDescuento }}</strong>
-    </div>
+    <div class="seccion-producto__precio-descuento">
+                    <div
+                      *ngIf="producto.precioDescuento && producto.precioDescuento > 0 && producto.precioDescuento < producto.precio; else precioNormal"
+                    >
+                      <!-- Precio anterior tachado (primero) -->
+                      <div class="precio-original">
+                        <span class="seccion-producto__precio seccion-producto__precio--tachado">
+                          Antes S/.{{ producto.precio }}
+                        </span>
+                      </div>
 
-    <!-- Precio anterior tachado -->
-    <div class="precio-original">
-      <span class="seccion-producto__precio seccion-producto__precio--tachado">
-        Antes S/.{{ producto.precio }}
-      </span>
-    </div>
+                      <!-- Precio actual (descuento) -->
+                      <div class="seccion-producto__precio-descuento-item">
+                        <strong>Ahora S/.{{ producto.precioDescuento }}</strong>
+                      </div>
+                    </div>
 
-    <!-- Porcentaje de descuento -->
+                    <!-- Mostrar cuando no hay descuento -->
+                    <ng-template #precioNormal>
+                      <div class="seccion-producto__precio-descuento-item">
+                        S/.{{ producto.precio }}
+                      </div>
+                    </ng-template>
+                  </div>  
 
-  </div>
-
-  <!-- Mostrar cuando no hay descuento -->
-  <ng-template #precioNormal>
-    <div class="seccion-producto__precio-descuento-item">
-      S/.{{ producto.precioDescuento || producto.precio }}
-    </div>
-  </ng-template>
-</div>
 
               
               <!-- Botón de acción -->

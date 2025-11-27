@@ -241,7 +241,7 @@
               <div class="row g-3">
   <!-- Precio con Descuento -->
   <div class="col-md-6 position-relative">
-    <label class="form-label">Precio con Descuento /el precio real que saltra en la vista /haora<span class="text-danger">*</span></label>
+    <label class="form-label">Precio Regular / es el precio  para que se calcule el descuento /antes<span class="text-danger">*</span></label>
     <div class="input-group">
       <span class="input-group-text">S/</span>
       <input 
@@ -253,6 +253,8 @@
         [class.is-invalid]="productoForm.get('precioDescuento')?.invalid && productoForm.get('precioDescuento')?.touched"
         [class.is-valid]="productoForm.get('precioDescuento')?.valid && productoForm.get('precioDescuento')?.touched">
     </div>
+
+
     <div *ngIf="productoForm.get('precioDescuento')?.invalid && productoForm.get('precioDescuento')?.touched" class="error-message">
       <span *ngIf="productoForm.get('precioDescuento')?.errors?.['required']">
         El precio con descuento es requerido
@@ -261,11 +263,12 @@
         El precio debe ser mayor o igual a 0
       </span>
     </div>
+    
   </div>
 
   <!-- Precio Regular -->
   <div class="col-md-6">
-    <label class="form-label">Precio Regular / es el precio  para que se calcule el descuento /antes<span class="text-danger">*</span></label>
+    <label class="form-label">Precio con Descuento /el precio real que saltra en la vista /haora<span class="text-danger">*</span></label>
     <div class="input-group">
       <span class="input-group-text">S/</span>
       <input 

@@ -11,118 +11,123 @@
     <!-- Botón toggle con SVG del robot -->
     <div class="chatbot-toggle ai-toggle" (click)="toggleChatbot()">
       <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Gradientes morados para admin -->
-          <linearGradient id="bodyGradientAdmin" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#e0e7ff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#ddd6fe;stop-opacity:1" />
-          </linearGradient>
-          
-          <radialGradient id="eyeGradientAdmin" cx="30%" cy="30%" r="70%">
-            <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
-            <stop offset="70%" style="stop-color:#8b5cf6;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#6d28d9;stop-opacity:1" />
-          </radialGradient>
-          
-          <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-          </linearGradient>
-          
-          <filter id="shadowAdmin" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
-          </filter>
-        </defs>
-        
-        <!-- Antena -->
-        <line x1="200" y1="50" x2="200" y2="80" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
-        ircle cx="200" cy="45" r="6" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-        
-        <!-- Cuerpo principal (cabeza) -->
-        <ellipse cx="200" cy="180" rx="100" ry="80" fill="url(#bodyGradientAdmin)" filter="url(#shadowAdmin)"/>
-        
-        <!-- Borde morado del cuerpo -->
-        <ellipse cx="200" cy="180" rx="100" ry="80" fill="none" stroke="#8b5cf6" stroke-width="4"/>
-        
-        <!-- Ojo izquierdo (más grande) -->
-        ircle cx="170" cy="160" r="35" fill="#f0f0f0" filter="url(#shadowAdmin)"/>
-        ircle cx="170" cy="160" r="30" fill="url(#eyeGradientAdmin)"/>
-        ircle cx="170" cy="160" r="15" fill="#000000"/>
-        ircle cx="175" cy="155" r="5" fill="#ffffff" opacity="0.8"/>
-        
-        <!-- Ojo derecho (más pequeño) -->
-        ircle cx="230" cy="160" r="25" fill="#f0f0f0" filter="url(#shadowAdmin)"/>
-        ircle cx="230" cy="160" r="20" fill="url(#eyeGradientAdmin)"/>
-        ircle cx="230" cy="160" r="10" fill="#000000"/>
-        ircle cx="233" cy="157" r="3" fill="#ffffff" opacity="0.8"/>
-        
-        <!-- Boca -->
-        <ellipse cx="200" cy="210" rx="20" ry="15" fill="#2c2c2c"/>
-        <ellipse cx="200" cy="208" rx="18" ry="12" fill="#a78bfa"/>
-        
-        <!-- Dientes -->
-        <rect x="185" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
-        <rect x="195" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
-        <rect x="205" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
-        <rect x="215" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
-        
-        <!-- Lengua -->
-        <ellipse cx="200" cy="215" rx="12" ry="6" fill="#c4b5fd"/>
-        
-        <!-- Brazos -->
-        <ellipse cx="130" cy="220" rx="20" ry="40" fill="url(#bodyGradientAdmin)" filter="url(#shadowAdmin)"/>
-        <ellipse cx="130" cy="220" rx="20" ry="40" fill="none" stroke="#8b5cf6" stroke-width="3"/>
-        
-        <!-- Mano izquierda -->
-        ircle cx="130" cy="270" r="18" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-        ircle cx="125" cy="265" r="6" fill="url(#purpleGradient)"/>
-        ircle cx="135" cy="265" r="6" fill="url(#purpleGradient)"/>
-        ircle cx="125" cy="275" r="6" fill="url(#purpleGradient)"/>
-        ircle cx="135" cy="275" r="6" fill="url(#purpleGradient)"/>
-        
-        <!-- Brazo derecho -->
-        <ellipse cx="270" cy="220" rx="20" ry="40" fill="url(#bodyGradientAdmin)" filter="url(#shadowAdmin)"/>
-        <ellipse cx="270" cy="220" rx="20" ry="40" fill="none" stroke="#8b5cf6" stroke-width="3"/>
-        
-        <!-- Mano derecha -->
-        ircle cx="270" cy="270" r="18" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-        ircle cx="265" cy="265" r="6" fill="url(#purpleGradient)"/>
-        ircle cx="275" cy="265" r="6" fill="url(#purpleGradient)"/>
-        ircle cx="265" cy="275" r="6" fill="url(#purpleGradient)"/>
-        ircle cx="275" cy="275" r="6" fill="url(#purpleGradient)"/>
-        
-        <!-- Cuerpo inferior -->
-        <rect x="150" y="250" width="100" height="80" rx="15" fill="url(#bodyGradientAdmin)" filter="url(#shadowAdmin)"/>
-        <rect x="150" y="250" width="100" height="80" rx="15" fill="none" stroke="#8b5cf6" stroke-width="4"/>
-        
-        <!-- Panel del pecho -->
-        <rect x="170" y="270" width="60" height="40" rx="8" fill="#a78bfa" opacity="0.3"/>
-        ircle cx="200" cy="290" r="8" fill="url(#purpleGradient)"/>
-        
-        <!-- Piernas -->
-        <rect x="160" y="330" width="25" height="60" rx="12" fill="url(#bodyGradientAdmin)" filter="url(#shadowAdmin)"/>
-        <rect x="160" y="330" width="25" height="60" rx="12" fill="none" stroke="#8b5cf6" stroke-width="3"/>
-        
-        <rect x="215" y="330" width="25" height="60" rx="12" fill="url(#bodyGradientAdmin)" filter="url(#shadowAdmin)"/>
-        <rect x="215" y="330" width="25" height="60" rx="12" fill="none" stroke="#8b5cf6" stroke-width="3"/>
-        
-        <!-- Pies -->
-        <ellipse cx="172" cy="420" rx="25" ry="15" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-        <ellipse cx="172" cy="418" rx="20" ry="12" fill="#a78bfa"/>
-        
-        <ellipse cx="227" cy="420" rx="25" ry="15" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-        <ellipse cx="227" cy="418" rx="20" ry="12" fill="#a78bfa"/>
-        
-        <!-- Detalles decorativos -->
-        ircle cx="160" cy="280" r="3" fill="#8b5cf6"/>
-        ircle cx="240" cy="280" r="3" fill="#8b5cf6"/>
-        ircle cx="160" cy="300" r="3" fill="#8b5cf6"/>
-        ircle cx="240" cy="300" r="3" fill="#8b5cf6"/>
-        
-        <!-- Aletas laterales de la cabeza -->
-        <ellipse cx="120" cy="170" rx="12" ry="20" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-        <ellipse cx="280" cy="170" rx="12" ry="20" fill="url(#purpleGradient)" filter="url(#shadowAdmin)"/>
-      </svg>
+  <defs>
+    <!-- Gradientes para dar profundidad -->
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="eyeGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#40e0d0;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#00bcd4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#006064;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40e0d0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bcd4;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Antena -->
+  <line x1="200" y1="50" x2="200" y2="80" stroke="#00bcd4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="200" cy="45" r="6" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  
+  <!-- Cuerpo principal (cabeza) -->
+  <ellipse cx="200" cy="180" rx="100" ry="80" fill="url(#bodyGradient)" filter="url(#shadow)"/>
+  
+  <!-- Borde azul del cuerpo -->
+  <ellipse cx="200" cy="180" rx="100" ry="80" fill="none" stroke="#00bcd4" stroke-width="4"/>
+  
+  <!-- Ojo izquierdo (más grande) -->
+  <circle cx="170" cy="160" r="35" fill="#f0f0f0" filter="url(#shadow)"/>
+  <circle cx="170" cy="160" r="30" fill="url(#eyeGradient)"/>
+  <circle cx="170" cy="160" r="15" fill="#000000"/>
+  <circle cx="175" cy="155" r="5" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Ojo derecho (más pequeño) -->
+  <circle cx="230" cy="160" r="25" fill="#f0f0f0" filter="url(#shadow)"/>
+  <circle cx="230" cy="160" r="20" fill="url(#eyeGradient)"/>
+  <circle cx="230" cy="160" r="10" fill="#000000"/>
+  <circle cx="233" cy="157" r="3" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Boca -->
+  <ellipse cx="200" cy="210" rx="20" ry="15" fill="#2c2c2c"/>
+  <ellipse cx="200" cy="208" rx="18" ry="12" fill="#ff6b6b"/>
+  
+  <!-- Dientes -->
+  <rect x="185" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
+  <rect x="195" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
+  <rect x="205" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
+  <rect x="215" y="203" width="6" height="8" fill="#ffffff" rx="2"/>
+  
+  <!-- Lengua -->
+  <ellipse cx="200" cy="215" rx="12" ry="6" fill="#ff8a80"/>
+  
+  <!-- Brazos -->
+  <!-- Brazo izquierdo -->
+  <ellipse cx="130" cy="220" rx="20" ry="40" fill="url(#bodyGradient)" filter="url(#shadow)"/>
+  <ellipse cx="130" cy="220" rx="20" ry="40" fill="none" stroke="#00bcd4" stroke-width="3"/>
+  
+  <!-- Mano izquierda -->
+  <circle cx="130" cy="270" r="18" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <circle cx="125" cy="265" r="6" fill="url(#blueGradient)"/>
+  <circle cx="135" cy="265" r="6" fill="url(#blueGradient)"/>
+  <circle cx="125" cy="275" r="6" fill="url(#blueGradient)"/>
+  <circle cx="135" cy="275" r="6" fill="url(#blueGradient)"/>
+  
+  <!-- Brazo derecho -->
+  <ellipse cx="270" cy="220" rx="20" ry="40" fill="url(#bodyGradient)" filter="url(#shadow)"/>
+  <ellipse cx="270" cy="220" rx="20" ry="40" fill="none" stroke="#00bcd4" stroke-width="3"/>
+  
+  <!-- Mano derecha -->
+  <circle cx="270" cy="270" r="18" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <circle cx="265" cy="265" r="6" fill="url(#blueGradient)"/>
+  <circle cx="275" cy="265" r="6" fill="url(#blueGradient)"/>
+  <circle cx="265" cy="275" r="6" fill="url(#blueGradient)"/>
+  <circle cx="275" cy="275" r="6" fill="url(#blueGradient)"/>
+  
+  <!-- Cuerpo inferior -->
+  <rect x="150" y="250" width="100" height="80" rx="15" fill="url(#bodyGradient)" filter="url(#shadow)"/>
+  <rect x="150" y="250" width="100" height="80" rx="15" fill="none" stroke="#00bcd4" stroke-width="4"/>
+  
+  <!-- Panel del pecho -->
+  <rect x="170" y="270" width="60" height="40" rx="8" fill="#40e0d0" opacity="0.3"/>
+  <circle cx="200" cy="290" r="8" fill="url(#blueGradient)"/>
+  
+  <!-- Piernas -->
+  <!-- Pierna izquierda -->
+  <rect x="160" y="330" width="25" height="60" rx="12" fill="url(#bodyGradient)" filter="url(#shadow)"/>
+  <rect x="160" y="330" width="25" height="60" rx="12" fill="none" stroke="#00bcd4" stroke-width="3"/>
+  
+  <!-- Pierna derecha -->
+  <rect x="215" y="330" width="25" height="60" rx="12" fill="url(#bodyGradient)" filter="url(#shadow)"/>
+  <rect x="215" y="330" width="25" height="60" rx="12" fill="none" stroke="#00bcd4" stroke-width="3"/>
+  
+  <!-- Pies -->
+  <!-- Pie izquierdo -->
+  <ellipse cx="172" cy="420" rx="25" ry="15" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <ellipse cx="172" cy="418" rx="20" ry="12" fill="#40e0d0"/>
+  
+  <!-- Pie derecho -->
+  <ellipse cx="227" cy="420" rx="25" ry="15" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <ellipse cx="227" cy="418" rx="20" ry="12" fill="#40e0d0"/>
+  
+  <!-- Detalles decorativos -->
+  <circle cx="160" cy="280" r="3" fill="#00bcd4"/>
+  <circle cx="240" cy="280" r="3" fill="#00bcd4"/>
+  <circle cx="160" cy="300" r="3" fill="#00bcd4"/>
+  <circle cx="240" cy="300" r="3" fill="#00bcd4"/>
+  
+  <!-- Aletas laterales de la cabeza -->
+  <ellipse cx="120" cy="170" rx="12" ry="20" fill="url(#blueGradient)" filter="url(#shadow)"/>
+  <ellipse cx="280" cy="170" rx="12" ry="20" fill="url(#blueGradient)" filter="url(#shadow)"/>
+</svg>
       
       <!-- Badge de IA -->
       <div class="ai-badge">AI</div>

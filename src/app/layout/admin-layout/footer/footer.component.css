@@ -49,12 +49,12 @@
 }
 
 .chatbot-toggle.ai-toggle {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
+ width: 110px;  /* ✅ Tamaño ideal para desktop */
+  height: 110px;
+  background: transparent; /* ✅ Completamente transparente */
+  border: none;
+  border-radius: 0; /* Sin redondeo porque no hay fondo */
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
   transition: all 0.3s ease;
   position: relative;
   display: flex;
@@ -63,14 +63,33 @@
 }
 
 .chatbot-toggle.ai-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+  transform: scale(1.15);
 }
 
 .chatbot-toggle.ai-toggle svg {
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.3)); /* Sombra pronunciada */
+  transition: filter 0.3s ease;
 }
+
+.chatbot-toggle.ai-toggle:hover svg {
+  filter: drop-shadow(4px 4px 12px rgba(64, 224, 208, 0.6)); /* Sombra turquesa al hover */
+}
+.ai-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #00bcd4 0%, #40e0d0 100%); /* ✅ Turquesa en vez de rosa */
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(64, 224, 208, 0.5);
+  border: 2px solid white; /* Borde blanco para destacar */
+}
+
 
 .ai-badge {
   position: absolute;

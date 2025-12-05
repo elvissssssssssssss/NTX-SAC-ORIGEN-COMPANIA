@@ -28,8 +28,8 @@ export class AdminAiChatbotService {
 
   constructor(private router: Router, private zone: NgZone) {
     // Conectar al mismo backend que usas para usuarios
-   // this.socket = io('http://localhost:3000', {
-   this.socket = io('https://proyecto-wit-ai-websocket-io.onrender.com', {
+    this.socket = io('http://localhost:3000', {
+ // this.socket = io('https://proyecto-wit-ai-websocket-io.onrender.com', {
         //
       transports: ['websocket'],
       reconnection: true,

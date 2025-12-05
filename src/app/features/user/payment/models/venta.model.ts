@@ -85,7 +85,7 @@ export interface VentaResponse {
   usuarioEmail: string;       // Email del usuario
   usuarioNombre?: string;     // ✅ Nombre completo del usuario
   userId: number;
-  
+   initPoint?: string;           // ✅ Para MercadoPago
   metodoPagoId: number;
   metodoPagoNombre: string;
   total: number;

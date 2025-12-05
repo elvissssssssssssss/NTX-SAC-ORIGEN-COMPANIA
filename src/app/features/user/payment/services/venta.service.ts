@@ -16,7 +16,9 @@ export class VentaService {
   constructor(private http: HttpClient) {}
 
   // 🟢 POST: Registrar venta completa
+   // 🟢 POST: Registrar venta completa (esto dispara el email automático)
   registrarVentaCompleta(venta: VentaCompletaRequest): Observable<any> {
+    console.log('📤 Enviando venta al backend:', venta);
     return this.http.post(`${this.apiUrl}/completa`, venta);
   }
 

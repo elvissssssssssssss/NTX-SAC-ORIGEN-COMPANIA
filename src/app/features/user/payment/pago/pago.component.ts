@@ -334,40 +334,53 @@ export class PagoComponent implements OnInit {
   }
 
   // 📄 NUEVO MÉTODO: Emitir comprobante electrónico
-  private emitirComprobanteElectronico(ventaId: number): void {
-    const comprobanteData: ComprobanteRequest = {
-      ventaId: ventaId,
-      tipoComprobante: this.tipoComprobante === 'boleta' ? 2 : 1,
-      numeroForzado: 0,
-      clienteDNI: this.envio.dni || '',
-      clienteNombres: this.clienteNombres.trim(),
-      clienteApellidos: this.clienteApellidos.trim(),
-      ruc: this.tipoComprobante === 'factura' ? this.datosFactura.ruc : '',
-      razonSocial: this.tipoComprobante === 'factura' ? this.datosFactura.razonSocial : ''
-    };
+ private emitirComprobanteElectronico(ventaId: number): void {
+  const comprobanteData: ComprobanteRequest = {
+    ventaId: ventaId,
+    tipoComprobante: this.tipoComprobante === 'boleta' ? 2 : 1,
+    numeroForzado: 0,
+    clienteDNI: this.envio.dni || '',
+    clienteNombres: this.clienteNombres.trim(),
+    clienteApellidos: this.clienteApellidos.trim(),
+    ruc: this.tipoComprobante === 'factura' ? this.datosFactura.ruc : '',
+    razonSocial: this.tipoComprobante === 'factura' ? this.datosFactura.razonSocial : ''
+  };
 
-    console.log('📋 Emitiendo comprobante electrónico:', comprobanteData);
+  console.log('📋 Emitiendo comprobante electrónico:', comprobanteData);
 
-    this.comprobanteService.emitirComprobante(comprobanteData).subscribe({
-      next: (res: ComprobanteResponse) => {
-        console.log('✅ Comprobante emitido:', res);
+  this.comprobanteService.emitirComprobante(comprobanteData).subscribe({
+    next: (res: ComprobanteResponse) => {
+      console.log('✅ Comprobante emitido:', res);
 
-        const enlacePdf = res?.enlace_pdf || 
-                          res?.respuesta_nubefact?.enlace_del_pdf ||
-                          res?.respuesta_nubefact?.enlace;
+      const enlacePdf = res?.enlace_pdf || 
+                        res?.respuesta_nubefact?.enlace_del_pdf ||
+                        res?.respuesta_nubefact?.enlace;
 
-        if (enlacePdf) {
-          console.log('📄 Abriendo PDF del comprobante:', enlacePdf);
-          setTimeout(() => {
-            window.open(enlacePdf, '_blank');
-          }, 500);
-        }
-      },
-      error: (err) => {
-        console.error('⚠️ Error al emitir comprobante (no crítico):', err);
+      if (enlacePdf) {
+        console.log('📄 PDF generado:', enlacePdf);
+        
+        // ✨ Enviar email con PDF
+        this.ventaService.notificarComprobante(ventaId).subscribe({
+          next: (emailRes) => {
+            console.log('✅ Email con PDF enviado:', emailRes);
+          },
+          error: (emailErr) => {
+            console.warn('⚠️ Error al enviar email (no crítico):', emailErr);
+          }
+        });
+
+        // Abrir PDF
+        setTimeout(() => {
+          window.open(enlacePdf, '_blank');
+        }, 500);
       }
-    });
-  }
+    },
+    error: (err) => {
+      console.error('⚠️ Error al emitir comprobante:', err);
+    }
+  });
+}
+
 
   // 🧹 NUEVO MÉTODO: Limpiar después de compra
   private limpiarDespuesDeCompra(): void {

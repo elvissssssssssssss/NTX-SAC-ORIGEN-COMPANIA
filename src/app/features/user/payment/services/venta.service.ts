@@ -92,4 +92,10 @@ export class VentaService {
   crearPreferenciaPago(items: any[]): Observable<any> {
     return this.http.post(`${this.apiUrl}/preferencia`, { items });
   }
+  // 🟢 POST: Notificar comprobante con PDF
+notificarComprobante(ventaId: number): Observable<any> {
+  console.log('📧 Notificando comprobante para venta:', ventaId);
+  return this.http.post(`${this.apiUrl}/notificar-comprobante`, { ventaId });
+}
+
 }

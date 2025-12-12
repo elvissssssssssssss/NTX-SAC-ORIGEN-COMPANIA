@@ -18,6 +18,7 @@ export class VentasComponent implements OnInit {
   ventas: VentaResponse[] = [];
   ventaSeleccionada: VentaResponse | null = null;
   cargando: boolean = false;
+  
 
   constructor(
     private ventaService: VentaService,
@@ -245,6 +246,7 @@ export class VentasComponent implements OnInit {
     alert('Venta exportada exitosamente');
   }
   
+  
 // ✅ Método para obtener iniciales del nombre completo
 getInitialsFromName(nombreCompleto: string): string {
   if (!nombreCompleto) return '?';
@@ -255,4 +257,48 @@ getInitialsFromName(nombreCompleto: string): string {
   }
   return partes[0].charAt(0).toUpperCase();
 }
+verificarVoucher(venta: any): void {
+  if (!confirm(`¿Marcar como verificado el pago de la venta #${venta.id}?`)) {
+    return;
+  }
+
+  this.ventaService.verificarVoucher(venta.id).subscribe({
+    next: () => {
+      alert('Pago verificado y correo enviado.');
+      this.cargarVentas();
+    },
+    error: (err: Error) => {
+      console.error('Error al verificar voucher', err);
+      alert('No se pudo verificar el pago. Intenta nuevamente.');
+    }
+  });
+}
+rechazarVoucher(venta: VentaResponse): void {
+  const motivo = prompt(
+    `Escribe el motivo del rechazo para la venta #${venta.id}:`
+  );
+
+  if (!motivo || !motivo.trim()) {
+    return;
+  }
+
+  this.ventaService.rechazarVoucher(venta.id, motivo.trim()).subscribe({
+    next: () => {
+      alert('Voucher rechazado.');
+      venta.estadoVoucher = 'rechazado';
+      if (this.ventaSeleccionada && this.ventaSeleccionada.id === venta.id) {
+        this.ventaSeleccionada.estadoVoucher = 'rechazado';
+      }
+    },
+    error: (err: Error) => {
+      console.error('Error al rechazar voucher', err);
+      alert('No se pudo rechazar el voucher. Intenta nuevamente.');
+    }
+  });
+}
+
+
+
+
+
 }

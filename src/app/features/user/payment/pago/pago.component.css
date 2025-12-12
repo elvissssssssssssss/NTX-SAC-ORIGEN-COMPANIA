@@ -670,10 +670,13 @@ height: 40px;
 
 .header h1 {
   color: #333;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
-
+#metodo {
+ font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
 .header p {
   color: #666;
   font-size: 1.1rem;
@@ -1251,4 +1254,665 @@ height: 40px;
   background: #fff3cd;
   color: #856404;
   border: 1px solid #ffeaa7;
+}
+/* Estilos para el header de métodos de pago */
+.payment-method-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method-header:hover {
+  background: #e9ecef;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.payment-method-header .form-check {
+  margin: 0;
+  flex: 1;
+}
+
+.payment-method-header .form-check-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Botón de colapsar/expandir */
+.btn-collapse {
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  color: #007bff;
+}
+
+.btn-collapse:hover {
+  transform: scale(1.1);
+}
+
+.btn-collapse svg {
+  transition: transform 0.3s ease;
+}
+
+/* Contenido colapsable */
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  opacity: 0;
+  padding: 0 20px;
+}
+
+.collapsible-content.show {
+  max-height: 3000px;
+  opacity: 1;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 20px;
+  background: #fff;
+}
+
+/* Sección de voucher */
+.voucher-section {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.voucher-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 18px;
+}
+
+.voucher-section .form-group {
+  margin-bottom: 15px;
+}
+
+.voucher-section .input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.voucher-section .btn {
+  width: 100%;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.voucher-section .btn:hover {
+  background: #218838;
+}
+/* Voucher Section */
+.voucher-section {
+  padding: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.voucher-header {
+  background: linear-gradient(135deg, #dc143c 0%, #b01030 100%);
+  padding: 25px;
+  color: white;
+}
+
+.voucher-header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.company-logo {
+  width: 80px;
+  height: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.header-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.voucher-subtitle {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* Payment Accounts */
+.payment-accounts {
+  padding: 30px 25px;
+}
+
+.account-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #dc143c;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+/* Bank Card */
+.bank-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #dc143c;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.1);
+}
+
+.bank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.bank-logos {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.bank-name {
+  font-size: 32px;
+  font-weight: 900;
+  color: #002a8d;
+  letter-spacing: -1px;
+}
+
+.account-type {
+  font-size: 13px;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.company-name {
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.bank-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-label {
+  font-size: 11px;
+  color: #dc143c;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.detail-value-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.detail-value {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #212529;
+  letter-spacing: 1px;
+  flex: 1;
+}
+
+.detail-value.cci {
+  font-size: 16px;
+}
+
+.btn-copy-mini {
+  background: #dc143c;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: white;
+  flex-shrink: 0;
+}
+
+.btn-copy-mini:hover {
+  background: #b01030;
+  transform: scale(1.05);
+}
+
+.btn-copy-mini:active {
+  transform: scale(0.95);
+}
+
+/* Yape Section */
+.yape-section {
+  margin-bottom: 30px;
+}
+
+.yape-container {
+  background: linear-gradient(135deg, #4A1F6F 0%, #722C8F 100%);
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 16px rgba(74, 31, 111, 0.3);
+}
+
+.yape-left {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.yape-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.yape-logo {
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.yape-text {
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.yape-qr-section {
+  text-align: center;
+}
+
+.qr-container {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: inline-block;
+}
+
+.qr-image {
+  width: 160px;
+  height: 160px;
+  display: block;
+  border-radius: 6px;
+}
+
+.qr-instruction {
+  margin: 12px 0 0 0;
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.yape-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.yape-phone-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phone-label {
+  font-size: 12px;
+  opacity: 0.85;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.phone-number-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.15);
+  padding: 15px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.phone-number {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  flex: 1;
+}
+
+.btn-copy-yape {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.2s;
+}
+
+.btn-copy-yape:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+
+.phone-owner {
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.whatsapp-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(37, 211, 102, 0.2);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-contact svg {
+  color: #25D366;
+  flex-shrink: 0;
+}
+
+.whatsapp-contact span {
+  font-size: 14px;
+}
+
+/* Upload Area */
+.voucher-upload {
+  margin-top: 30px;
+}
+
+.upload-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.upload-area {
+  border: 3px dashed #cbd5e0;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #f8f9fa;
+}
+
+.upload-area:hover {
+  border-color: #dc143c;
+  background: #fff5f6;
+}
+
+.upload-area.has-file {
+  border-style: solid;
+  border-color: #28a745;
+  background: #f0f9f4;
+}
+
+.upload-placeholder {
+  padding: 20px 0;
+}
+
+.upload-icon {
+  color: #a0aec0;
+  margin-bottom: 15px;
+}
+
+.upload-text {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.upload-text strong {
+  color: #dc143c;
+}
+
+.upload-hint {
+  font-size: 13px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #dee2e6;
+}
+
+.file-info {
+  flex: 1;
+  text-align: left;
+}
+
+.file-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 5px 0;
+  word-break: break-word;
+}
+
+.file-size {
+  font-size: 12px;
+  color: #6c757d;
+  margin: 0 0 12px 0;
+}
+
+.btn-remove {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.btn-remove:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.operation-number {
+  margin-top: 20px;
+}
+
+.operation-number label {
+  display: block;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* Confirm Button */
+.btn-confirm-voucher {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #dc143c 0%, #b01030 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s;
+  margin-top: 25px;
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
+  letter-spacing: 0.3px;
+}
+
+.btn-confirm-voucher:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+}
+
+.btn-confirm-voucher:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-confirm-voucher span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Note */
+.voucher-note {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+.voucher-note svg {
+  flex-shrink: 0;
+  color: #856404;
+  margin-top: 2px;
+}
+
+.voucher-note p {
+  margin: 0;
+  font-size: 13px;
+  color: #856404;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .yape-container {
+    flex-direction: column;
+  }
+  
+  .yape-left {
+    width: 100%;
+  }
+  
+  .file-preview {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .bank-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .company-name {
+    text-align: left;
+  }
 }

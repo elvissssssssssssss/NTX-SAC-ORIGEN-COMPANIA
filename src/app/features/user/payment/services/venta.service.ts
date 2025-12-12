@@ -1,17 +1,26 @@
 // src/app/features/user/payment/services/venta.service.ts
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
-import { VentaCompletaRequest, VentaResponse, EnvioInfo } from '../models/venta.model';
+import { 
+  VentaCompletaRequest, 
+  VentaResponse, 
+  EnvioInfo,
+  VoucherResponse // 🆕 Importar
+} from '../models/venta.model';
 import { Observable, forkJoin, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class VentaService {
-  private apiUrl = 'https://pusher-backend-elvis.onrender.com/api/Ventas';
+ private apiUrl = 'https://pusher-backend-elvis.onrender.com/api/Ventas';
+
   private enviosApiUrl = 'https://pusher-backend-elvis.onrender.com/api/TblEnvios';
   private usersApiUrl = 'https://pusher-backend-elvis.onrender.com/api/Auth/user';
+
 
   constructor(private http: HttpClient) {}
 
@@ -97,5 +106,25 @@ notificarComprobante(ventaId: number): Observable<any> {
   console.log('📧 Notificando comprobante para venta:', ventaId);
   return this.http.post(`${this.apiUrl}/notificar-comprobante`, { ventaId });
 }
+  // 🆕 Nuevo método para subir voucher
+ // 🆕 ACTUALIZADO: Tipar la respuesta
+subirVoucherYRegistrarVenta(formData: FormData): Observable<VoucherResponse> {
+  return this.http.post<VoucherResponse>(`${this.apiUrl}/pago/voucher-completo`, formData);
+}
+
+verificarVoucher(ventaId: number) {
+  return this.http.post(
+    `https://pusher-backend-elvis.onrender.com/api/Ventas/pago/ventas/${ventaId}/voucher/verificar`,
+    {}
+  );
+}
+rechazarVoucher(ventaId: number, observacion: string) {
+  return this.http.post(
+    `${this.apiUrl}/pago/ventas/${ventaId}/voucher/rechazar`,
+    { observacion } // JSON: { "observacion": "motivo..." }
+  );
+}
+
+
 
 }

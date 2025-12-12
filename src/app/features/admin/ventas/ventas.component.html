@@ -41,6 +41,27 @@
                     <i class="fas fa-envelope me-1"></i>{{ venta.usuarioEmail }}
                   </a>
                   <small class="text-muted d-block">ID: {{ venta.userId }}</small>
+                
+<small
+  class="badge"
+  [ngClass]="{
+    'bg-warning':
+      venta.metodoPagoId === 1 && (venta.estadoVoucher || 'pendiente') === 'pendiente',
+    'bg-success':
+      venta.metodoPagoId === 1 && venta.estadoVoucher === 'aprobado' ||
+      venta.metodoPagoId !== 1,
+    'bg-danger':
+      venta.metodoPagoId === 1 && venta.estadoVoucher === 'rechazado'
+  }">
+  {{
+    venta.metodoPagoId === 1
+      ? (venta.estadoVoucher || 'pendiente')
+      : 'pagado'
+  }}
+</small>
+
+
+
                 </div>
               </div>
             </div>
@@ -117,6 +138,33 @@
             </div>
             
             <p><strong>Método de Pago:</strong> {{ ventaSeleccionada.metodoPagoNombre }}</p>
+          <p>
+  <strong>Estado pago:</strong>
+  <span
+    class="badge"
+    [ngClass]="{
+      'bg-warning':
+        ventaSeleccionada.metodoPagoId === 1 &&
+        (ventaSeleccionada.estadoVoucher || 'pendiente') === 'pendiente',
+      'bg-success':
+        ventaSeleccionada.metodoPagoId === 1 &&
+        ventaSeleccionada.estadoVoucher === 'aprobado' ||
+        ventaSeleccionada.metodoPagoId !== 1,
+      'bg-danger':
+        ventaSeleccionada.metodoPagoId === 1 &&
+        ventaSeleccionada.estadoVoucher === 'rechazado'
+    }"
+  >
+    {{
+      ventaSeleccionada.metodoPagoId === 1
+        ? (ventaSeleccionada.estadoVoucher || 'pendiente')
+        : 'pagado'
+    }}
+  </span>
+</p>
+
+
+
             <p><strong>Total:</strong> {{ ventaSeleccionada.total | currency:'PEN' }}</p>
             <p><strong>Fecha:</strong> {{ ventaSeleccionada.fechaVenta | date:'dd/MM/yyyy HH:mm' }}</p>
             
@@ -171,17 +219,59 @@
               </table>
             </div>
           </div>
+
+
+          
+          <div class="mt-3" *ngIf="ventaSeleccionada.voucherArchivo">
+  <h5><i class="fas fa-receipt"></i> Voucher de pago</h5>
+  <hr>
+  <img
+    [src]="'https://pusher-backend-elvis.onrender.com/uploads/vouchers/' + ventaSeleccionada.voucherArchivo"
+    alt="Voucher"
+    class="img-fluid rounded border"
+    style="max-height: 300px; object-fit: contain;">
+</div>
+
+
+
+
+
+<div class="mt-4 text-center">
+  <button class="btn btn-success me-2" (click)="imprimirVenta(ventaSeleccionada)">
+    <i class="fas fa-print"></i> Imprimir
+  </button>
+  <button class="btn btn-info me-2" (click)="exportarVenta(ventaSeleccionada)">
+    <i class="fas fa-download"></i> Exportar CSV
+  </button>
+
+<button
+  *ngIf="
+    ventaSeleccionada.metodoPagoId === 1 &&
+    (ventaSeleccionada.estadoVoucher || 'pendiente') === 'pendiente'
+  "
+  class="btn btn-primary me-2"
+  (click)="verificarVoucher(ventaSeleccionada)"
+>
+  <i class="fas fa-check-circle"></i> Marcar como verificado
+</button>
+
+<button
+  *ngIf="
+    ventaSeleccionada.metodoPagoId === 1 &&
+    (ventaSeleccionada.estadoVoucher || 'pendiente') === 'pendiente'
+  "
+  class="btn btn-danger ms-2"
+  (click)="rechazarVoucher(ventaSeleccionada)"
+>
+  <i class="fas fa-times-circle"></i> Rechazar voucher
+</button>
+
+
+</div>
+
         </div>
         
-        <!-- Botones de acción -->
-        <div class="mt-4 text-center">
-          <button class="btn btn-success me-2" (click)="imprimirVenta(ventaSeleccionada)">
-            <i class="fas fa-print"></i> Imprimir
-          </button>
-          <button class="btn btn-info" (click)="exportarVenta(ventaSeleccionada)">
-            <i class="fas fa-download"></i> Exportar CSV
-          </button>
-        </div>
+
       </div>
     </div>
   </div>

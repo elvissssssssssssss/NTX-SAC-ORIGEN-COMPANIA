@@ -55,6 +55,8 @@ export interface VentaResponse {
   total: number;
   fechaVenta: string;
   detalles: VentaDetalleResponse[];
+    estadoVoucher?: string;
+  voucherArchivo?: string;
 }
 // src/app/features/user/payment/models/venta.model.ts
 
@@ -92,4 +94,29 @@ export interface VentaResponse {
   fechaVenta: string;
   detalles: VentaDetalleResponse[];
   envio?: EnvioInfo;  // ✅ Información de envío (opcional)
+}
+// 🆕 Agregar al final del archivo:
+
+// Respuesta del backend al subir voucher
+export interface VoucherResponse {
+  success: boolean;
+  message: string;
+  ventaId: number;
+  orderId: number;
+  usuarioEmail: string;
+}
+
+// Request para subir voucher (opcional, por si quieres tipar el FormData)
+export interface VoucherRequest {
+  voucher: File;
+  userId: number;
+  total: number;
+  numeroOperacion?: string;
+  clienteNombres: string;
+  clienteApellidos: string;
+  clienteDNI?: string;
+  tipoComprobante: string;
+  ruc?: string;
+  razonSocial?: string;
+  detalles: string; // JSON string
 }

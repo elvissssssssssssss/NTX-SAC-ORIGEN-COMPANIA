@@ -37,6 +37,13 @@ export class PagoComponent implements OnInit {
   paymentBrickInitialized: boolean = false;
   metodoPago: string = 'tarjeta';
   tipoComprobante: string = 'boleta';
+  mostrarTarjeta: boolean = false;  // ✅ Cambiado a false (cerrado por defecto)
+mostrarVoucher: boolean = false;  // ✅ Ya estaba en false
+voucherFile: File | null = null;
+voucherPreview: string | null = null;
+numeroOperacion: string = '';
+isUploadingVoucher: boolean = false;
+qrYapeUrl: string = 'assets/images/qr-yape.png'; // Pon tu ruta de imagen QR
 
   datosFactura = {
     ruc: '',
@@ -84,15 +91,20 @@ export class PagoComponent implements OnInit {
     this.loadMercadoPagoScript();
   }
 
-  cargarCarrito(): void {
-    this.cartService.obtenerCarritoPorUsuario(this.userId).subscribe({
-      next: (res) => {
-        this.carrito = res.items;
-        this.calcularTotales();
-      },
-      error: (err) => console.error('Error al cargar carrito', err)
-    });
-  }
+ cargarCarrito(): void {
+  this.cartService.obtenerCarritoPorUsuario(this.userId).subscribe({
+    next: (res) => {
+      console.log('📦 Respuesta completa del carrito:', res);
+      console.log('📦 res.items:', res.items);
+      console.log('📦 Es array?:', Array.isArray(res.items));
+      
+      this.carrito = res.items;
+      this.calcularTotales();
+    },
+    error: (err) => console.error('Error al cargar carrito', err)
+  });
+}
+
 
   calcularTotales(): void {
     this.subTotal = this.carrito.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
@@ -441,9 +453,249 @@ export class PagoComponent implements OnInit {
       }
     });
   }
+toggleTarjeta(): void {
+  this.mostrarTarjeta = !this.mostrarTarjeta;
+  if (this.mostrarTarjeta) {
+    this.mostrarVoucher = false;
+  }
+}
 
+toggleVoucher(): void {
+  this.mostrarVoucher = !this.mostrarVoucher;
+  if (this.mostrarVoucher) {
+    this.mostrarTarjeta = false;
+  }
+}
   cancelarPago(): void {
     this.isProcessingPayment = false;
     alert('Pago cancelado');
   }
+
+
+
+
+
+
+
+
+
+
+
+
+// Métodos
+onFileSelected(event: any): void {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    if (file.size <= 5 * 1024 * 1024) { // 5MB max
+      this.voucherFile = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.voucherPreview = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert('El archivo no debe superar los 5MB');
+    }
+  }
+}
+
+onDragOver(event: DragEvent): void {
+  event.preventDefault();
+}
+
+onDrop(event: DragEvent): void {
+  event.preventDefault();
+  const files = event.dataTransfer?.files;
+  if (files && files.length > 0) {
+    const file = files[0];
+    this.onFileSelected({ target: { files: [file] } });
+  }
+}
+
+removeFile(event: Event): void {
+  event.stopPropagation();
+  this.voucherFile = null;
+  this.voucherPreview = null;
+}
+
+formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+}
+
+copiarCuenta(texto: string): void {
+  navigator.clipboard.writeText(texto).then(() => {
+    // Puedes agregar un toast o mensaje de confirmación
+    console.log('Copiado:', texto);
+    alert('¡Número copiado al portapapeles!');
+  });
+}
+
+
+
+
+
+
+// 🔥 MÉTODO ACTUALIZADO: enviarVoucher()
+// 🔥 MÉTODO ACTUALIZADO: enviarVoucher()
+enviarVoucher(): void {
+    console.log('🔍 CARRITO AL MOMENTO DE ENVIAR:', this.carrito);
+  console.log('🔍 ES ARRAY?:', Array.isArray(this.carrito));
+  console.log('🔍 LONGITUD:', this.carrito?.length);
+  // Validaciones
+  if (!this.voucherFile) {
+    alert('⚠️ Por favor sube tu comprobante de pago');
+    return;
+  }
+
+  if (!this.clienteNombres.trim() || !this.clienteApellidos.trim()) {
+    alert('⚠️ Por favor complete sus nombres y apellidos antes de continuar');
+    return;
+  }
+
+  if (this.carrito.length === 0) {
+    alert('⚠️ Tu carrito está vacío');
+    return;
+  }
+
+  console.log('📤 === INICIANDO ENVÍO DE VOUCHER ===');
+  console.log('👤 Cliente:', `${this.clienteNombres} ${this.clienteApellidos}`);
+  console.log('📦 Items:', this.carrito.length);
+  console.log('💰 Total:', this.total);
+
+  this.isUploadingVoucher = true;
+
+  // Primero guardar el envío
+  this.envioService.guardarEnvio(this.envio).subscribe({
+    next: (envioResponse) => {
+      console.log('🚚 Envío registrado:', envioResponse);
+
+      // ✅ DEBUG: Ver el carrito ANTES de mapear
+      console.log('🛒 Carrito RAW:', this.carrito);
+      
+      // ✅ DEBUG: Ver el resultado del map
+      const carritoMapeado = this.carrito.map(item => ({
+        ProductoId: item.productId,
+        NombreProducto: item.productName || 'Producto',
+        Cantidad: item.quantity || 1,
+        PrecioUnitario: this.calculateUnitPrice(item)
+      }));
+      
+      console.log('🛒 Carrito mapeado:', carritoMapeado);
+
+      // ✅ PRIMERO crear el JSON string
+      const detallesJson = JSON.stringify(carritoMapeado);
+
+      console.log('📨 Enviando voucher y venta al backend...');
+      console.log('🔍 Detalles JSON COMPLETO:', detallesJson);
+      console.log('🔍 Tipo:', typeof detallesJson);
+      console.log('🔍 Primer carácter:', detallesJson[0]);
+      console.log('🔍 Último carácter:', detallesJson[detallesJson.length - 1]);
+
+      // ✅ LUEGO crear el FormData
+const formData = new FormData();
+formData.append('Voucher', this.voucherFile!);
+formData.append('UserId', this.userId.toString());
+formData.append('Total', this.total.toString());
+
+// NumeroOperacion: nunca vacío
+formData.append(
+  'NumeroOperacion',
+  this.numeroOperacion.trim() !== '' ? this.numeroOperacion.trim() : 'SIN-OPERACION'
+);
+
+formData.append('ClienteNombres', this.clienteNombres.trim());
+formData.append('ClienteApellidos', this.clienteApellidos.trim());
+formData.append('ClienteDNI', this.envio.dni || '');
+formData.append('TipoComprobante', this.tipoComprobante);
+
+// RUC solo real para factura, dummy para boleta
+formData.append(
+  'Ruc',
+  this.tipoComprobante === 'factura' ? (this.datosFactura.ruc || '') : '00000000000'
+);
+
+// Razón social solo real para factura, genérica para boleta
+formData.append(
+  'RazonSocial',
+  this.tipoComprobante === 'factura'
+    ? (this.datosFactura.razonSocial || 'SIN RAZON SOCIAL')
+    : 'CONSUMIDOR FINAL'
+);
+
+formData.append('Detalles', detallesJson);
+
+
+      // ✅ DEBUG: Ver todo el FormData
+      console.log('🔍 DEBUG - Contenido del FormData:');
+      for (let pair of formData.entries()) {
+        if (pair[0] === 'Voucher') {
+          console.log('Voucher: [File]', (pair[1] as File).name);
+        } else {
+          console.log(pair[0] + ':', pair[1]);
+        }
+      }
+
+      // Enviar todo al backend
+      this.ventaService.subirVoucherYRegistrarVenta(formData).subscribe({
+        next: (response) => {
+          console.log('✅ Voucher y venta registrados:', response);
+
+          this.isUploadingVoucher = false;
+
+          const ventaId = response.ventaId;
+
+          // Limpiar carrito
+          this.limpiarDespuesDeCompra();
+
+          // Mensaje de éxito
+          alert(`✅ ¡Comprobante recibido!\n\n` +
+                `Pedido #${ventaId}\n` +
+                `Total: S/ ${this.total.toFixed(2)}\n\n` +
+                `📧 Se ha enviado un email de confirmación.\n` +
+                `⏳ Tu pago será validado en 24-48 horas.\n` +
+                `📄 Recibirás tu comprobante electrónico por email cuando se confirme.`);
+
+          // Redirigir a página de éxito
+          setTimeout(() => {
+            this.router.navigate(['/user/pago-exitoso'], {
+              queryParams: { 
+                ventaId: ventaId,
+                total: this.total,
+                tipo: 'voucher'
+              }
+            });
+          }, 2000);
+        },
+         error: (err) => {
+    this.isUploadingVoucher = false;
+    console.error('❌ Error al enviar voucher:', err);
+    console.error('❌ Detalles del error (completos):', err.error);
+
+    // 💥 NUEVO: ver qué campo del modelo falló
+    const errors = err.error?.errors;
+    if (errors) {
+      console.group('🧩 Errores de validación del backend');
+      Object.keys(errors).forEach(key => {
+        console.error(`Campo "${key}":`, errors[key]);
+      });
+      console.groupEnd();
+    }
+
+    alert('❌ Error al procesar tu pago. Por favor intenta nuevamente.');
+  }
+});
+    },
+    error: (err) => {
+      this.isUploadingVoucher = false;
+      console.error('❌ Error al registrar envío:', err);
+      alert('❌ Error al registrar el envío. Intenta nuevamente.');
+    }
+  });
+}
+
+
 }

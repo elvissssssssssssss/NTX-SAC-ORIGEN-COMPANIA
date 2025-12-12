@@ -108,194 +108,464 @@
               </div>
           </section>
 
-       <div class="container">
-  <h1>Métodos de Pago</h1>
 
-  <!-- Sin form principal, ya no usamos ngSubmit -->
-  <div class="form-check">
-   
-    <label class="form-check-label" for="metodo-tarjeta">Tarjeta de crédito</label>
-  </div>
 
-  <div class="comprobante-section">
-    <h2 class="comprobante-title">Tipo de comprobante</h2>
 
-    <div class="radio-group">
-      <label class="radio-option">
-        <input type="radio" name="tipo_comprobante" id="boleta" value="boleta" class="form-check-input" 
-        [(ngModel)]="tipoComprobante" 
-        (change)="onComprobanteChange()" checked>
-        <span>Boleta</span>
-      </label>
-      <label class="radio-option">
-        <input type="radio" name="tipo_comprobante" id="factura" value="factura" class="form-check-input"
-         [(ngModel)]="tipoComprobante"
-          (change)="onComprobanteChange()">
-        <span>Factura</span>
-      </label>
+
+
+
+
+
+
+
+
+<div class="container">
+  <h1 id="metodo">Métodos de Pago</h1>
+
+  <!-- Sección Tarjeta de Crédito/Débito con botón colapsable -->
+  <div class="payment-method-header" (click)="toggleTarjeta()">
+    <div class="form-check">
+      <label class="form-check-label" for="metodo-tarjeta">Tarjeta de Crédito/Débito</label>
     </div>
-
-    <div id="datos-factura" class="factura-extra" [style.display]="tipoComprobante === 'factura' ? 'block' : 'none'">
-      <div class="form-group">
-        <label for="ruc">RUC</label>
-        <input type="text" name="ruc" id="ruc" maxlength="11" class="input-field" [(ngModel)]="datosFactura.ruc" [required]="tipoComprobante === 'factura'">
-      </div>
-      <div class="form-group">
-        <label for="razon_social">Razón Social</label>
-       <input type="text" name="razon_social" id="razon_social" class="input-field" [(ngModel)]="datosFactura.razonSocial" [required]="tipoComprobante === 'factura'">
-
-    </div>
-  </div>
-
-
-  
-
-  <!-- Datos de envío confirmados -->
-  <!-- Actualiza la sección de datos de envío confirmados -->
-<div class="datos-envio-confirmados" style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
-  <h3>Datos de envío confirmados</h3>
-  
-  <!-- ✅ Campos para nombres usando variables del componente -->
-  <div class="form-group" style="margin-bottom: 15px;">
-    <label for="clienteNombres" style="display: block; font-weight: bold; margin-bottom: 5px;">
-      <span style="color: red;">*</span> Nombres:
-    </label>
-    <input type="text" 
-           id="clienteNombres" 
-           name="clienteNombres"
-           class="input-field" 
-           [(ngModel)]="clienteNombres" 
-           placeholder="Ingresa tus nombres completos"
-           required 
-           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-  </div>
-  
-  <div class="form-group" style="margin-bottom: 15px;">
-    <label for="clienteApellidos" style="display: block; font-weight: bold; margin-bottom: 5px;">
-      <span style="color: red;">*</span> Apellidos:
-    </label>
-    <input type="text" 
-           id="clienteApellidos" 
-           name="clienteApellidos"
-           class="input-field" 
-           [(ngModel)]="clienteApellidos" 
-           placeholder="Ingresa tus apellidos completos"
-           required 
-           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-  </div>
-  
-  <!-- Mostrar datos una vez completados -->
-  <div *ngIf="clienteNombres && clienteApellidos" 
-       style="background: #e8f5e8; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
-    <p style="margin: 0;"><strong>✅ Cliente:</strong> {{ clienteNombres }} {{ clienteApellidos }}</p>
-  </div>
-  
-  <!-- Datos de envío existentes -->
-  <div style="border-top: 1px solid #ddd; padding-top: 15px;">
-    <h4 style="margin-bottom: 10px;">📍 Datos de Envío:</h4>
-    <p><strong>Dirección:</strong> {{ envio.direccion }}</p>
-    <p><strong>Región:</strong> {{ envio.region }}</p>
-    <p><strong>Provincia:</strong> {{ envio.provincia }}</p>
-    <p><strong>Localidad:</strong> {{ envio.localidad }}</p>
-    <p><strong>DNI:</strong> {{ envio.dni }}</p>
-    <p><strong>Teléfono:</strong> {{ envio.telefono }}</p>
-  </div>
-  
-  <!-- ✅ Validación visual -->
-  <div *ngIf="!clienteNombres?.trim() || !clienteApellidos?.trim()" 
-       style="color: #d32f2f; font-size: 14px; margin-top: 15px; padding: 10px; background: #ffebee; border-radius: 4px;">
-    <strong>⚠️ IMPORTANTE:</strong> Complete sus nombres y apellidos antes de proceder con el pago.
-    <br><small>Estos datos son requeridos para la emisión del comprobante electrónico.</small>
-  </div>
-  
-  <!-- ✅ Confirmación visual cuando todo esté completo -->
-  <div *ngIf="clienteNombres?.trim() && clienteApellidos?.trim()" 
-       style="color: #2e7d32; font-size: 14px; margin-top: 15px; padding: 10px; background: #e8f5e8; border-radius: 4px;">
-    <strong>✅ Datos completos:</strong> Puede proceder con el pago
-  </div>
-</div>
-
-  <!-- Formulario oculto para Niubiz -->
-
-<!-- pago.component.html 
-<button class="btn btn-primary" (click)="abrirCheckoutJS()">
-  Pagar con Niubiz (Modal) </button> -->
-<!-- Sección de Mercado Pago -->
-<div class="card">
-  <div class="card-header">
-    <h2>Pago con MercadoS Pago</h2>
-    <div class="mp-logo">
-      <!-- Logo SVG -->
-      <svg viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10.999 0.5H7.49902V15.5H10.999V0.5Z" fill="#009EE3"/>
-        <path d="M24.499 0.5H20.999V15.5H24.499V0.5Z" fill="#009EE3"/>
-        <path d="M38.999 0.5H35.499V15.5H38.999V0.5Z" fill="#009EE3"/>
-        <path d="M16.499 4.5H12.999V8H16.499V4.5Z" fill="#009EE3"/>
-        <path d="M30.999 4.5H27.499V8H30.999V4.5Z" fill="#009EE3"/>
-        <path d="M45.499 4.5H41.999V8H45.499V4.5Z" fill="#009EE3"/>
-        <path d="M0.5 0.5H4V15.5H0.5V0.5Z" fill="#009EE3"/>
+    <button class="btn-collapse" type="button">
+      <svg *ngIf="!mostrarTarjeta" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
-    </div>
+      <svg *ngIf="mostrarTarjeta" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
   </div>
 
+  <!-- Contenido colapsable de Tarjeta -->
+  <div class="collapsible-content" [class.show]="mostrarTarjeta">
+    <div class="comprobante-section">
+      <h2 class="comprobante-title">Tipo de comprobante</h2>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="tipo_comprobante" id="boleta" value="boleta" class="form-check-input" 
+          [(ngModel)]="tipoComprobante" 
+          (change)="onComprobanteChange()" checked>
+          <span>Boleta</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="tipo_comprobante" id="factura" value="factura" class="form-check-input"
+           [(ngModel)]="tipoComprobante"
+            (change)="onComprobanteChange()">
+          <span>Factura</span>
+        </label>
+      </div>
 
-
-    <!-- Datos de tarjeta de prueba -->
-   
-  </div>
-  <div id="paymentBrick_container"></div>
- <!-- Datos de tarjeta de prueba -->
-<button *ngIf="!paymentBrickInitialized" 
-        class="btn-init-payment" 
-        (click)="initPaymentBrick()"
-        [disabled]="!mercadoPagoLoaded || total <= 0">
-  {{ mercadoPagoLoaded ? 'Mostrar Métodos de Pago' : 'Cargando...' }}
-</button>
-
-</div>
-
-
-
-  <!-- Resumen de precios -->
- 
-
-  <!-- Botones de pago -->
-  <div class="payment-section">
-    <h3>Método de Pago</h3>
-    
-    <div class="payment-method">
-      <div class="mercado-pago-info">
-        <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.3/mercadopago/logo__small.png" 
-             alt="Mercado Pago" 
-             class="payment-logo">
-        <div class="payment-description">
-          <p><strong>Pago seguro con Mercado Pago</strong></p>
-       
+      <div id="datos-factura" class="factura-extra" [style.display]="tipoComprobante === 'factura' ? 'block' : 'none'">
+        <div class="form-group">
+          <label for="ruc">RUC</label>
+          <input type="text" name="ruc" id="ruc" maxlength="11" class="input-field" [(ngModel)]="datosFactura.ruc" [required]="tipoComprobante === 'factura'">
+        </div>
+        <div class="form-group">
+          <label for="razon_social">Razón Social</label>
+          <input type="text" name="razon_social" id="razon_social" class="input-field" [(ngModel)]="datosFactura.razonSocial" [required]="tipoComprobante === 'factura'">
         </div>
       </div>
-  <!-- Botones de pago -->
-      <button class="btn-mercado-pago" 
-              (click)="iniciarCheckoutPro()"
-              [disabled]="total <= 0 || carrito.length === 0 || isProcessingPayment"
-              [class.processing]="isProcessingPayment">
-        <span *ngIf="!isProcessingPayment">
-          <i class="fas fa-credit-card"></i>
-          Pagar con Mercado Pago - S/ {{ total | number:'1.2-2' }}
+    </div>
+
+    <!-- Datos de envío confirmados -->
+    <div class="datos-envio-confirmados" style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+      <h3>Datos de envío confirmados</h3>
+      
+      <!-- Campos para nombres usando variables del componente -->
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="clienteNombres" style="display: block; font-weight: bold; margin-bottom: 5px;">
+          <span style="color: red;">*</span> Nombres:
+        </label>
+        <input type="text" 
+               id="clienteNombres" 
+               name="clienteNombres"
+               class="input-field" 
+               [(ngModel)]="clienteNombres" 
+               placeholder="Ingresa tus nombres completos"
+               required 
+               style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+      </div>
+      
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="clienteApellidos" style="display: block; font-weight: bold; margin-bottom: 5px;">
+          <span style="color: red;">*</span> Apellidos:
+        </label>
+        <input type="text" 
+               id="clienteApellidos" 
+               name="clienteApellidos"
+               class="input-field" 
+               [(ngModel)]="clienteApellidos" 
+               placeholder="Ingresa tus apellidos completos"
+               required 
+               style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+      </div>
+      
+      <!-- Mostrar datos una vez completados -->
+      <div *ngIf="clienteNombres && clienteApellidos" 
+           style="background: #e8f5e8; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+        <p style="margin: 0;"><strong>✅ Cliente:</strong> {{ clienteNombres }} {{ clienteApellidos }}</p>
+      </div>
+      
+      <!-- Datos de envío existentes -->
+      <div style="border-top: 1px solid #ddd; padding-top: 15px;">
+        <h4 style="margin-bottom: 10px;">📍 Datos de Envío:</h4>
+        <p><strong>Dirección:</strong> {{ envio.direccion }}</p>
+        <p><strong>Región:</strong> {{ envio.region }}</p>
+        <p><strong>Provincia:</strong> {{ envio.provincia }}</p>
+        <p><strong>Localidad:</strong> {{ envio.localidad }}</p>
+        <p><strong>DNI:</strong> {{ envio.dni }}</p>
+        <p><strong>Teléfono:</strong> {{ envio.telefono }}</p>
+      </div>
+      
+      <!-- Validación visual -->
+      <div *ngIf="!clienteNombres?.trim() || !clienteApellidos?.trim()" 
+           style="color: #d32f2f; font-size: 14px; margin-top: 15px; padding: 10px; background: #ffebee; border-radius: 4px;">
+        <strong>⚠️ IMPORTANTE:</strong> Complete sus nombres y apellidos antes de proceder con el pago.
+        <br><small>Estos datos son requeridos para la emisión del comprobante electrónico.</small>
+      </div>
+      
+      <!-- Confirmación visual cuando todo esté completo -->
+      <div *ngIf="clienteNombres?.trim() && clienteApellidos?.trim()" 
+           style="color: #2e7d32; font-size: 14px; margin-top: 15px; padding: 10px; background: #e8f5e8; border-radius: 4px;">
+        <strong>✅ Datos completos:</strong> Puede proceder con el pago
+      </div>
+    </div>
+
+    <!-- Sección de Mercado Pago -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Pago con Mercado Pago</h2>
+        <div class="mp-logo">
+          <!-- Logo SVG -->
+          <svg viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.999 0.5H7.49902V15.5H10.999V0.5Z" fill="#009EE3"/>
+            <path d="M24.499 0.5H20.999V15.5H24.499V0.5Z" fill="#009EE3"/>
+            <path d="M38.999 0.5H35.499V15.5H38.999V0.5Z" fill="#009EE3"/>
+            <path d="M16.499 4.5H12.999V8H16.499V4.5Z" fill="#009EE3"/>
+            <path d="M30.999 4.5H27.499V8H30.999V4.5Z" fill="#009EE3"/>
+            <path d="M45.499 4.5H41.999V8H45.499V4.5Z" fill="#009EE3"/>
+            <path d="M0.5 0.5H4V15.5H0.5V0.5Z" fill="#009EE3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div id="paymentBrick_container"></div>
+      
+      <!-- Datos de tarjeta de prueba -->
+      <button *ngIf="!paymentBrickInitialized" 
+              class="btn-init-payment" 
+              (click)="initPaymentBrick()"
+              [disabled]="!mercadoPagoLoaded || total <= 0">
+        {{ mercadoPagoLoaded ? 'Mostrar Métodos de Pago' : 'Cargando...' }}
+      </button>
+    </div>
+
+    <!-- Botones de pago -->
+    <div class="payment-section">
+      <h3>Método de Pago</h3>
+      
+      <div class="payment-method">
+        <div class="mercado-pago-info">
+          <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.3/mercadopago/logo__small.png" 
+               alt="Mercado Pago" 
+               class="payment-logo">
+          <div class="payment-description">
+            <p><strong>Pago seguro con Mercado Pago</strong></p>
+          </div>
+        </div>
+        
+        <!-- Botones de pago -->
+        <button class="btn-mercado-pago" 
+                (click)="iniciarCheckoutPro()"
+                [disabled]="total <= 0 || carrito.length === 0 || isProcessingPayment"
+                [class.processing]="isProcessingPayment">
+          <span *ngIf="!isProcessingPayment">
+            <i class="fas fa-credit-card"></i>
+            Pagar con Mercado Pago - S/ {{ total | number:'1.2-2' }}
+          </span>
+          <span *ngIf="isProcessingPayment">
+            <i class="fas fa-spinner fa-spin"></i>
+            Procesando...
+          </span>
+        </button>
+
+        <div class="payment-security">
+          <p class="security-text">
+            <i class="fas fa-shield-alt"></i>
+            Tu información está protegida con encriptación SSL
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Nuevo método: Pagar con Voucher /////////////////////////////////////////////////////////////////////////////-->
+  <div class="payment-method-header" (click)="toggleVoucher()">
+    <div class="form-check">
+      <label class="form-check-label" for="metodo-voucher">Pagar con Voucher</label>
+    </div>
+    <button class="btn-collapse" type="button">
+      <svg *ngIf="!mostrarVoucher" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+      <svg *ngIf="mostrarVoucher" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Contenido colapsable de Voucher -->
+ <!-- Contenido colapsable de Voucher -->
+<div class="collapsible-content" [class.show]="mostrarVoucher">
+  <div class="voucher-section">
+    <!-- Header con logo -->
+    <div class="voucher-header">
+      <div class="voucher-header-content">
+        <img src="images/logo.png" alt="NTX" class="company-logo">
+        <div class="header-text">
+          <h3>Transferencia Bancaria o Yape</h3>
+          <p class="voucher-subtitle">Realiza tu pago de forma segura</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información de Cuentas -->
+    <div class="payment-accounts">
+      <!-- CUENTA BANCARIA -->
+      <div class="account-section">
+        <h4 class="section-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+          CUENTA BANCARIA
+        </h4>
+        
+        <div class="bank-card">
+          <div class="bank-header">
+            <div class="bank-logos">
+              <div class="bank-name">BCP</div>
+              <div class="account-type">Ahorro Soles</div>
+            </div>
+            <div class="company-name">
+              Compañía Peruana<br>Nacional<br>Textil SAC
+            </div>
+          </div>
+          
+          <div class="bank-details">
+            <div class="detail-row">
+              <span class="detail-label">CUENTA SOLES</span>
+              <div class="detail-value-container">
+                <span class="detail-value">355033558320066</span>
+                <button class="btn-copy-mini" type="button" (click)="copiarCuenta('355033558320066')" title="Copiar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="detail-row">
+              <span class="detail-label">CCI</span>
+              <div class="detail-value-container">
+                <span class="detail-value cci">002355103355832066669</span>
+                <button class="btn-copy-mini" type="button" (click)="copiarCuenta('002355103355832066669')" title="Copiar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- YAPEYAPEYAPEYAPEYAPEYAPEYAPEYAPEYAPE ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <div class="yape-section">
+        <div class="yape-container">
+          <div class="yape-left">
+            <div class="yape-logo-container">
+              <svg class="yape-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="120" height="120" rx="20" fill="#4A1F6F"/>
+                <path d="M35 45L60 70L85 45" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="60" cy="82" r="6" fill="white"/>
+              </svg>
+              <span class="yape-text">Yape</span>
+            </div>
+            
+            <div class="yape-qr-section">
+              <div class="qr-container">
+                <img src="images/qryape.jpg"  alt="QR Yape" class="qr-image">
+              </div>
+              <p class="qr-instruction">Escanea el código QR</p>
+            </div>
+          </div>
+          
+          <div class="yape-right">
+            <div class="yape-phone-section">
+              <span class="phone-label">Número de celular</span>
+              <div class="phone-number-container">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span class="phone-number">967 110 1090</span>
+                <button class="btn-copy-yape" type="button" (click)="copiarCuenta('967110190')" title="Copiar número">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+              <span class="phone-owner">Compañía Peruana Nacional Textil SAC</span>
+            </div>
+            
+            <div class="whatsapp-contact">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              <span>Consultas: <strong>967 110 1090</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Voucher -->
+      <div class="voucher-upload">
+        <h4 class="upload-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Sube tu comprobante de pago
+        </h4>
+
+        <div class="upload-area" (click)="fileInput.click()" 
+             [class.has-file]="voucherFile"
+             (dragover)="onDragOver($event)"
+             (drop)="onDrop($event)">
+          
+          <input #fileInput type="file" 
+                 accept="image/*" 
+                 (change)="onFileSelected($event)"
+                 style="display: none;">
+
+          <div *ngIf="!voucherFile" class="upload-placeholder">
+            <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <p class="upload-text"><strong>Haz clic aquí</strong> o arrastra tu imagen</p>
+            <p class="upload-hint">PNG, JPG hasta 5MB</p>
+          </div>
+
+          <div *ngIf="voucherFile" class="file-preview">
+            <img [src]="voucherPreview" alt="Vista previa" class="preview-image">
+            <div class="file-info">
+              <p class="file-name">{{ voucherFile.name }}</p>
+              <p class="file-size">{{ formatFileSize(voucherFile.size) }}</p>
+              <button class="btn-remove" type="button" (click)="removeFile($event)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Número de operación -->
+        <div class="form-group operation-number">
+          <label for="operation-number">
+            Número de Operación (opcional)
+          </label>
+          <input type="text" 
+                 id="operation-number" 
+                 name="operation-number" 
+                 class="input-field" 
+                 [(ngModel)]="numeroOperacion"
+                 placeholder="Ej: 123456789">
+        </div>
+      </div>
+
+      <!-- Botón de confirmación -->
+      <button class="btn-confirm-voucher" 
+              type="button"
+              (click)="enviarVoucher()"
+              [disabled]="!voucherFile || isUploadingVoucher">
+        <span *ngIf="!isUploadingVoucher">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Confirmar Pago - S/ {{ total | number:'1.2-2' }}
         </span>
-        <span *ngIf="isProcessingPayment">
-          <i class="fas fa-spinner fa-spin"></i>
+        <span *ngIf="isUploadingVoucher">
+          <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="2" x2="12" y2="6"></line>
+            <line x1="12" y1="18" x2="12" y2="22"></line>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+            <line x1="2" y1="12" x2="6" y2="12"></line>
+            <line x1="18" y1="12" x2="22" y2="12"></line>
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+          </svg>
           Procesando...
         </span>
       </button>
 
-      <div class="payment-security">
-        <p class="security-text">
-          <i class="fas fa-shield-alt"></i>
-          Tu información está protegida con encriptación SSL
-        </p>
+      <div class="voucher-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <p>Tu pedido será procesado una vez validemos tu comprobante (máximo 24-48 horas hábiles)</p>
       </div>
     </div>
   </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
   <!-- Información adicional -->
   <div class="info-adicional">

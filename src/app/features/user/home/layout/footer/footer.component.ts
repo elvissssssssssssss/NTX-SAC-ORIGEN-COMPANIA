@@ -7,12 +7,18 @@ import {
   OnDestroy,
   Renderer2
 } from '@angular/core';
-import { io, Socket } from 'socket.io-client';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatbotService } from '../../../../../../app/services/chatbot.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
+interface ChatMessage {
+  text: string;
+  sender: 'user' | 'bot';
+  timestamp: string;
+  html?: string;
+}
 
 @Component({
   selector: 'app-footer',
@@ -21,38 +27,41 @@ import { ChatbotService } from '../../../../../../app/services/chatbot.service';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
-export class FooterComponent implements  AfterViewChecked, OnInit, OnDestroy {
+export class FooterComponent implements AfterViewChecked, OnInit, OnDestroy {
   @ViewChild('chatbotBody') private chatbotBody!: ElementRef;
+  
   isChatbotVisible = false;
   messageInput = '';
+  messages: ChatMessage[] = [];
+  isTyping = false;
 
-  // 🔹 Control de animación arcoíris
   private removeGlowListener?: () => void;
   private hideTimer: any;
 
   constructor(
     private chatbotService: ChatbotService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private sanitizer: DomSanitizer
   ) {}
 
-  // ========================
-  // 🔹 Ciclo de vida
-  // ========================
   ngOnInit() {
-    // Escuchar mensajes del bot
-    window.addEventListener('bot-message', (event: any) => {
-      const msg = event.detail;
-      if (msg?.text) {
-        this.addMessage(msg.text, 'bot');
-      }
+    // Mensaje de bienvenida inicial
+    this.messages.push({
+      text: '¡Hola! 👋 Soy tu asistente virtual de **NTX SAC**.\n\n¿En qué puedo ayudarte hoy?',
+      sender: 'bot',
+      timestamp: this.getCurrentTime(),
+      html: this.formatMessage('¡Hola! 👋 Soy tu asistente virtual de **NTX SAC**.\n\n¿En qué puedo ayudarte hoy?')
     });
+
+    // Escuchar mensajes del bot
+    window.addEventListener('bot-message', this.handleBotMessage.bind(this));
 
     // Escuchar evento para la animación de borde
     this.setupRouteGlowListener();
   }
 
   ngOnDestroy() {
-    window.removeEventListener('bot-message', () => {});
+    window.removeEventListener('bot-message', this.handleBotMessage.bind(this));
     if (this.removeGlowListener) this.removeGlowListener();
     if (this.hideTimer) clearTimeout(this.hideTimer);
   }
@@ -61,42 +70,75 @@ export class FooterComponent implements  AfterViewChecked, OnInit, OnDestroy {
     this.scrollToBottom();
   }
 
-  // ========================
-  // 🔹 Chatbot funciones
-  // ========================
+  handleBotMessage(event: any) {
+    const msg = event.detail;
+    this.isTyping = false;
+    
+    if (msg?.text) {
+      this.messages.push({
+        text: msg.text,
+        sender: 'bot',
+        timestamp: this.getCurrentTime(),
+        html: this.formatMessage(msg.text)
+      });
+    }
+  }
+
   toggleChatbot() {
     this.isChatbotVisible = !this.isChatbotVisible;
   }
 
-sendMessage() {
-  const msg = this.messageInput.trim();
-  if (!msg) return;
+  sendMessage() {
+    const msg = this.messageInput.trim();
+    if (!msg) return;
 
-  this.addMessage(msg, 'user');
-  this.messageInput = '';
+    // Agregar mensaje del usuario
+    this.messages.push({
+      text: msg,
+      sender: 'user',
+      timestamp: this.getCurrentTime()
+    });
 
-  // Llama al servicio — no maneja socket directo
-  this.chatbotService.sendMessage(msg);
-}
+    this.messageInput = '';
+    this.isTyping = true;
+
+    // Enviar al backend
+    this.chatbotService.sendMessage(msg);
+  }
 
   sendQuickReply(message: string) {
-    this.addMessage(message, 'user');
+    this.messages.push({
+      text: message,
+      sender: 'user',
+      timestamp: this.getCurrentTime()
+    });
+    
+    this.isTyping = true;
     this.chatbotService.sendMessage(message);
   }
 
-  addMessage(text: string, sender: 'user' | 'bot') {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+  /**
+   * Formatea el mensaje de Markdown a HTML
+   */
+  formatMessage(text: string): string {
+    let formatted = text;
 
-    const timeString = this.getCurrentTime();
-    messageElement.innerHTML = `
-      ${text}
-      <div class="message-time">${timeString}</div>
-    `;
+    // Convertir **texto** a <strong>texto</strong>
+    formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 
-    if (this.chatbotBody?.nativeElement) {
-      this.chatbotBody.nativeElement.appendChild(messageElement);
+    // Convertir * item a <li>item</li>
+    formatted = formatted.replace(/^\s*[•\*]\s+(.+)$/gm, '<li>$1</li>');
+
+    // Envolver <li> en <ul> si existen
+    if (formatted.includes('<li>')) {
+      formatted = formatted.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
     }
+
+    // Convertir saltos de línea \n\n a <br>
+    formatted = formatted.replace(/\n\n/g, '<br><br>');
+    formatted = formatted.replace(/\n/g, '<br>');
+
+    return formatted;
   }
 
   getCurrentTime(): string {
@@ -116,36 +158,27 @@ sendMessage() {
     if (event.key === 'Enter') this.sendMessage();
   }
 
-  // ========================
-  // 🔹 ANIMACIÓN ARCOÍRIS ()
-  // ========================
-setupRouteGlowListener() {
-  const handler = (ev: Event) => {
-    console.log(' Evento route-highlight detectado');
+  setupRouteGlowListener() {
+    const handler = (ev: Event) => {
+      console.log('✨ Evento route-highlight detectado');
 
-    // Dura exactamente 1.5 s (1500 ms)
-    const duration = 2000;
-    const el = document.getElementById('routeGlow');
+      const duration = 2000;
+      const el = document.getElementById('routeGlow');
 
-    if (!el) {
-      console.warn(' No se encontró #routeGlow en el DOM');
-      return;
-    }
+      if (!el) {
+        console.warn('⚠️ No se encontró #routeGlow en el DOM');
+        return;
+      }
 
-    // Mostrar el borde
-    el.classList.add('show');
+      el.classList.add('show');
 
-    // Si ya hay un temporizador corriendo, cancelarlo
-    if (this.hideTimer) clearTimeout(this.hideTimer);
+      if (this.hideTimer) clearTimeout(this.hideTimer);
 
-    // Ocultar el borde después del tiempo indicado
-    this.hideTimer = setTimeout(() => {
-      el.classList.remove('show');
-    }, duration);
-  };
+      this.hideTimer = setTimeout(() => {
+        el.classList.remove('show');
+      }, duration);
+    };
 
-  // Escuchar el evento global emitido por ChatbotService
-  this.removeGlowListener = this.renderer.listen('window', 'route-highlight', handler);
-}
-
+    this.removeGlowListener = this.renderer.listen('window', 'route-highlight', handler);
+  }
 }

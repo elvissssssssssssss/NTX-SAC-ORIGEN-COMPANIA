@@ -302,53 +302,110 @@
   <circle cx="160" cy="300" r="3" fill="#00bcd4"/>
   <circle cx="240" cy="300" r="3" fill="#00bcd4"/>
   
-  <!-- Aletas laterales de la cabeza -->
+  <!-- Aletas laterales de la cabeza 1111111111111111111111111111111111111111111-->
   <ellipse cx="120" cy="170" rx="12" ry="20" fill="url(#blueGradient)" filter="url(#shadow)"/>
   <ellipse cx="280" cy="170" rx="12" ry="20" fill="url(#blueGradient)" filter="url(#shadow)"/>
 </svg>
   </div>
 
-  <div class="chatbot-container" [class.show-chatbot]="isChatbotVisible">
-    <div class="chatbot-header">
-      <div class="chatbot-title">
-        <div class="chatbot-logo">
-          <i class="fas fa-robot"></i>
-        </div>
-        <div>
-          <div class="chatbot-name">chat bot</div>
-          <div class="chatbot-status">En línea</div>
-        </div>
+<div class="chatbot-container" [class.show-chatbot]="isChatbotVisible">
+  <!-- Header -->
+  <div class="chatbot-header">
+    <div class="chatbot-title">
+      <div class="chatbot-logo">
+        <i class="fas fa-robot"></i>
       </div>
-      <div class="header-actions">
-        <i class="fas fa-times" (click)="toggleChatbot()"></i>
-      </div>
-    </div>
-
-    <div class="chatbot-body" #chatbotBody>
-      <div class="message bot-message">
-        ¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?
-        <div class="message-time">{{ getCurrentTime() }}</div>
-        
-        <div class="quick-replies">
-          <div class="quick-reply" (click)="sendQuickReply('Información')">Información</div>
-          <div class="quick-reply" (click)="sendQuickReply('Soporte')">Soporte</div>
-          <div class="quick-reply" (click)="sendQuickReply('Productos')">Productos</div>
+      <div>
+        <div class="chatbot-name">NTX SAC Bot</div>
+        <div class="chatbot-status">
+          <span class="status-dot"></span> En línea
         </div>
       </div>
     </div>
-
-    <div class="chatbot-actions">
-      <div class="chatbot-input">
-        <input type="text" placeholder="Escribe tu mensaje..." 
-               [(ngModel)]="messageInput" 
-               (keyup)="handleKeyup($event)">
-        <i class="fas fa-paperclip"></i>
-      </div>
-      <button class="action-button" (click)="sendMessage()">
-        <i class="fas fa-paper-plane"></i>
-      </button>
+    <div class="header-actions">
+      <i class="fas fa-times" (click)="toggleChatbot()"></i>
     </div>
   </div>
+
+  <!-- Messages Area -->
+  <div class="chatbot-body" #chatbotBody>
+    <!-- Mensajes iterados -->
+    <div *ngFor="let msg of messages" 
+         [class]="'message ' + (msg.sender === 'user' ? 'user-message' : 'bot-message')">
+      
+      <!-- Avatar del bot -->
+      <div *ngIf="msg.sender === 'bot'" class="message-avatar bot-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      
+      <div id="anchobot" class="message-bubble">
+        <!-- Mensaje del usuario (texto plano) -->
+        <div *ngIf="msg.sender === 'user'" class="message-text">
+          {{ msg.text }}
+        </div>
+        
+        <!-- Mensaje del bot (HTML formateado) -->
+        <div *ngIf="msg.sender === 'bot'" 
+             class="message-text bot-content"
+             [innerHTML]="msg.html">
+        </div>
+        
+        <div class="message-time">{{ msg.timestamp }}</div>
+      </div>
+      
+      <!-- Avatar del usuario -->
+      <div *ngIf="msg.sender === 'user'" class="message-avatar user-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+
+    <!-- Indicador de escritura -->
+    <div *ngIf="isTyping" class="message bot-message">
+      <div class="message-avatar bot-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="message-bubble typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Quick Replies (solo mostrar al inicio) -->
+    <div *ngIf="messages.length === 1" class="quick-replies">
+      <div class="quick-reply" (click)="sendQuickReply('Ver catálogo')">
+        🛍️ Ver catálogo
+      </div>
+      <div class="quick-reply" (click)="sendQuickReply('Consultar mi talla')">
+        📏 Mi talla
+      </div>
+      <div class="quick-reply" (click)="sendQuickReply('Soporte')">
+        💬 Soporte
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="chatbot-actions">
+    <div class="chatbot-input">
+      <input 
+        type="text" 
+        placeholder="Escribe tu mensaje..." 
+        [(ngModel)]="messageInput" 
+        (keyup)="handleKeyup($event)"
+        [disabled]="isTyping">
+      <i class="fas fa-smile"></i>
+    </div>
+    <button class="action-button" 
+            (click)="sendMessage()"
+            [disabled]="!messageInput.trim() || isTyping">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Botón flotante -->
+
 
 
 

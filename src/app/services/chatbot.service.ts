@@ -13,8 +13,8 @@ export class ChatbotService {
 
   constructor(private router: Router, private zone: NgZone) {
     //  Cambia la URL por la de tu backend en Render o localhost
-    this.socket = io('http://localhost:3000', {
-       //this.socket = io('https://proyecto-wit-ai-websocket-io.onrender.com', {
+  //  this.socket = io('http://localhost:3000', {
+     this.socket = io('https://proyecto-wit-ai-websocket-io.onrender.com', {
       transports: ['websocket'],
       reconnection: true,
     });
